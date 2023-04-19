@@ -34,18 +34,23 @@
 % Add references in table of contents
 \usepackage[nottoc]{tocbibind}
 
+% Set author and place
+\newcommand{\DP}{David Paulino}
+\newcommand{\place}{Genève}
+\newcommand{\fulltitle}{Analyse et optimisation de l'expected goal: application au machine learning}
+\newcommand{\shorttitle}{Analyse et optimisation de l'expected goal}
 
 % Title
 \title{Title}
-\author{David Paulino}
+\author{\DP}
 \date{\today}
 
 % Header
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\lhead{Author}
-\rhead{Title}
+\lhead{\DP}
+\rhead{\shorttitle}
 
 % Footers
 \lfoot{Page \thepage}
@@ -66,7 +71,7 @@
     \begin{center}
 
         \begingroup \linespread{1,75} \selectfont
-        {\Large Titre du travail de bachelor}\\[0,75cm]
+        {\Large \fulltitle}\\[0,75cm]
         \endgroup
 
 
@@ -77,7 +82,7 @@
         \textsc{\large Travail de Bachelor HES réalisé en vue de \newline l’obtention du Bachelor par :}\\[0,50cm]
 
         \begingroup \linespread{1,75} \selectfont
-        \textsc{\large <Nom Prénom>}\\[0,50cm]
+        \textsc{\large \DP}\\[0,50cm]
         \endgroup
 
 
@@ -92,7 +97,7 @@
 
 
         \begingroup \linespread{1,75} \selectfont
-        \textsc{\large <Lieu>, le \today}\\[0,25cm]
+        \textsc{\large \place, le \today}\\[0,25cm]
 
         {\large Haute école de Gestion de Genève (HEG-GE)}\\[0,25cm]
 
@@ -126,12 +131,34 @@
 \section{Introduction}
 
 % Citation avec Zotero et BibLaTeX
-\cite{sumpterFittingXGModel}
+\subsection{Introduction à la problématique}
+\noindent La problématique de ce travail est de pouvoir analyser et optimiser l'expected goal.
+\newline
+Il est tout d'abord important d'introduire ce qu'est l'expected goal. L'expected goal\footnote{Très souvent réduit par xG} est une métrique qui permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir \cite{XGExplainedFBref}. Un tir qui a un xG de 0.4 a une probabilité de 40\% d'être transformé en but. Un tir avec un xG à 1 est la plus grande valeur possible et aurait donc 100\% de chance d'être transformé en but. \footnote{Il est important d'indiquer qu'il est très rare qu'un xG d'un tir soit égal à 1 mais il va généralement sans rapprocher fortement selon ses paramètres.} \cite{pettyWhatExpectedGoals2018a}
+\newline
+La problématique m'a semblé cohérente par rapport à ma personnalité puisque je suis passionné par le football et que j'ai toujours été intéressé par les statistiques et les données. J'ai donc décidé de m'intéresser à l'expected goal et de voir comment on pouvait l'optimiser.
+\subsection{Intérêt de la problématique}
+\noindent Cette problématique est très intéressante puisque c'est une donnée qui est dernièrement très populaire dans le monde du football. Elle donne plus d'informations sur le match que les autres statistiques d'un matchs (possession, nombre de passes, nombre de tirs cadrés, nombre de buts, etc.). Par exemple en ce qui concerne la possession, une équipe peut avoir la possession du ballon pendant 70\% du match mais ne pas marquer de buts, ni même être dangereuse avec le ballon. Le nombre de tirs cadrés, s'ils sont effectuées tous à l'extérieur de la surface de réparation, ne sont pas forcément dangereux. L'expected goal permet de donner une valeur à chaque tir et donc de déterminer si un tir a une chance d'être transformé en but.
+\newline \newline
+Ensuite, certaines personnes utilisent cette métrique pour leurs paris sportifs. Ils observent la métrique lors des derniers matchs et la compare avec le score réel du match. Si la différence est grande, cela peut permettre de constater un manque de réalisme ou un sur-régime d'une des deux équipes. \cite{tennerelBienUtiliserExpected2022a}
+\newline \newline
+D'autres personnes utilisent cette donnée pour analyser les performances de leurs joueurs et de leurs équipes. Par exemple, la comparaison des xG et du nombre de buts marqués d'un joueur sur une période donnée peut permettre de déterminer la dangerosité et la capacité d'un buteur à terminer des actions. \cite{pettyWhatExpectedGoals2018a}
+Les xG peuvent aussi être utilisés pour analyser les performances d'une équipe dans des situations bien précises. Une équipe qui possède un haut xG sur des contre-attaques montre qu'elle est très dangereuse sur ce type de situation. \cite{XGExplainedFBrefa}
 
-\section{Background}
-\section{Methodology}
-\section{Results}
-\section{Conclusion}
+\subsection{Questions que l'on souhaite répondre dans ce travail}
+\noindent Il y a plusieurs questions qui peuvent se poser dans ce travail. Je vais donc les lister.
+\begin{itemize}
+    \item Comment est calculé l'expected goal ?
+    \item Quels sont les paramètres qui influencent le plus l'expected goal ?
+    \item Quel est le meilleur modèle pour prédire l'expected goal ?
+    \item Quels sont les variables qui peuvent être ajoutée pour améliorer le résultat de la prédiction ?
+    \item Quel est le meilleur modèle pour prédire l'expected goal en utilisant les variables ajoutées ?
+\end{itemize}
+
+\subsection{Intérêt de ces questions}
+\noindent Le but de ces questions est de comprendre comment implémenter un modèle qui permet de prédire l'expected goal. Grâce à cela, on pourra ensuite connaître quels sont les variables obligatoires pour implémenter un tel modèle et quels sont les paramètres qui influencent le plus l'expected goal. Ensuite, on pourra voir quel est le meilleur modèle pour prédire l'expected goal et quels sont les variables qui peuvent être ajoutées pour améliorer le résultat de la prédiction. Enfin, on pourra voir quel est le meilleur modèle pour prédire l'expected goal en utilisant les variables ajoutées.
+\subsection{Applications concrètes}
+% Application concrètes de mon travail ou alors applications déjà concrète de la problématique?
 
 % Bibliography
 \bibliographystyle{plain}
