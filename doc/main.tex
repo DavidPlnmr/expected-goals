@@ -89,10 +89,11 @@
         \vspace{1cm}
 
 
-        \textsc{\large Conseiller au travail de Bachelor : }
+        \textsc{\large Conseillers au travail de Bachelor : }
 
         \begingroup \linespread{1,75} \selectfont
-        \textsc{\large <Prénom, NOM, titre de la personne>}\\[1cm]
+        \textsc{\large Alexandros KALOUSIS}\\[0.1cm]
+        \textsc{\large Nils SCHÄTTI}\\[1cm]
         \endgroup
 
 
@@ -134,11 +135,11 @@
 \subsection{Introduction à la problématique}
 \noindent La problématique de ce travail est de pouvoir analyser et optimiser l'expected goal.
 \newline
-Il est tout d'abord important d'introduire ce qu'est l'expected goal. L'expected goal\footnote{Très souvent réduit par xG} est une métrique qui permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir \cite{XGExplainedFBref}. Un tir qui a un xG de 0.4 a une probabilité de 40\% d'être transformé en but. Un tir avec un xG à 1 est la plus grande valeur possible et aurait donc 100\% de chance d'être transformé en but. \footnote{Il est important d'indiquer qu'il est très rare qu'un xG d'un tir soit égal à 1 mais il va généralement sans rapprocher fortement selon ses paramètres.} \cite{pettyWhatExpectedGoals2018a}
+Il est tout d'abord important d'introduire ce qu'est l'expected goal. L'expected goal\footnote{Très souvent réduit par xG} est une métrique qui permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir \cite{XGExplainedFBrefa}. Un tir qui a un xG de 0.4 a une probabilité de 40\% d'être transformé en but. Un tir avec un xG à 1 est la plus grande valeur possible et aurait donc 100\% de chance d'être transformé en but. \footnote{Il est important d'indiquer qu'il est très rare qu'un xG d'un tir soit égal à 1 mais il va généralement sans rapprocher fortement selon ses paramètres.} \cite{pettyWhatExpectedGoals2018a}
 \newline
 La problématique m'a semblé cohérente par rapport à ma personnalité puisque je suis passionné par le football et que j'ai toujours été intéressé par les statistiques et les données. J'ai donc décidé de m'intéresser à l'expected goal et de voir comment on pouvait l'optimiser.
 \subsection{Intérêt de la problématique}
-\noindent Cette problématique est très intéressante puisque c'est une donnée qui est dernièrement très populaire dans le monde du football. Elle donne plus d'informations sur le match que les autres statistiques d'un matchs (possession, nombre de passes, nombre de tirs cadrés, nombre de buts, etc.). Par exemple en ce qui concerne la possession, une équipe peut avoir la possession du ballon pendant 70\% du match mais ne pas marquer de buts, ni même être dangereuse avec le ballon. Le nombre de tirs cadrés, s'ils sont effectuées tous à l'extérieur de la surface de réparation, ne sont pas forcément dangereux. L'expected goal permet de donner une valeur à chaque tir et donc de déterminer si un tir a une chance d'être transformé en but.
+\noindent Cette problématique est très intéressante puisque c'est une donnée qui est dernièrement très populaire dans le monde du football. Elle donne plus d'informations sur le match que les autres statistiques d'un matchs (possession, nombre de passes, nombre de tirs cadrés, nombre de buts, etc.). Par exemple en ce qui concerne la possession, une équipe peut avoir la possession du ballon pendant 70\% du match mais ne pas marquer de buts, ni même être dangereuse avec le ballon. Le nombre de tirs cadrés, s'ils sont effectuées tous à l'extérieur de la surface de réparation, ne sont pas forcément dangereux. L'expected goal permet de donner une valeur à chaque tir et de déterminer si un tir a une chance d'être transformé en but.
 \newline \newline
 Ensuite, certaines personnes utilisent cette métrique pour leurs paris sportifs. Ils observent la métrique lors des derniers matchs et la compare avec le score réel du match. Si la différence est grande, cela peut permettre de constater un manque de réalisme ou un sur-régime d'une des deux équipes. \cite{tennerelBienUtiliserExpected2022a}
 \newline \newline
@@ -157,8 +158,24 @@ Les xG peuvent aussi être utilisés pour analyser les performances d'une équip
 
 \subsection{Intérêt de ces questions}
 \noindent Le but de ces questions est de comprendre comment implémenter un modèle qui permet de prédire l'expected goal. Grâce à cela, on pourra ensuite connaître quels sont les variables obligatoires pour implémenter un tel modèle et quels sont les paramètres qui influencent le plus l'expected goal. Ensuite, on pourra voir quel est le meilleur modèle pour prédire l'expected goal et quels sont les variables qui peuvent être ajoutées pour améliorer le résultat de la prédiction. Enfin, on pourra voir quel est le meilleur modèle pour prédire l'expected goal en utilisant les variables ajoutées.
-\subsection{Applications concrètes}
+\section{Synthèse des travaux existants}
+\label{sec:synthese}
 % Application concrètes de mon travail ou alors applications déjà concrète de la problématique?
+\noindent Parmi les travaux existants, il y a le travail de David Sumpter \cite{sumpterFittingXGModel} qui permet de comprendre comment implémenter un modèle d'expected goal. Ce travail va être une bonne base pour implémenter le premier modèle.
+\newline
+\noindent Ensuite, le travail nommé "Expected goals in soccer:explaining match results using predictive analytics" de Eggels \cite{eggelsExpectedGoalsSoccer2016} est un travail très détaillé qui permet d'avoir des pistes d'améliorations et qui explique bien les différentes étapes pour implémenter un modèle d'expected goal. Ce travail va être très utile pour permette d'apporter des améliorations au modèle.
+
+\section{Dataset}
+
+\subsection{Présentation du dataset}
+
+\noindent Comme indiqué dans le section \ref{sec:synthese}, le travail de David Sumpter \cite{sumpterFittingXGModel} va être utilisé comme base pour implémenter le premier modèle. Il utilise un dataset qui contient les données de Wyscout. Wyscout est une entreprise qui fournit des données sur le football. Elle fournit des données sur les matchs, les joueurs, les équipes, les compétitions, etc. Il n'a pas été possible pour moi d'accéder au données directement par Wyscout. J'ai donc utilisé un dataset public qui est un sample du dataset de Wyscout. \cite{pappalardoPublicDataSet2019}
+\newline
+\noindent Cette source permet d'avoir l'information des événements lors d'un match de foot, comme par exemple les passes, les tirs, les fautes, etc. Cela permet d'avoir les informations nécessaires pour calculer l'expected goal. Un autre avantage de ce dataset est qu'il est déjà nettoyé et qu'il est facilement utilisable. Il est aussi très complet puisqu'il contient des données sur les matchs de 5 championnats européens (Angleterre, Espagne, Italie, Allemagne et France) de la saison 2017-2018. Il contient aussi des données sur les matchs de la coupe du monde 2018 et de l'Euro 2016.
+
+% Description de chaque attribut dans le dataset event
+
+% Description de chaque attribut dans le dataset players
 
 % Bibliography
 \bibliographystyle{plain}
