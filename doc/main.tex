@@ -92,8 +92,8 @@
         \textsc{\large Conseillers au travail de Bachelor : }
 
         \begingroup \linespread{1,75} \selectfont
-        \textsc{\large Alexandros KALOUSIS}\\[0.1cm]
-        \textsc{\large Nils SCHÄTTI}\\[1cm]
+        \textsc{\large Pr Alexandros KALOUSIS}\\[0.1cm]
+        \textsc{\large Dr Nils SCHÄTTI}\\[1cm]
         \endgroup
 
 
@@ -133,11 +133,47 @@
 
 % Citation avec Zotero et BibLaTeX
 \subsection{Introduction à la problématique}
-\noindent La problématique de ce travail est de pouvoir analyser et optimiser l'expected goal.
+\noindent Lorsque les premiers sports sont apparus, l'information la plus importante était le score et le vainqueur de la confrontation.
+Au fur et à mesure, plus d'informations sur les matchs sont venues s'ajoutées.
+Le nombre de tirs dans un matchs par équipes, le nombre de passes, le nombre de tirs cadrés, la possession du ballon le pourcentage de passes réussies dans le football, le nombre de passes décisives et d'autres sont venus s'ajouter aux statistiques dans le football.
+Le pourcentage de réussite aux lancers francs, le nombre de rebonds, le nombre de passes décisives, le pourcentage de réussite aux tirs, le nombre de fautes, le nombre de minutes jouées, le pourcentage de réussite à 3 points et d'autres sont venus s'ajouter aux statistiques dans le basketball.
+Ces statistiques sont également devenus personnelles à chacun des joueurs.
+On peut également compter pour le baseball le nombre de fois qu'un joueur était au bâton, son nombre de double, de triples, son nombre de buts et bien d'autres.
 \newline
-Il est tout d'abord important d'introduire ce qu'est l'expected goal. L'expected goal\footnote{Très souvent réduit par xG} est une métrique qui permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir \cite{XGExplainedFBrefa}. Un tir qui a un xG de 0.4 a une probabilité de 40\% d'être transformé en but. Un tir avec un xG à 1 est la plus grande valeur possible et aurait donc 100\% de chance d'être transformé en but. \footnote{Il est important d'indiquer qu'il est très rare qu'un xG d'un tir soit égal à 1 mais il va généralement sans rapprocher fortement selon ses paramètres.} \cite{pettyWhatExpectedGoals2018a}
+C'est d'ailleurs dans le baseball que l'on peut retrouver la première utilisation de statistiques avancées pour établir des stratégies.
+En effet, au début des années 1970, le joueur des Baltimore Orioles a développé une analyse statistiques pour choisir le meilleur alignement possible pour son équipe de départ.
+Cependant, il n'a pas pu l'utiliser à ce moment-là puisque le président de sa franchise n'avait pas confiance. C'est qu'à partir de 1984 où il fut le coach des New York Mets qu'il a pu mettre en place son analyse statistiques avancées pour établir le meilleur choix pour son équipe de départ. \cite{incPCMag1984}
+Deux saisons plus tard, il remporte la Série mondiale 1986 \footnote{En MLB, la Série mondiale est la série finale qui permet de déterminer qui est l'équipe championne de la ligue.}. Les Mets étaient situés à la dernière place de leur conférence avant l'arrivée de Davey Johnson et son management orienté sur les statistiques.
 \newline
-La problématique m'a semblé cohérente par rapport à ma personnalité puisque je suis passionné par le football et que j'ai toujours été intéressé par les statistiques et les données. J'ai donc décidé de m'intéresser à l'expected goal et de voir comment on pouvait l'optimiser.
+Après cette réussite, les autres franchises de la MLB\footnote{Ligue majeure de baseball} ont également commencé à adopter l'analyse de statistiques dans le sport et cela a également été populaire dans les autres sports avec par exemple Daryl Morey qui a été le premier coach analyste statistiques recruté chez les Rockets de Houston en NBA en 2007. \cite{DarylMorey13year2020}
+Les franchises de la NBA\footnote{Ligue nationale de basketball} ont par la suite également adopté une approche managériale statistique.
+On constate alors que cette culture de la statistique dans le sport provient des États-Unis.
+\newline
+Il est désormais important d'amener l'arrivée des expected goals. L'une des premières études sur un modèle d'expected goals vient d'Alan Ryder qui a publié une étude sur la qualité des tirs effectuées dans des matchs de hockey. \cite{ryderIsolatingShotQuality2004}
+Ce dernier a pu analyser les différentes circonstances lors d'un tir et développer un modèle qui prédit la probabilité d'un tir selon les circonstances de ce tir.
+Dans le football, l'une des premieres études sur l'expected goal vient de Richard Pollard, Jake Ensum et Samuel Taylor qui ont analysé les facteurs qui influent la chance de marquer un but. \cite{pollardEstimatingProbabilityShot2004}
+
+\noindent La problématique de ce travail est donc de pouvoir analyser et optimiser l'expected goal.
+\newline
+Il semble maintenant important de savoir ce qu'est l'expected goal. L'expected goal
+\footnote{Très souvent réduit par xG} est une métrique qui permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir \cite{XGExplainedFBrefa}.
+Un tir qui a un xG de 0.4 a une probabilité de 40\% d'être transformé en but. Un tir avec un xG à 1 est la plus grande valeur possible et aurait donc 100\% de chance d'être transformé en but.
+\footnote{Il est important d'indiquer qu'il est très rare qu'un xG d'un tir soit égal à 1 mais il va généralement sans rapprocher fortement selon ses paramètres.} \cite{pettyWhatExpectedGoals2018a}
+\newline
+Pour observer ce qu'est réellement un xG, nous allons l'observer avec l'emplacement de deux tirs sur un terrain.
+Le schéma \ref{fig:expected_goal_example} montre un terrain de football avec deux emplacements de tirs.
+Par exemple, le tir en rouge aurait un xG de 0.1 et le tir en vert aurait un xG de 0.5\footnote{Ces métriques sont que des exemples et n'ont pas été produites par un modèle.}.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=7cm]{img/ExplicationXG.png}
+
+    \caption{Emplacement de deux tirs sur un terrain de foot}
+    \label{fig:expected_goal_example}
+\end{figure}
+
+
+\noindent Maintenant que nous avons vu ce qu'est un xG, il semble pertinent de décrire l'utilisation de cette métrique dans le football actuel.
+
 \subsection{Intérêt de la problématique}
 \noindent Cette problématique est très intéressante puisque c'est une donnée qui est dernièrement très populaire dans le monde du football. Elle donne plus d'informations sur le match que les autres statistiques d'un matchs (possession, nombre de passes, nombre de tirs cadrés, nombre de buts, etc.). Par exemple en ce qui concerne la possession, une équipe peut avoir la possession du ballon pendant 70\% du match mais ne pas marquer de buts, ni même être dangereuse avec le ballon. Le nombre de tirs cadrés, s'ils sont effectuées tous à l'extérieur de la surface de réparation, ne sont pas forcément dangereux. L'expected goal permet de donner une valeur à chaque tir et de déterminer si un tir a une chance d'être transformé en but.
 \newline \newline
@@ -169,13 +205,15 @@ Les xG peuvent aussi être utilisés pour analyser les performances d'une équip
 
 \subsection{Présentation du dataset}
 
-\noindent Comme indiqué dans le section \ref{sec:synthese}, le travail de David Sumpter \cite{sumpterFittingXGModel} va être utilisé comme base pour implémenter le premier modèle. Il utilise un dataset qui contient les données de Wyscout. Wyscout est une entreprise qui fournit des données sur le football. Elle fournit des données sur les matchs, les joueurs, les équipes, les compétitions, etc. Il n'a pas été possible pour moi d'accéder au données directement par Wyscout. J'ai donc utilisé un dataset public qui est un sample du dataset de Wyscout. \cite{pappalardoPublicDataSet2019}
+\noindent Comme indiqué dans le section \ref{sec:synthese}, le travail de David Sumpter \cite{sumpterFittingXGModel} va être utilisé comme base pour implémenter le premier modèle. Il utilise un dataset qui contient les données de Wyscout. Wyscout est une entreprise qui fournit des données sur le football. Elle fournit des données sur les matchs, les joueurs, les équipes, les compétitions, etc. Il n'a pas été possible pour moi d'accéder aux données de Wyscout. J'ai donc utilisé un dataset public qui est un sample du dataset de Wyscout. \cite{pappalardoPublicDataSet2019}
 \newline
 \noindent Cette source permet d'avoir l'information des événements lors d'un match de foot, comme par exemple les passes, les tirs, les fautes, etc. Cela permet d'avoir les informations nécessaires pour calculer l'expected goal. Un autre avantage de ce dataset est qu'il est déjà nettoyé et qu'il est facilement utilisable. Il est aussi très complet puisqu'il contient des données sur les matchs de 5 championnats européens (Angleterre, Espagne, Italie, Allemagne et France) de la saison 2017-2018. Il contient aussi des données sur les matchs de la coupe du monde 2018 et de l'Euro 2016.
 
 % Description de chaque attribut dans le dataset event
+\subsection{Events}
 
 % Description de chaque attribut dans le dataset players
+\subsection{Players}
 
 % Bibliography
 \bibliographystyle{plain}
