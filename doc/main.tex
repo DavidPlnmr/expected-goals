@@ -139,7 +139,7 @@ Le nombre de tirs dans un matchs par équipes, le nombre de passes, le nombre de
 Le pourcentage de réussite aux lancers francs, le nombre de rebonds, le nombre de passes décisives, le pourcentage de réussite aux tirs, le nombre de fautes, le nombre de minutes jouées, le pourcentage de réussite à 3 points et d'autres sont venus s'ajouter aux statistiques dans le basketball.
 Ces statistiques sont également devenus personnelles à chacun des joueurs.
 On peut également compter pour le baseball le nombre de fois qu'un joueur était au bâton, son nombre de double, de triples, son nombre de buts et bien d'autres.
-\newline
+\newline\newline
 C'est d'ailleurs dans le baseball que l'on peut retrouver la première utilisation de statistiques avancées pour établir des stratégies.
 En effet, au début des années 1970, le joueur des Baltimore Orioles a développé une analyse statistiques pour choisir le meilleur alignement possible pour son équipe de départ.
 Cependant, il n'a pas pu l'utiliser à ce moment-là puisque le président de sa franchise n'avait pas confiance. C'est qu'à partir de 1984 où il fut le coach des New York Mets qu'il a pu mettre en place son analyse statistiques avancées pour établir le meilleur choix pour son équipe de départ. \cite{incPCMag1984}
@@ -151,18 +151,24 @@ On constate alors que cette culture de la statistique dans le sport provient des
 \newline
 Il est désormais important d'amener l'arrivée des expected goals. L'une des premières études sur un modèle d'expected goals vient d'Alan Ryder qui a publié une étude sur la qualité des tirs effectuées dans des matchs de hockey. \cite{ryderIsolatingShotQuality2004}
 Ce dernier a pu analyser les différentes circonstances lors d'un tir et développer un modèle qui prédit la probabilité d'un tir selon les circonstances de ce tir.
-Dans le football, l'une des premieres études sur l'expected goal vient de Richard Pollard, Jake Ensum et Samuel Taylor qui ont analysé les facteurs qui influent la chance de marquer un but. \cite{pollardEstimatingProbabilityShot2004}
-
-\noindent La problématique de ce travail est donc de pouvoir analyser et optimiser l'expected goal.
-\newline
+Dans le football, l'une des premieres études sur l'expected goal vient de Richard Pollard, Jake Ensum et Samuel Taylor qui ont analysé les facteurs qui influent la chance de marquer un but. \cite{pollardEstimatingProbabilityShot2004} La problématique de ce travail est donc de pouvoir analyser et optimiser l'expected goal.
+\newline\newline
 Il semble maintenant important de savoir ce qu'est l'expected goal. L'expected goal
 \footnote{Très souvent réduit par xG} est une métrique qui permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir \cite{XGExplainedFBrefa}.
 Un tir qui a un xG de 0.4 a une probabilité de 40\% d'être transformé en but. Un tir avec un xG à 1 est la plus grande valeur possible et aurait donc 100\% de chance d'être transformé en but.
-\footnote{Il est important d'indiquer qu'il est très rare qu'un xG d'un tir soit égal à 1 mais il va généralement sans rapprocher fortement selon ses paramètres.} \cite{pettyWhatExpectedGoals2018a}
-\newline
+\footnote{Il est important d'indiquer qu'il est très rare qu'un xG d'un tir soit égal à 1 mais il va généralement s'en rapprocher fortement selon ses paramètres.} \cite{pettyWhatExpectedGoals2018a}
+\newline\newline
 Pour observer ce qu'est réellement un xG, nous allons l'observer avec l'emplacement de deux tirs sur un terrain.
 Le schéma \ref{fig:expected_goal_example} montre un terrain de football avec deux emplacements de tirs.
 Par exemple, le tir en rouge aurait un xG de 0.1 et le tir en vert aurait un xG de 0.5\footnote{Ces métriques sont que des exemples et n'ont pas été produites par un modèle.}.
+\newline \newline
+\noindent Par ailleurs, les xG se sont tellement développés que des métriques dérivées ont été créées. On peut par exemple citer le xA qui est l'expected assist. C'est une métrique qui permet de déterminer la probabilité qu'une passe soit transformée en passe décisive selon les données de cette passe. \cite{XGExplainedFBrefa}
+Également, les xGA qui est les expected goals against. Cette métrique permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir mais pour l'équipe adverse. \cite{pettyWhatExpectedGoals2018a}
+
+\noindent Il y en a également d'autres comme les expected points qui sont les points qui est le nombre de points qu'une équipe devrait avoir gagnés basé sur les données relatives aux xG. D'autres dérivées sont indiquées sur l'article de Pinnacle écrit par Luke Petty. \cite{pettyWhatExpectedGoals2018a}
+\newline\newline
+\noindent Maintenant que nous avons vu ce qu'est un xG et ces dérivées actuelles, il semble pertinent de décrire l'utilisation de cette métrique dans le football actuel.
+
 \begin{figure}[htp]
     \centering
     \includegraphics[width=7cm]{img/ExplicationXG.png}
@@ -170,33 +176,61 @@ Par exemple, le tir en rouge aurait un xG de 0.1 et le tir en vert aurait un xG 
     \caption{Emplacement de deux tirs sur un terrain de foot}
     \label{fig:expected_goal_example}
 \end{figure}
-
-
-\noindent Maintenant que nous avons vu ce qu'est un xG, il semble pertinent de décrire l'utilisation de cette métrique dans le football actuel.
-
 \subsection{Intérêt de la problématique}
 \noindent Cette problématique est très intéressante puisque c'est une donnée qui est dernièrement très populaire dans le monde du football. Elle donne plus d'informations sur le match que les autres statistiques d'un matchs (possession, nombre de passes, nombre de tirs cadrés, nombre de buts, etc.). Par exemple en ce qui concerne la possession, une équipe peut avoir la possession du ballon pendant 70\% du match mais ne pas marquer de buts, ni même être dangereuse avec le ballon. Le nombre de tirs cadrés, s'ils sont effectuées tous à l'extérieur de la surface de réparation, ne sont pas forcément dangereux. L'expected goal permet de donner une valeur à chaque tir et de déterminer si un tir a une chance d'être transformé en but.
 \newline \newline
-Ensuite, certaines personnes utilisent cette métrique pour leurs paris sportifs. Ils observent la métrique lors des derniers matchs et la compare avec le score réel du match. Si la différence est grande, cela peut permettre de constater un manque de réalisme ou un sur-régime d'une des deux équipes. \cite{tennerelBienUtiliserExpected2022a}
+Certaines personnes utilisent cette métrique pour leurs paris sportifs. Ils observent la métrique lors des derniers matchs et la compare avec le score réel du match. Si la différence est grande, cela peut permettre de constater un manque de réalisme ou un sur-régime d'une des deux équipes. \cite{tennerelBienUtiliserExpected2022a}
 \newline \newline
-D'autres personnes utilisent cette donnée pour analyser les performances de leurs joueurs et de leurs équipes. Par exemple, la comparaison des xG et du nombre de buts marqués d'un joueur sur une période donnée peut permettre de déterminer la dangerosité et la capacité d'un buteur à terminer des actions. \cite{pettyWhatExpectedGoals2018a}
+Les analystes de données des équipes utilisent cette donnée pour analyser les performances de leurs joueurs et de leurs équipes. Par exemple, la comparaison des xG et du nombre de buts marqués d'un joueur sur une période donnée peut permettre de déterminer la dangerosité et la capacité d'un buteur à terminer des actions. \cite{pettyWhatExpectedGoals2018a}
 Les xG peuvent aussi être utilisés pour analyser les performances d'une équipe dans des situations bien précises. Une équipe qui possède un haut xG sur des contre-attaques montre qu'elle est très dangereuse sur ce type de situation. \cite{XGExplainedFBrefa}
+L'une des choses les plus intéressante de cette métrique est qu'elle peut être utilisée pour analyser les forces et faiblesses des équipes. Par exemple, une équipe peut observer que ses xG sont très faibles lorsqu'elle tente des centres. Cela peut lui permettre de trouver son identité de jeu et de décider d'abandonner cette stratégie. Cette métrique est tout autant valable pour analyser les forces et faiblesses d'une équipe adverse. Dans la même situation, si une équipe vient à affronter l'équipe qui a dû mal à produire des xG sur des centres, elle peut décider de la forcer à jouer sur des centres en libérant de l'espace sur les côtés par exemple.
+\newline \newline
+Cette métrique est également utilisée pour aider les recruteurs à juger les performances de finition d'un joueur \cite{garratt-stanleyWhatExpectedGoals2022}. Nous avons vu précédemment qu'il existait des dérivées des xG comme les xA\footnote{Passes décisives attendues}. Les différentes dérivées peuvent permettre de juger les performances et qualités d'un joueur qui se trouve dans un poste bien précis. Par exemple, un milieu de terrain ou un défenseur peut être jugé sur ses xA et un attaquant sur ses xG.
+
 
 \subsection{Questions que l'on souhaite répondre dans ce travail}
-\noindent Il y a plusieurs questions qui peuvent se poser dans ce travail. Je vais donc les lister.
+\noindent Il y a deux grandes questions à répondre dans ce travail.
 \begin{itemize}
-    \item Comment est calculé l'expected goal ?
     \item Quels sont les paramètres qui influencent le plus l'expected goal ?
     \item Quel est le meilleur modèle pour prédire l'expected goal ?
-    \item Quels sont les variables qui peuvent être ajoutée pour améliorer le résultat de la prédiction ?
-    \item Quel est le meilleur modèle pour prédire l'expected goal en utilisant les variables ajoutées ?
 \end{itemize}
 
-\subsection{Intérêt de ces questions}
-\noindent Le but de ces questions est de comprendre comment implémenter un modèle qui permet de prédire l'expected goal. Grâce à cela, on pourra ensuite connaître quels sont les variables obligatoires pour implémenter un tel modèle et quels sont les paramètres qui influencent le plus l'expected goal. Ensuite, on pourra voir quel est le meilleur modèle pour prédire l'expected goal et quels sont les variables qui peuvent être ajoutées pour améliorer le résultat de la prédiction. Enfin, on pourra voir quel est le meilleur modèle pour prédire l'expected goal en utilisant les variables ajoutées.
+\noindent Le but de ce travail est de comprendre quelles sont les variables qui influences le plus les xG.
+Cela permettra de comprendre quelles sont les variables les plus importantes pour prédire les xG.
+Grâce à cela, il est possible pour un analyste de données d'une équipe de football de savoir quelles sont les facteurs qui influencent le plus la qualité d'un tir.
+Cela peut permettre de déterminer les forces et faiblesses d'une équipe et de savoir sur quels aspects travailler pour améliorer les performances de l'équipe.
+\newline \newline
+\noindent Le deuxième objectif de ce travail est de trouver le meilleur modèle pour prédire les xG.
+En effet, le but sera d'avoir le modèle le plus performant et de comparer les différents modèles qui peuvent être utilisée pour établir cette métrique.
+Il faut également veiller à ce que le modèle ne fasse pas de sur-apprentissage. Il est donc important de faire attention à la complexité du modèle et de trouver le meilleur compromis entre la complexité et la performance du modèle.
+
+\section{Plan du document}
+\noindent Concernant le déroulement de ce travail, il y a plusieurs étapes.
+Tout d'abord, il y a la recherche des travaux existants sur le sujet.
+Parmi les travaux existants, je vais chercher à savoir quels datasets ont été utilisées ainsi que les résultats obtenus.
+Cela me permettra de comparer mes résultats avec les résultats obtenus dans les autres travaux.
+\newline \newline
+La suite sera de trouver un dataset avec les informations nécessaires pour implémenter le modèle.
+Une fois ce dataset trouvé, il va falloir le documenter. En effet, il est important de comprendre ce que chaque attribut représente.
+L'étape suivante est également importante puisque le but sera de visualiser les données.
+Cela permettra de voir si les données sont exploitables et si elles sont cohérentes.
+Cela pourra également nous indiquer si des biais seront présents dans le modèle.
+\newline \newline
+Une fois que les données sont documentées et visualisées, il va falloir les préparer.
+En effet, il pourrait y avoir des données manquantes mais qui sont disponibles après un traitement.
+Il pourrait également y avoir des données qui ne sont pas exploitables et qui doivent être supprimées.
+Par exemple, l'ID de la base de données d'un tir pourrait être supprimée car il n'appporte rien pour la prédiction de l'expected goal.
+\newline \newline
+Ensuite, on pourra commencer à implémenter le modèle et observer les facteurs qui influencent le plus sa prédiction du xG.
+C'est également à ce moment-là qu'il faudra comparer les différents modèles pour voir lequel est le plus performant pour prédire les xG.
+Il sera également intéressant de voir quelles variables peuvent être ajoutées au modèle pour améliorer sa précision.
+
+
 \section{Synthèse des travaux existants}
+% TODO : Synthèse des travaux existants
+% Lister tous les documents les plus cités et pertinent. 
+% Analyser quels dataset ont été utilisés et quels résultats ont été obtenus.
 \label{sec:synthese}
-% Application concrètes de mon travail ou alors applications déjà concrète de la problématique?
 \noindent Parmi les travaux existants, il y a le travail de David Sumpter \cite{sumpterFittingXGModel} qui permet de comprendre comment implémenter un modèle d'expected goal. Ce travail va être une bonne base pour implémenter le premier modèle.
 \newline
 \noindent Ensuite, le travail nommé "Expected goals in soccer:explaining match results using predictive analytics" de Eggels \cite{eggelsExpectedGoalsSoccer2016} est un travail très détaillé qui permet d'avoir des pistes d'améliorations et qui explique bien les différentes étapes pour implémenter un modèle d'expected goal. Ce travail va être très utile pour permette d'apporter des améliorations au modèle.
