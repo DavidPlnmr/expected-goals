@@ -81,7 +81,7 @@
 
         \textsc{\large Travail de Bachelor HES réalisé en vue de \newline l’obtention du Bachelor par :}\\[0,50cm]
 
-        \begingroup \linespread{1,75} \selectfont
+        \begingroup \linespread{1,5} \selectfont
         \textsc{\large \DP}\\[0,50cm]
         \endgroup
 
@@ -91,24 +91,24 @@
 
         \textsc{\large Conseillers au travail de Bachelor : }
 
-        \begingroup \linespread{1,75} \selectfont
+        \begingroup \linespread{1,5} \selectfont
         \textsc{\large Pr Alexandros KALOUSIS}\\[0.1cm]
         \textsc{\large Dr Nils SCHÄTTI}\\[1cm]
         \endgroup
 
 
         \begingroup \linespread{1,75} \selectfont
-        \textsc{\large \place, le \today}\\[0,25cm]
+        \textsc{\large \place, le \today}\\[0,1cm]
 
-        {\large Haute école de Gestion de Genève (HEG-GE)}\\[0,25cm]
+        {\large Haute école de Gestion de Genève (HEG-GE)}\\[0,1cm]
 
-        {\large Filière Informatique de gestion}\\[0,25cm]
+        {\large Filière Informatique de gestion}\\[0,1cm]
         \endgroup
 
 
 
         \begin{figure}[h]
-            \vspace*{1cm}
+            \vspace{0.05cm}
             \hspace*{12cm}\includegraphics[width=0.25\textwidth]{img/logo_hes-so.jpg}
         \end{figure}
 
@@ -230,10 +230,63 @@ Il sera également intéressant de voir quelles variables peuvent être ajoutée
 % TODO : Synthèse des travaux existants
 % Lister tous les documents les plus cités et pertinent. 
 % Analyser quels dataset ont été utilisés et quels résultats ont été obtenus.
+% Parler des conclusions des travaux également
+% Faire un tableau de récap des datasets, documents, et résultats obtenus
 \label{sec:synthese}
-\noindent Parmi les travaux existants, il y a le travail de David Sumpter \cite{sumpterFittingXGModel} qui permet de comprendre comment implémenter un modèle d'expected goal. Ce travail va être une bonne base pour implémenter le premier modèle.
-\newline
-\noindent Ensuite, le travail nommé "Expected goals in soccer:explaining match results using predictive analytics" de Eggels \cite{eggelsExpectedGoalsSoccer2016} est un travail très détaillé qui permet d'avoir des pistes d'améliorations et qui explique bien les différentes étapes pour implémenter un modèle d'expected goal. Ce travail va être très utile pour permette d'apporter des améliorations au modèle.
+\noindent Le premier travail repertorié sur les xG et la qualité d'un tir est celui de Richard Pollard, Jake Ensum et Samuel Taylor \cite{pollardEstimatingProbabilityShot2004}.
+Dans ce travail datant de 2004, la seule information indiquée concernant le dataset est que les données proviennent de la Coupe du monde 1986 et de celle de 2002.
+Le modèle a été implémenté en utilisant une régression logistique.
+Le nombre de tirs répertoriées dans ce travail est de 1096.
+La conclusion de ce travail est que les 3 facteurs les plus influents pour la prédiction des xG sont :
+\begin{itemize}
+    \item La distance entre le tireur et le but
+    \item L'angle du but en fonction de la position du tir
+    \item L'espace entre le tireur et le défenseur le plus proche
+\end{itemize}
+Le résultat final de l'analyse de la régression logistique de ce travail ressemble à cela.
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+        \hline
+        \textbf{Predictor} & \textbf{Coefficient} & \textbf{z} & \textbf{p} & \textbf{ratio} & \textbf{Lower} & \textbf{Upper} \\ \hline
+        Constant           & 0.3771               & 1.20       & 0.229      &                &                &                \\ \hline
+        Distance           & -0.1586              & -9.51      & 0.000      & 0.85           & 0.83           & 0.88           \\ \hline
+        Angle              & -0.0222              & -3.81      & 0.000      & 0.98           & 0.97           & 0.99           \\ \hline
+        Space              & 0.7991               & 3.22       & 0.001      & 2.22           & 1.37           & 3.62           \\ \hline
+    \end{tabular}
+    \caption{Résultat de la régression logistique du travail de Pollard, Ensum et Taylor}
+\end{table}
+
+\noindent Le deuxième travail est celui de Izzatul Umami, Deden Hardan Gutama et Heliza Rahmania Hatta \cite{umamiImplementingExpectedGoal2021}. Ce travail utilise les données de Wyscout des 5 championnats majeurs en Europe de la saison 2019-20. Ces derniers ont décidés de prendre comme données :
+\begin{itemize}
+    \item La distance
+    \item L'angle
+    \item Si le tir est un tir de la tête ou pas
+\end{itemize}
+Dans le dataset, 32000 tirs ont été utilisées pour la création du modèle.
+Comme pour le travail précédent, la régression logistique a été utilisée.
+Il est également indiqué qu'une séparation du dataset a été faite pour avoir des données d'entraînement et de tests.
+Dans leurs tests du modèle, il est indiqué que le but est de faire de la classification pour de futures instances, il faut donc utiliser un seuil.
+Suite à l'utilisation d'un seuil pour la classification, une matrice de confusion a été faite pour ensuite calculer la spécificité et la sensibilité du modèle.
+Ce principe de sensibilité et spécificité permet de choisir la meilleure performance selon le contexte d'utilisation du modèle.
+\begin{equation}
+    Sensitivity = \frac{True Positive}{True Positive + False Negative}
+\end{equation}
+\begin{equation}
+    Specificity = \frac{True Negative}{True Negative + False Positive}
+\end{equation}
+La sensibilité permet de voir la capacité du modèle à prédire correctement les tirs qui sont des buts.
+De l'autre côté, la spécificité permet de voir la capacité du modèle à prédire correctement les tirs qui ne sont pas des buts.
+Comme indiqué dans le travail de Umami, Gutama et Hatta, la spécificité est plus importante que la sensibilité selon le contexte.
+Dans le cas où le modèle est utilisé pour prédire un cancer, nous allons chercher à avoir une meilleur sensibilité pour éviter de passer à côté d'un cancer. \cite{umamiImplementingExpectedGoal2021}
+Cela leur permet de savoir comment choisir le seuil pour la classification.
+En conclusion de leur travail, ils ont obtenu une sensibilité de 0.9671945701357466 et une spécificité de 0.19034406215316316 pour un seuil 0.02.
+Ils indiquent finalement que le modèle de xG est plus performant si l'on prend la distance et l'angle en compte plutôt que de prendre uniquement la distance.
+
+\subsection{Récapitulatif des travaux existants}
+
+
+
 
 \section{Dataset}
 
