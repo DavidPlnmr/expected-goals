@@ -227,11 +227,6 @@ Il sera également intéressant de voir quelles variables peuvent être ajoutée
 
 
 \section{Synthèse des travaux existants}
-% TODO : Synthèse des travaux existants
-% Lister tous les documents les plus cités et pertinent. 
-% Analyser quels dataset ont été utilisés et quels résultats ont été obtenus.
-% Parler des conclusions des travaux également
-% Faire un tableau de récap des datasets, documents, et résultats obtenus
 \label{sec:synthese}
 \noindent Le premier travail repertorié sur les xG et la qualité d'un tir est celui de Richard Pollard, Jake Ensum et Samuel Taylor \cite{pollardEstimatingProbabilityShot2004}.
 Dans ce travail datant de 2004, la seule information indiquée concernant le dataset est que les données proviennent de la Coupe du monde 1986 et de celle de 2002.
@@ -257,7 +252,8 @@ Le résultat final de l'analyse de la régression logistique de ce travail resse
     \caption{Résultat de la régression logistique du travail de Pollard, Ensum et Taylor}
 \end{table}
 
-\noindent Le deuxième travail est celui de Izzatul Umami, Deden Hardan Gutama et Heliza Rahmania Hatta \cite{umamiImplementingExpectedGoal2021}. Ce travail utilise les données de Wyscout des 5 championnats majeurs en Europe de la saison 2019-20. Ces derniers ont décidés de prendre comme données :
+\noindent Le deuxième travail est celui de Izzatul Umami, Deden Hardan Gutama et Heliza Rahmania Hatta \cite{umamiImplementingExpectedGoal2021}. 
+Ce travail utilise les données de Wyscout des 5 championnats majeurs en Europe de la saison 2019-20. Ces derniers ont décidés de prendre comme données :
 \begin{itemize}
     \item La distance
     \item L'angle
@@ -282,10 +278,92 @@ Dans le cas où le modèle est utilisé pour prédire un cancer, nous allons che
 Cela leur permet de savoir comment choisir le seuil pour la classification.
 En conclusion de leur travail, ils ont obtenu une sensibilité de 0.9671945701357466 et une spécificité de 0.19034406215316316 pour un seuil 0.02.
 Ils indiquent finalement que le modèle de xG est plus performant si l'on prend la distance et l'angle en compte plutôt que de prendre uniquement la distance.
+Un graphique ROC \footnote{Receiver Operating Characteristic} a été fait pour montrer la performance du modèle. Cela permet de comparer la sensibilité et la spécificité pour chaque seuil.
+\newline\newline
+Un autre travail qui fournit également du code est celui de David Sumpter \cite{sumpterFittingXGModel}. 
+Le travail de ce dernier est de créer un modèle de xG en utilisant une régression logistique. 
+Il utilise les données de Wyscout du championnat anglais de la saison 2017-18. 
+Ce dernier explique étape par étape ce qui est effectué pour créer et améliorer son modèle.
+Il y a également des pistes pour convertir les positions X et Y en distance et en angle.
+Il commence par créer un modèle de xG en utilisant uniquement la distance. 
+Par la suite, il le fait uniquement avec l'angle.
+Ensuite, il utilise de multiples facteurs, comme la distance au carré ou encore l'angle multiplié par la position X du tir, pour créer son modèle et il produit un résumé de la régression logistique.
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+    \hline
+    \textbf{Predictor} & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P\textgreater{}|z|} & \textbf{{[}0.025} & \textbf{0.975{]}} \\ \hline
+    Intercept          & -0.5103       & 0.887            & -0.576     & 0.565                       & -2.248            & 1.228             \\ \hline
+    Angle              & -0.6338       & 0.319            & -1.989     & 0.047                       & -1.258            & -0.009            \\ \hline
+    Distance           & 0.2798        & 0.118            & 2.381      & 0.017                       & 0.049             & 0.510             \\ \hline
+    X                  & -0.1243       & 0.124            & -1.001     & 0.317                       & -0.368            & 0.119             \\ \hline
+    C                  & 0.0300        & 0.040            & 0.750      & 0.454                       & -0.048            & 0.109             \\ \hline
+    X2                 & -0.0014       & 0.001            & -1.422     & 0.155                       & -0.003            & 0.001             \\ \hline
+    C2                 & -0.0041       & 0.003            & -1.398     & 0.162                       & -0.010            & 0.002             \\ \hline
+    AX                 & 0.1251        & 0.118            & 1.063      & 0.288                       & -0.105            & 0.356             \\ \hline
+    \end{tabular}
+    \caption{Résumé de la régression logistique du modèle de xG de David Sumpter}
+\end{table}
+\noindent Il n'y a pas moyen de connaître les coefficients uniquement pour la distance et l'angle car aucun résumé n'est fait pour ces deux facteurs uniquement.
+\newline\newline
+Le dernier travail est fait par H.P.H Eggels. 
+Le but est d'expliquer le résultat d'un match en utilisant les xG. 
+Dans ce travail, il utilise un modèle de xG pour prédire le résultat d'un match.
+Les données du travail proviennent de ORTEC, de Immotio et FIFA. En effet, son travail utilise trois datasets pour créer son modèle de xG. \cite{eggelsExpectedGoalsSoccer2016}.
+Il y a eu un travail de "merging" des données pour avoir un dataset qui contient toutes les informations nécessaires pour créer le modèle. 
+Cependant, les datasets peuvent avoir des problèmes entre eux lors du "merging". 
+Par exemple, les noms des joueurs qui sont différents (majuscule, accent, encodage, surnom, etc.) a été un problème mais une solution a été trouvée.
+\newline
+Le dataset utilisé contient donc trois sources de données différentes.
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lll}
+    \hline
+    \textbf{ORTEC}  & \textbf{FIFA}       & \textbf{Immotio}                  \\ \hline
+    Context         & Player quality      & Number of attackers in line       \\
+    Part of body    & Goal keeper quality & Number of defenders in line       \\
+    Dist to goal    &                     & Distance nearest defender in line \\
+    Angle to goal   &                     & Distance goal keeper              \\
+    Originates from &                     &                                   \\
+    Current score   &                     &                                   \\
+    High            &                     &                                   \\ \hline
+    \end{tabular}
+    \caption{Sources de données utilisées par H.P.H Eggels}
+\end{table}
+\newpage
+Parmi les modèles testés, ce travail utilise :
+\begin{itemize}
+    \item Un modèle de régression logistique
+    \item Random Forest
+    \item Un arbre de décision
+    \item Ada-boost
+\end{itemize}
+Pour chacun de ces modèles, il y a une liste des différents paramètres qui vont être utilisés pour trouver le meilleur modèle.
+Chacun des modèles a suivi une procédure avec un set d'entraînement, un set de validation et un set de test.
+Le set de validation permet de trouver les meilleurs paramètres pour le modèle.
+Le set de test permet de tester le modèle avec les paramètres trouvés et le comparer avec les autres modèles
+Le modèle le plus performant parmi les quatres cités est le Random Forest avec une précision de 0.771.
+Cependant, il n'est pas possible de connaître les meilleurs hyper paramètres pour chacun des modèles.
+Ce travail donne tout de même de bonnes pistes pour l'ajout de nouvelle données pour améliorer le modèle de xG.
+
 
 \subsection{Récapitulatif des travaux existants}
-
-
+% Please add the following required packages to your document preamble:
+% \usepackage[normalem]{ulem}
+% \useunder{\uline}{\ul}{}
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lll}
+    \hline
+    \textbf{Auteur(s)}                                                                                   & \textbf{Source de données}                                                                               & \textbf{Conclusion}                                                                                                                                          \\ \hline
+    \begin{tabular}[c]{@{}l@{}}Richard Pollard\\ Jake Ensum\\ Samuel Taylor\end{tabular}                 & \begin{tabular}[c]{@{}l@{}}Coupe du monde \\ 1986 et 2002\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}La distance, l'angle \\ et l'espace avec le \\ joueur le plus proche\end{tabular}                                                 \\ \hline
+    \begin{tabular}[c]{@{}l@{}}Izzatul Umami\\ Deden Hardan Gautama\\ Heliza Rahmania Hatta\end{tabular} & \begin{tabular}[c]{@{}l@{}}Wyscout, \\ 5 championnats \\ majeuren Europe. \\ Saison 2019-20\end{tabular} & \begin{tabular}[c]{@{}l@{}}La distance et l'angle\\ apporte plus \\ d'informations \\ qu'uniquement\\  la distance\end{tabular}                              \\ \hline
+    David Sumpter                                                                                        & \begin{tabular}[c]{@{}l@{}}Wyscout, \\ Premier League.\\ Saison 2017-18\end{tabular}                     & \begin{tabular}[c]{@{}l@{}}La distance et l'angle \\ sont les facteurs avec\\  le plus d'influence\end{tabular}                                              \\ \hline
+    H. P. H Eggels                                                                                       & \begin{tabular}[c]{@{}l@{}}ORTEC, \\ Immotio, \\ FIFA\end{tabular}                                       & \begin{tabular}[c]{@{}l@{}}Le but du travail \\ est de prédire les \\ résultats des matchs. \\ Rien n'indique les\\ facteurs les plus influents\end{tabular} \\ \hline
+    \end{tabular}
+    \caption{Récapitulatif des travaux existants}
+\end{table}
 
 
 \section{Dataset}
