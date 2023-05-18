@@ -158,9 +158,8 @@ Il semble maintenant important de savoir ce qu'est l'expected goal. L'expected g
 Un tir qui a un xG de 0.4 a une probabilité de 40\% d'être transformé en but. Un tir avec un xG à 1 est la plus grande valeur possible et aurait donc 100\% de chance d'être transformé en but.
 \footnote{Il est important d'indiquer qu'il est très rare qu'un xG d'un tir soit égal à 1 mais il va généralement s'en rapprocher fortement selon ses paramètres.} \cite{pettyWhatExpectedGoals2018a}
 \newline\newline
-Pour observer ce qu'est réellement un xG, nous allons l'observer avec l'emplacement de deux tirs sur un terrain.
-Le schéma \ref{fig:expected_goal_example} montre un terrain de football avec deux emplacements de tirs.
-Par exemple, le tir en rouge aurait un xG de 0.1 et le tir en vert aurait un xG de 0.5\footnote{Ces métriques sont que des exemples et n'ont pas été produites par un modèle.}.
+Pour observer ce qu'est réellement un xG, nous allons l'observer avec l'emplacement des tirs sur le terrains.
+Sur la figure \ref{fig:shotmap}, on peut observer un example d'emplacement de tirs et de leur xG.
 \newline \newline
 \noindent Par ailleurs, les xG se sont tellement développés que des métriques dérivées ont été créées. On peut par exemple citer le xA qui est l'expected assist. C'est une métrique qui permet de déterminer la probabilité qu'une passe soit transformée en passe décisive selon les données de cette passe. \cite{XGExplainedFBrefa}
 Également, les xGA qui est les expected goals against. Cette métrique permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir mais pour l'équipe adverse. \cite{pettyWhatExpectedGoals2018a}
@@ -171,10 +170,10 @@ Par exemple, le tir en rouge aurait un xG de 0.1 et le tir en vert aurait un xG 
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=7cm]{img/ExplicationXG.png}
+    \includegraphics[width=0.8\textwidth]{img/SchemaXG.jpeg}
 
-    \caption{Emplacement de deux tirs sur un terrain de foot}
-    \label{fig:expected_goal_example}
+    \caption{Schéma qui montre les chances de buts selon les positions des tirs - Source : Opta}
+    \label{fig:shotmap}
 \end{figure}
 \subsection{Intérêt de la problématique}
 \noindent Cette problématique est très intéressante puisque c'est une donnée qui est dernièrement très populaire dans le monde du football. Elle donne plus d'informations sur le match que les autres statistiques d'un matchs (possession, nombre de passes, nombre de tirs cadrés, nombre de buts, etc.). Par exemple en ce qui concerne la possession, une équipe peut avoir la possession du ballon pendant 70\% du match mais ne pas marquer de buts, ni même être dangereuse avec le ballon. Le nombre de tirs cadrés, s'ils sont effectuées tous à l'extérieur de la surface de réparation, ne sont pas forcément dangereux. L'expected goal permet de donner une valeur à chaque tir et de déterminer si un tir a une chance d'être transformé en but.
@@ -204,6 +203,7 @@ Cela peut permettre de déterminer les forces et faiblesses d'une équipe et de 
 En effet, le but sera d'avoir le modèle le plus performant et de comparer les différents modèles qui peuvent être utilisée pour établir cette métrique.
 Il faut également veiller à ce que le modèle ne fasse pas de sur-apprentissage. Il est donc important de faire attention à la complexité du modèle et de trouver le meilleur compromis entre la complexité et la performance du modèle.
 
+\newpage
 \section{Plan du document}
 \noindent Concernant le déroulement de ce travail, il y a plusieurs étapes.
 Tout d'abord, il y a la recherche des travaux existants sur le sujet.
@@ -225,7 +225,7 @@ Ensuite, on pourra commencer à implémenter le modèle et observer les facteurs
 C'est également à ce moment-là qu'il faudra comparer les différents modèles pour voir lequel est le plus performant pour prédire les xG.
 Il sera également intéressant de voir quelles variables peuvent être ajoutées au modèle pour améliorer sa précision.
 
-
+\newpage
 \section{Synthèse des travaux existants}
 \label{sec:synthese}
 \noindent Le premier travail repertorié sur les xG et la qualité d'un tir est celui de Richard Pollard, Jake Ensum et Samuel Taylor \cite{pollardEstimatingProbabilityShot2004}.
@@ -365,20 +365,188 @@ Ce travail donne tout de même de bonnes pistes pour l'ajout de nouvelle donnée
     \caption{Récapitulatif des travaux existants}
 \end{table}
 
-
+\newpage
 \section{Dataset}
 
 \subsection{Présentation du dataset}
 
-\noindent Comme indiqué dans le section \ref{sec:synthese}, le travail de David Sumpter \cite{sumpterFittingXGModel} va être utilisé comme base pour implémenter le premier modèle. Il utilise un dataset qui contient les données de Wyscout. Wyscout est une entreprise qui fournit des données sur le football. Elle fournit des données sur les matchs, les joueurs, les équipes, les compétitions, etc. Il n'a pas été possible pour moi d'accéder aux données de Wyscout. J'ai donc utilisé un dataset public qui est un sample du dataset de Wyscout. \cite{pappalardoPublicDataSet2019}
+
+\noindent Le dataset qui a été trouvé pour cette thèse est un dataset provenant de Wyscout. 
+Wyscout est un site web qui fournit des données sur le football. 
+On peut par exemple trouver des données sur les joueurs, les équipes, les matchs, les événements d'un match comme les passes, les tirs, etc.
+Ces données sont collectées grâce à une équipe d'experts nommés "opérateur" qui utilisent un logiciel propriétaire nommé "marqueur" pour décrire les événements.
+Pour garantir la précision des données, la description des événements d'un match est faite par une équipe de trois opérateurs. 
+Deux d'entre eux sont attribués aux deux équipes et le troisième a le rôle de superviseur et de responsable des données sortantes du match. \cite{pappalardoPublicDataSet2019} 
+Il peut y avoir parfois un quatrième opérateur qui a le rôle d'accélérer le processus de description d'événements d'un match. 
+\newline\newline
+"La description des événements d'un match possède trois étapes.
+La première étape consiste à décrire la formation de départ des équipes. 
+Un opérateur décrit la formation de départ, la position des joueurs et le numéro de maillot de chaque joueur. Les joueurs remplaçants sont aussi indiqués. 
+La deuxième étape consiste à décrire les événements d'un match.
+Pour chaque touche de balle dans le match, un opérateur décrit l'événement. 
+Il sélectionne un joueur et crée un événement sur la timeline du match.
+Il indique ensuite de quel type d'événement il s'agit (tir, passe, duel) et quel est le sous-type d'événement (duel aérien ou au sol).
+Il entre ensuite la position de l'événement sur le terrain et les informations supplémentaires
+Finalement, la troisième étape est un contrôle qualité.
+Ce contrôle possède deux phases. 
+La première est automatique et faite par le marqueur\footnote{Le logiciel propriétaire} qui se charge d'éviter la majorité des erreurs des opérateurs.
+Par exemple, il vérifie que la position des duels spécifiés par les deux opérateurs soit corrects et qu'ils possèdent les mêmes informations.
+Le marqueur se charge également de proposer des événements manquants et vérifie si des combinaisons de données d'événements impossibles ont été inscrites.
+Par exemple, un événement de type tir qui aurait un sous-événement duel aérien serait une combinaison impossible.
+La deuxième phase de contrôle qualité est manuelle est gérée par des contrôleurs qualités qui vont vérifier de manière approfondie les événements de certains matchs et les corriger si besoin." \cite{pappalardoPublicDataSet2019}
 \newline
-\noindent Cette source permet d'avoir l'information des événements lors d'un match de foot, comme par exemple les passes, les tirs, les fautes, etc. Cela permet d'avoir les informations nécessaires pour calculer l'expected goal. Un autre avantage de ce dataset est qu'il est déjà nettoyé et qu'il est facilement utilisable. Il est aussi très complet puisqu'il contient des données sur les matchs de 5 championnats européens (Angleterre, Espagne, Italie, Allemagne et France) de la saison 2017-2018. Il contient aussi des données sur les matchs de la coupe du monde 2018 et de l'Euro 2016.
+Il se peut que certains matchs n'aient pas subi de contrôle qualité car ils utilisent un algorithme de sélection de matchs pour le contrôle qualité.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/logiciel_proprietaire.png}
+    \caption{Aperçu du logiciel propriétaire de Wyscout}
+    \label{fig:logiciel_proprietaire}
+\end{figure}
+Sur la figure \ref{fig:logiciel_proprietaire}, on peut voir un aperçu du logiciel propriétaire de Wyscout.
+La partie (a) montre la timeline du match avec les événements qui ont été ajoutés.
+La partie (b) montre les informations d'un événement ainsi que l'indication de la position de l'événement sur le terrain.
+\newline\newline
+Le dataset utilisé est un sample du dataset de Wyscout. 
+Il a été mis à disposition par Luca Pappalardo et Emanuele Massuco dans leur article "A public data set of spatio-temporal match events in soccer competitions" \cite{pappalardoPublicDataSet2019}.
+Ce dataset est composé des 5 championnats européens majeurs (Premier League, La Liga, Bundesliga, Serie A et Ligue 1) de la saison 2017-2018. 
+Le dataset contient également les informations de la Coupe du Monde 2018 et de l'Euro 2016.
+Les données sont au format JSON qui est un format très récurrent dans le monde du web. Il est également utilisé lors de communication avec des API REST.
 
 % Description de chaque attribut dans le dataset event
 \subsection{Events}
+\label{subsec:events}
+% Utiliser le tableau de la thèse de Luca Pappalardo
+% Egalement utiliser le glossaire de Wyscout pour expliquer les tag id
+\noindent Le dataset fournit par Luca Pappalardo et Emanuele Massuco contient des données sur les événements d'un match. 
+Ces événements sont décrits par des attributs qui sont détaillés dans le tableau \ref{tab:events}.
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Nom de l'attribut} & \textbf{Description}                                                                                                                           \\ \hline
+    eventId                    & \begin{tabular}[c]{@{}l@{}}L'identifiant du type d'événement. \\ Chaque identifiant d'événement \\ est lié à un nom d'événement\end{tabular}   \\ \hline
+    eventName                  & Le nom du type d'événement.                                                                                                                    \\ \hline
+    subEventId                 & L'identifiant du sous-type d'événement                                                                                                         \\ \hline
+    subEventName               & Le nom du sous-événement                                                                                                                       \\ \hline
+    tags                       & \begin{tabular}[c]{@{}l@{}}Une liste d'événement de tag.\\ Chaque tag permet d'apporter\\ une information\end{tabular}                         \\ \hline
+    eventSec                   & \begin{tabular}[c]{@{}l@{}}Le temps (en secondes) écoulé depuis\\ la période actuelle du match\end{tabular}                                    \\ \hline
+    id                         & L'identifiant unique de l'événement                                                                                                            \\ \hline
+    matchId                    & \begin{tabular}[c]{@{}l@{}}L'identifiant du match auquel \\ l'événement est lié.\end{tabular}                                                  \\ \hline
+    matchPeriod                & \begin{tabular}[c]{@{}l@{}}La période du match à laquelle \\ l'événement a lieu.\end{tabular}                                                  \\ \hline
+    playerId                   & \begin{tabular}[c]{@{}l@{}}L'identifiant du joueur qui a généré\\ l'événement. Est lié à l'attribut "wyId"\\ du dataset "Players"\end{tabular} \\ \hline
+    positions                  & La localisation en X et Y de l'événement                                                                                                       \\ \hline
+    teamId                     & \begin{tabular}[c]{@{}l@{}}L'identifiant de l'équipe du joueur qui a \\ généré l'événement\end{tabular}                                        \\ \hline
+    \end{tabular}
+    \caption{Description des attributs du dataset "Events"}
+    \label{tab:events}
+\end{table}
 
+\noindent Parmi les informations fournies par le dataset, il y a "eventName".
+Cet attribut permet de savoir quel type d'événement a eu lieu.
+Parmi les types d'événements\footnote{Le nom des événements est en anglais mais a été traduit pour les lister}, il y a :
+\begin{itemize}
+    \item Passe
+    \item Faute
+    \item Tir 
+    \item Duel
+    \item Coup franc
+    \item Hors-jeu
+    \item Touche de balle
+\end{itemize}
+
+\noindent L'attribut "tags" est également important.
+Cette attribut est une liste de tags qui permettent d'apporter des informations supplémentaires sur l'événement.
+La documentation des tags peut être trouvée sur le glossaire de Wyscout. \cite{WyscoutGlossary}
+Par exemple, le tag 101 indique que l'événement est un but. 
+Le tag 401 indique que le tir a été fait du pied gauche, le tag 402 indique que le tir a été fait du pied droit.
+Finalement, le tag 403 indique que le tir a été fait de la tête.
+\newline\newline
+Le dernier point important est la localisation de l'événement.
+En effet, comme indiqué dans la section "Pitch coordinates" du glossaire de Wyscout, \cite{WyscoutGlossary} les coordonnées X et Y sont relatives à la taille du terrain.
+Il y a un aperçu de la taille du terrain sur la figure avec ses coordonnées sur la figure \ref{fig:terrain}.
+Cela donne une idée de la taille du terrain.
+Le choix de la taille du terrain en 100 par 100 a été fait car les terrains n'ont pas tous la même taille malgré les règles de l'IFAB.
+\newline\newline
+L'IFAB est l'International Football Association Board qui est l'organisme qui définit les règles du football. 
+C'est cet organisme qui définit donc la taille des terrains de football.
+En effet, les terrains de football ont une taille qui peut varier entre 90 et 120 mètres de longueur et entre 45 et 90 mètres de largeur. \cite{TerrainIFAB}
+\newline\newline 
+Une autre information importante qui est indiqué dans la documentation de l'API de Wyscout \cite{WyscoutAPI} est que les positions des événements ont été normalisées par rapport à l'emplacement du but de l'équipe qui a généré l'événement.
+Cela veut dire que dans les données fournies par le dataset, les équipes jouent toujours dans le même sens du terrain.
+On peut d'ailleurs constater cela lorsqu'on regarde les positions des événements de tirs \ref{fig:events_tirs_emplacements}.
+En effet sur la figure \ref{fig:events_tirs_emplacements}, on peut voir que les tirs sont toujours effectués du même côté du terrain\footnote{Certains sont effectuées dans l'autre partie du terrain mais jamais dans la surface de réparation opposée.}.
+Le fait que les tirs sont relatives à la position du but de l'équipe qui a généré l'événement règle déjà un problème qui aurait pu se poser.
+En effet, il aurait fallu déterminer quelle équipe joue dans quel sens du terrain et donc savoir dans quelle direction les tirs sont effectuées.
+Ce travail aurait été nécessaire et extrêmement important car cela aurait pu fausser les données sur la distance et l'angle de tir.
+\newline\newline
+On sait donc que, dans le dataset, les équipes jouent toutes dans le même sens du terrain, Cela nous simplifie la tâche pour la suite de la thèse.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/CoordTerrain.png}
+    \caption{Représentation du terrain de football avec les coordonnées X et Y}
+    \label{fig:terrain}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/PositionTirsDatasetEvent.png}
+    \caption{Représentation des positions des 1000 premiers tirs}
+    \label{fig:events_tirs_emplacements}
+\end{figure}
+
+
+
+\newpage
 % Description de chaque attribut dans le dataset players
 \subsection{Players}
+\noindent Le dataset contient également des informations sur les joueurs.
+Le tableau \ref{tab:players} décrit les attributs du dataset "Players".
+\newline\newline
+On peut voir que le dataset contient des informations sur les joueurs comme leur taille, leur poids, leur date de naissance, leur nationalité, leur poste, etc.
+L'une des informations qui est intéressante dans la suite de la thèse et le pied fort du joueur.
+En effet, le pied fort du joueur peut être un facteur qui influence le résultat de la prédiction des xG.
+C'est pour cela qu'il est important de garder cet attribut dans le dataset final qui va être utilisé pour entraîner le modèle.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Nom de l'attribut} & \textbf{Description}                                                                                              \\ \hline
+    birthArea                  & Pays de naissance du joueur                                                                                       \\ \hline
+    birthDate                  & Date de naissance du joueur                                                                                       \\ \hline
+    currentNationalTeamId      & Equipe nationale du joueur                                                                                        \\ \hline
+    currentTeamId              & \begin{tabular}[c]{@{}l@{}}Equipe actuelle du joueur. \\ Est lié à l'attribut "wyId" de l'équipe\end{tabular}     \\ \hline
+    firstName                  & Prénom du joueur                                                                                                  \\ \hline
+    lastName                   & Nom du joueur                                                                                                     \\ \hline
+    foot                       & Pied fort du joueur                                                                                               \\ \hline
+    height                     & Taille du joueur en centimètres                                                                                   \\ \hline
+    middleName                 & \begin{tabular}[c]{@{}l@{}}Deuxième nom du joueur. S'il en \\ possède un\end{tabular}                             \\ \hline
+    passportArea               & Nationalité du joueur                                                                                             \\ \hline
+    role                       & Poste du joueur                                                                                                   \\ \hline
+    shortName                  & Nom raccourci du joueur                                                                                           \\ \hline
+    weight                     & Poids du joueur en kilogrammes                                                                                    \\ \hline
+    wyId                       & \begin{tabular}[c]{@{}l@{}}Identifiant du joueur.\\ Permet de faire le lien avec le dataset "Events"\end{tabular} \\ \hline
+    \end{tabular}
+    \caption{Description des attributs du dataset "Players"}
+    \label{tab:players}
+\end{table}
+
+\newpage
+\subsection{Transformation des données}
+% Parler du présupposé de la taille du terrain 105x68
+% Transformation des positions des événements en angle et distance
+\noindent Comme discuté dans la section \ref{subsec:events}, les coordonnées X et Y sont relatives à la taille du terrain.
+Une des premiers présupposé qui est fait est que la taille du terrain est de 105 par 68.
+Cette taille de terrain est la plus commune dans le football professionnel.
+On peut le voir sur le site officiel de la Premier League que la taille du terrain est de 105 par 68 est la plus commune. \cite{PremierLeagueClubs} 
+Je démarre déjà par un présupposé que tous les terrains qui ont accueilli les matchs dans le dataset ont comme dimension 105 mètres par 68.
+\subsection{Fusion des datasets}
+% Fusion des datasets events et players
+
+\subsection{Visualisation des données}
+% C'est vraiment là ou je suis pas sûr de ce que je dois faire
+% Est-ce que je visualise avant la fusion et transformation des données?
+
 
 % Bibliography
 \bibliographystyle{plain}
