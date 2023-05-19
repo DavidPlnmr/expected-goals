@@ -475,6 +475,8 @@ Une autre information importante qui est indiqué dans la documentation de l'API
 Cela veut dire que dans les données fournies par le dataset, les équipes jouent toujours dans le même sens du terrain.
 On peut d'ailleurs constater cela lorsqu'on regarde les positions des événements de tirs \ref{fig:events_tirs_emplacements}.
 En effet sur la figure \ref{fig:events_tirs_emplacements}, on peut voir que les tirs sont toujours effectués du même côté du terrain\footnote{Certains sont effectuées dans l'autre partie du terrain mais jamais dans la surface de réparation opposée.}.
+Il est également possible de visualiser la distribution des positions X des tirs sur la figure \ref{fig:histogramme_position_x_tirs}.
+On voit bien que les tirs sont toujours effectués dans la même partie du terrain.
 Le fait que les tirs sont relatives à la position du but de l'équipe qui a généré l'événement règle déjà un problème qui aurait pu se poser.
 En effet, il aurait fallu déterminer quelle équipe joue dans quel sens du terrain et donc savoir dans quelle direction les tirs sont effectuées.
 Ce travail aurait été nécessaire et extrêmement important car cela aurait pu fausser les données sur la distance et l'angle de tir.
@@ -493,6 +495,13 @@ On sait donc que, dans le dataset, les équipes jouent toutes dans le même sens
     \includegraphics[width=0.8\textwidth]{img/PositionTirsDatasetEvent.png}
     \caption{Représentation des positions des 1000 premiers tirs}
     \label{fig:events_tirs_emplacements}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/histogramme_position_x_tirs.png}
+    \caption{Histogramme des positions X des tirs}
+    \label{fig:histogramme_position_x_tirs}
 \end{figure}
 
 
@@ -540,6 +549,50 @@ Une des premiers présupposé qui est fait est que la taille du terrain est de 1
 Cette taille de terrain est la plus commune dans le football professionnel.
 On peut le voir sur le site officiel de la Premier League que la taille du terrain est de 105 par 68 est la plus commune. \cite{PremierLeagueClubs} 
 Je démarre déjà par un présupposé que tous les terrains qui ont accueilli les matchs dans le dataset ont comme dimension 105 mètres par 68.
+Ce présupposé nous permettra ainsi de pouvoir calculer la distance en mètre par rapport au but adverse ainsi que l'angle de tir.
+\newline\newline
+La première partie est de transformer les coordonnées X et Y qui sont à l'échelle 100 par 100 en coordonnées X et Y à l'échelle 105 par 68.
+Pour cela, il suffit de multiplier les coordonnées X par 1.05 et les coordonnées Y par 0.68.
+\begin{equation}
+    \begin{split}
+        x_{105} = x_{100} * 1.05 \\
+        y_{68} = y_{100} * 0.68
+    \end{split}
+\end{equation}
+On passe également les coordonnées X de l'autre côté du terrain. 
+Cela permettra de calculer la distance par rapport au centre du terrain.
+Il suffit de soustraire les coordonnées X à 105\footnote{Dans mon cas, j'ai soustrait les coordonnées avant de passer à l'échelle 105x68, donc j'ai soustrait les coordonnées de X à 100.}.
+\newline\newline
+La deuxième partie est de créer un attribut qui contient la distance par rapport au centre du terrain sur l'axe Y.
+Cet attribut permettra de calculer la distance du tir ainsi que son angle.
+Pour cela, il suffit de calculer la distance entre le centre du terrain et la position du tir, mais uniquement sur l'axe Y.
+\begin{equation}
+    \begin{split}
+        y_{Centre} = \lvert y_{68} - 34 \rvert
+    \end{split}
+\end{equation}
+34 étant la moitié de la largeur du terrain. 
+Cela nous permet d'avoir la distance par rapport au centre du terrain sur l'axe Y \footnote{Pareil que pour la coordonnée X, la soustraction a été faite sur l'échelle 100x100 avant de passer à l'échelle 105x68}.
+\newline\newline
+La troisième partie est de calculer la distance du tir par rapport au but adverse.
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/schema_calcul_distance.png}
+    \caption{Distance du tir par rapport au but adverse}
+    \label{fig:distance_tir}
+\end{figure}
+Sur la figure \ref{fig:distance_tir}, [C] représente le centre du terrain, [E] représente le centre du but adverse.
+[DG] représente l'attribut que l'on a calculer précédemment qui contient la distance par rapport au centre du terrain sur l'axe Y.
+[DF] représente la position en X par rapport au but adverse.
+Ce qui est effectué pour calculer la distance du tir par rapport au but adverse est d'utiliser le théorème de Pythagore.
+On peut voir sur la figure \ref{fig:distance_tir} que l'on a un triangle rectangle [GDF].
+Avec le théorème de Pythagore, on peut savoir que :
+\begin{equation}
+    DE^2 = GF^2 = DG^2 + DF^2
+\end{equation}
+Il suffit de faire une racine carré de la somme de $DG^2$ et $DF^2$ pour avoir la distance du tir par rapport au centre du but adverse.
+
+
 \subsection{Fusion des datasets}
 % Fusion des datasets events et players
 
