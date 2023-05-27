@@ -575,13 +575,8 @@ Pour cela, il suffit de calculer la distance entre le centre du terrain et la po
 Cela nous permet d'avoir la distance par rapport au centre du terrain sur l'axe Y \footnote{Pareil que pour la coordonnée X, la soustraction a été faite sur l'échelle 100x100 avant de passer à l'échelle 105x68}.
 \newline\newline
 La troisième partie est de calculer la distance du tir par rapport au but adverse.
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{img/schema_calcul_distance.png}
-    \caption{Distance du tir par rapport au but adverse}
-    \label{fig:distance_tir}
-\end{figure}
-Sur la figure \ref{fig:distance_tir}, [C] représente le centre du terrain, [E] représente le centre du but adverse.
+
+\noindent Sur la figure \ref{fig:distance_tir}, [C] représente le centre du terrain, [E] représente le centre du but adverse.
 [DG] représente l'attribut que l'on a calculer précédemment qui contient la distance par rapport au centre du terrain sur l'axe Y.
 [DF] représente la position en X par rapport au but adverse.
 Ce qui est effectué pour calculer la distance du tir par rapport au but adverse est d'utiliser le théorème de Pythagore.
@@ -591,6 +586,57 @@ Avec le théorème de Pythagore, on peut savoir que :
     DE^2 = GF^2 = DG^2 + DF^2
 \end{equation}
 Il suffit de faire une racine carré de la somme de $DG^2$ et $DF^2$ pour avoir la distance du tir par rapport au centre du but adverse.
+\newline\newline
+La quatrième partie est de calculer l'angle du tir par rapport au but adverse.
+Il est d'abord important d'amener une autre information qui, cette fois-ci, n'est pas un présupposé.
+En effet, la largeur des buts de football est de 7.32 mètres \cite{TerrainIFAB}.
+Pour cette partie, le choix a été d'utiliser l'inverse de la tangente et la règle qui dit que la somme des angles d'un triangle est égale à 180 degrés.
+Grâce à cela, on peut calculer l'angle du tir par rapport au but adverse.
+On peut voir sur la figure \ref{fig:angle_tir} que l'on a un triangle JGF.
+L'objectif est de calculer l'angle situé au sommet G.
+On sait que GI représente $y_{Centre}$ et que HF représente la valeur de $x$.
+FJ représente la largeur du but qui est, comme indiqué précédemment, de 7.32 mètres.
+On peut donc avoir la valeur de GH et GK en additionnant ou soustrayant la moitié de la largeur du but à $y_{Centre}$.
+\begin{equation}
+    \begin{split}
+        GH = y_{Centre} - \frac{7.32}{2} \\
+        GK = y_{Centre} + \frac{7.32}{2}
+    \end{split}
+\end{equation}
+En utilisant la tangente inverse, on peut calculer l'angle GJK ainsi que l'angle GFH.
+Avec ces deux angles, on peut calculer l'angle à l'intérieur du triangle JGF pour finalement récupérer l'angle du tir par rapport au but adverse en faisant\footnote{En degrés} :
+\begin{equation}
+    \begin{split}
+        \alpha = 180 - (Angle_{GJK} + Angle_{GFH})
+    \end{split}
+\end{equation}
+Finalement l'équation totale ressemble à cela, une fois que l'on a toutes les valeurs :
+\begin{equation}
+    \begin{split}
+        \alpha = 180 - (tan^{-1}(\frac{GH}{HF}) + 90) - (90 -tan^{-1}(\frac{GK}{HF}))
+    \end{split}
+\end{equation}
+
+\noindent Il est d'ailleurs possible d'accéder au schémas géométrique sur Geogebra.
+Cela permet de manipuler les différents points et de voir les valeurs se mettre à jour automatiquement.
+Ils sont disponibles aux liens suivants :
+\begin{itemize}
+    \item Angle : \url{https://www.geogebra.org/geometry/d7tqw4fe}
+    \item Distance : \url{https://www.geogebra.org/geometry/fnx3swex}
+\end{itemize}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/schema_calcul_distance.png}
+    \caption{Distance du tir par rapport au but adverse}
+    \label{fig:distance_tir}
+\end{figure}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/schema_calcul_angle.png}
+    \caption{Angle du tir par rapport au but adverse}
+    \label{fig:angle_tir}
+\end{figure}
 
 
 \subsection{Fusion des datasets}
