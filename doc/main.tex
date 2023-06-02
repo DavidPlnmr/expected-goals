@@ -135,7 +135,7 @@
 \subsection{Introduction à la problématique}
 \noindent Lorsque les premiers sports sont apparus, l'information la plus importante était le score et le vainqueur de la confrontation.
 Au fur et à mesure, plus d'informations sur les matchs sont venues s'ajoutées.
-Le nombre de tirs dans un matchs par équipes, le nombre de passes, le nombre de tirs cadrés, la possession du ballon le pourcentage de passes réussies dans le football, le nombre de passes décisives et d'autres sont venus s'ajouter aux statistiques dans le football.
+Le nombre de tirs dans un matchs par équipes, le nombre de passes, le nombre de tirs cadrés, la possession du ballon, le pourcentage de passes réussies, le nombre de passes décisives et d'autres sont venus s'ajouter aux statistiques dans le football.
 Le pourcentage de réussite aux lancers francs, le nombre de rebonds, le nombre de passes décisives, le pourcentage de réussite aux tirs, le nombre de fautes, le nombre de minutes jouées, le pourcentage de réussite à 3 points et d'autres sont venus s'ajouter aux statistiques dans le basketball.
 Ces statistiques sont également devenus personnelles à chacun des joueurs.
 On peut également compter pour le baseball le nombre de fois qu'un joueur était au bâton, son nombre de double, de triples, son nombre de buts et bien d'autres.
@@ -164,7 +164,7 @@ Sur la figure \ref{fig:shotmap}, on peut observer un example d'emplacement de ti
 \noindent Par ailleurs, les xG se sont tellement développés que des métriques dérivées ont été créées. On peut par exemple citer le xA qui est l'expected assist. C'est une métrique qui permet de déterminer la probabilité qu'une passe soit transformée en passe décisive selon les données de cette passe. \cite{XGExplainedFBrefa}
 Également, les xGA qui est les expected goals against. Cette métrique permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir mais pour l'équipe adverse. \cite{pettyWhatExpectedGoals2018a}
 
-\noindent Il y en a également d'autres comme les expected points qui sont les points qui est le nombre de points qu'une équipe devrait avoir gagnés basé sur les données relatives aux xG. D'autres dérivées sont indiquées sur l'article de Pinnacle écrit par Luke Petty. \cite{pettyWhatExpectedGoals2018a}
+\noindent Il y en a également d'autres comme les expected points qui sont les points qu'une équipe devrait avoir gagnés basé sur les données relatives aux xG. D'autres dérivées sont indiquées sur l'article de Pinnacle écrit par Luke Petty. \cite{pettyWhatExpectedGoals2018a}
 \newline\newline
 \noindent Maintenant que nous avons vu ce qu'est un xG et ces dérivées actuelles, il semble pertinent de décrire l'utilisation de cette métrique dans le football actuel.
 
@@ -219,7 +219,7 @@ Cela pourra également nous indiquer si des biais seront présents dans le modè
 Une fois que les données sont documentées et visualisées, il va falloir les préparer.
 En effet, il pourrait y avoir des données manquantes mais qui sont disponibles après un traitement.
 Il pourrait également y avoir des données qui ne sont pas exploitables et qui doivent être supprimées.
-Par exemple, l'ID de la base de données d'un tir pourrait être supprimée car il n'appporte rien pour la prédiction de l'expected goal.
+Par exemple, l'identifiant de la base de données d'un tir pourrait être supprimée car il n'appporte rien pour la prédiction de l'expected goal.
 \newline \newline
 Ensuite, on pourra commencer à implémenter le modèle et observer les facteurs qui influencent le plus sa prédiction du xG.
 C'est également à ce moment-là qu'il faudra comparer les différents modèles pour voir lequel est le plus performant pour prédire les xG.
@@ -349,9 +349,6 @@ Ce travail donne tout de même de bonnes pistes pour l'ajout de nouvelle donnée
 
 
 \subsection{Récapitulatif des travaux existants}
-% Please add the following required packages to your document preamble:
-% \usepackage[normalem]{ulem}
-% \useunder{\uline}{\ul}{}
 \begin{table}[htp]
     \centering
     \begin{tabular}{lll}
@@ -386,7 +383,7 @@ La deuxième étape consiste à décrire les événements d'un match.
 Pour chaque touche de balle dans le match, un opérateur décrit l'événement. 
 Il sélectionne un joueur et crée un événement sur la timeline du match.
 Il indique ensuite de quel type d'événement il s'agit (tir, passe, duel) et quel est le sous-type d'événement (duel aérien ou au sol).
-Il entre ensuite la position de l'événement sur le terrain et les informations supplémentaires
+Il entre ensuite la position de l'événement sur le terrain et les informations supplémentaires.
 Finalement, la troisième étape est un contrôle qualité.
 Ce contrôle possède deux phases. 
 La première est automatique et faite par le marqueur\footnote{Le logiciel propriétaire} qui se charge d'éviter la majorité des erreurs des opérateurs.
@@ -396,7 +393,7 @@ Par exemple, un événement de type tir qui aurait un sous-événement duel aér
 La deuxième phase de contrôle qualité est manuelle est gérée par des contrôleurs qualités qui vont vérifier de manière approfondie les événements de certains matchs et les corriger si besoin." \cite{pappalardoPublicDataSet2019}
 \newline
 Il se peut que certains matchs n'aient pas subi de contrôle qualité car ils utilisent un algorithme de sélection de matchs pour le contrôle qualité.
-\begin{figure}[htp]
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.7\textwidth]{img/logiciel_proprietaire.png}
     \caption{Aperçu du logiciel propriétaire de Wyscout}
@@ -547,11 +544,11 @@ C'est pour cela qu'il est important de garder cet attribut dans le dataset final
 \noindent Comme discuté dans la section \ref{subsec:events}, les coordonnées X et Y sont relatives à la taille du terrain.
 Une des premiers présupposé qui est fait est que la taille du terrain est de 105 par 68.
 Cette taille de terrain est la plus commune dans le football professionnel.
-On peut le voir sur le site officiel de la Premier League que la taille du terrain est de 105 par 68 est la plus commune. \cite{PremierLeagueClubs} 
+On peut le voir sur le site officiel de la Premier League que la taille du terrain de 105 par 68 est la plus commune. \cite{PremierLeagueClubs} 
 Je démarre déjà par un présupposé que tous les terrains qui ont accueilli les matchs dans le dataset ont comme dimension 105 mètres par 68.
 Ce présupposé nous permettra ainsi de pouvoir calculer la distance en mètre par rapport au but adverse ainsi que l'angle de tir.
-\newline\newline
-La première partie est de transformer les coordonnées X et Y qui sont à l'échelle 100 par 100 en coordonnées X et Y à l'échelle 105 par 68.
+\newpage
+\noindent La première partie est de transformer les coordonnées X et Y qui sont à l'échelle 100 par 100 en coordonnées X et Y à l'échelle 105 par 68.
 Pour cela, il suffit de multiplier les coordonnées X par 1.05 et les coordonnées Y par 0.68.
 \begin{equation}
     \begin{split}
@@ -641,10 +638,97 @@ Ils sont disponibles aux liens suivants :
 
 \subsection{Fusion des datasets}
 % Fusion des datasets events et players
+\noindent Cette section vise à expliquer comment les datasets ont été fusionnés.
+On a pu voir que le dataset events contient l'identifiant du joueur qui a effectué l'action sous le nom d'attribut "playerId" (voir table \ref{tab:events}).
+Cet identifiant correspond à l'identifiant nommé "wyId" dans le dataset players (voir table \ref{tab:players}).
+L'objectif est donc de fusionner les deux datasets en utilisant ce deux attributs pour permettre d'avoir les informations des joueurs dans le dataset events.
+Dans notre cas, nous allons faire une jointure pour permettre de récupérer quel est le pied fort du joueur ayant généré l'événement.
+Grâce à cela, il nous est possible de savoir si le joueur a tiré avec son pied fort ou non.
+\newline\newline
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Nom de l'attribut} & \textbf{Description}                                                                                                                   \\ \hline
+        X                          & \begin{tabular}[c]{@{}l@{}}Position X sur le terrain. Permet de visualiser les \\ tirs via un pitch chart\end{tabular}                 \\ \hline
+        Y                          & \begin{tabular}[c]{@{}l@{}}Position Y sur le terrain. Permet de visualiser les \\ tirs via un pitch chart\end{tabular}                 \\ \hline
+        distance                   & Distance du tir par rapport au milieu du but                                                                                           \\ \hline
+        angle                      & \begin{tabular}[c]{@{}l@{}}Angle des deux poteaux par rapport au tir. En \\ radians\end{tabular}                                       \\ \hline
+        angle\_deg                 & Pareil que "angle" mais en degré.                                                                                                      \\ \hline
+        goal                       & Indique si le tir est un but                                                                                                           \\ \hline
+        header                     & \begin{tabular}[c]{@{}l@{}}Indique si le tir est fait de la tête. Si c'est le cas, \\ "good\_foot\_used" est False\end{tabular}        \\ \hline
+        good\_foot\_used           & \begin{tabular}[c]{@{}l@{}}Indique si le tir est fait avec le pied fort du joueur.\\ Si c'est le cas, "header" est False.\end{tabular} \\ \hline
+        \end{tabular}
+    \caption{Attributs du dataset events}
+    \label{tab:final_dataset}
+\end{table}
 
 \subsection{Visualisation des données}
-% C'est vraiment là ou je suis pas sûr de ce que je dois faire
-% Est-ce que je visualise avant la fusion et transformation des données?
+% Visualisation des données
+\noindent Cette section vise à visualiser les données du dataset final.
+Tout d'abord, nous allons effectuer une description simple du dataset.
+Le dataset contient 43075 tirs sur une saison de football (2017/2018) dans 7 compétitions différentes :
+\begin{itemize}
+    \item Ligue 1
+    \item Premier League
+    \item Serie A
+    \item Bundesliga
+    \item La Liga
+    \item Coupe du monde 2018
+    \item Euro 2016
+\end{itemize}
+La description du dataset est disponible sur le tableau \ref{tab:describe_dataset}.
+On peut voir que la distance maximale d'un tir a été de 103.95 mètres et la distance minimale de 0.68 mètre.
+On peut voir que certains tirs n'ont pas été normalisés par rapport au sens du jeu de l'équipe comme indiqué dans la section \ref{subsec:events}. 
+Sachant que 
+La moyenne des tirs a été faite à 18.59 mètres du but adverse.
+
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{r|r|r|r|r|}
+        \cline{2-5}
+        \textbf{}                            & \textbf{X}   & \textbf{Y}   & \textbf{distance} & \textbf{angle} \\ \hline
+        \multicolumn{1}{|r|}{\textbf{count}} & 43075.000000 & 43075.000000 & 43075.000000      & 43075.000000   \\ \hline
+        \multicolumn{1}{|r|}{\textbf{mean}}  & 15.992225    & 33.473176    & 18.593067         & 0.414140       \\ \hline
+        \multicolumn{1}{|r|}{\textbf{std}}   & 8.534333     & 9.366171     & 8.419298          & 0.253173       \\ \hline
+        \multicolumn{1}{|r|}{\textbf{min}}   & 0.000000     & 0.000000     & 0.680000          & 0.000000       \\ \hline
+        \multicolumn{1}{|r|}{\textbf{25\%}}  & 9.450000     & 26.520000    & 12.249445         & 0.250188       \\ \hline
+        \multicolumn{1}{|r|}{\textbf{50\%}}  & 13.650000    & 33.320000    & 17.153297         & 0.327782       \\ \hline
+        \multicolumn{1}{|r|}{\textbf{75\%}}  & 23.100000    & 40.800000    & 24.936000         & 0.505984       \\ \hline
+        \multicolumn{1}{|r|}{\textbf{max}}   & 103.950000   & 68.000000    & 103.952224        & 3.141593       \\ \hline
+    \end{tabular}
+    \caption{Description du dataset final}
+    \label{tab:describe_dataset}
+\end{table}
+Pour cela, nous allons utiliser un pitch chart.
+Un pitch chart est un graphique qui affiche un terrain de football.
+Grâce à cela on peut visualiser plus simplement d'où ont été effectuées les tirs.
+Le but de notre pitch chart est de visualiser les tirs qui ont été effectués à leurs positions respectives.
+Dans mon cas, j'ai décidé d'utiliser une heatmap pour visualiser la fréquence des tirs à chacune des positions sur le terrain.
+Le pitch chart peut être vu sur la figure \ref{fig:pitch_chart}.
+On peut voir qu'une grande majorité des tirs ont été effectués dans la surface de réparation.
+On peut également remarquer qu'il y a très peu de tirs à l'entrée de la surface de réparation.
+Il y a plusieurs hypothèses qui peuvent être faites pour expliquer cela.
+La première est que les joueurs préfèrent tirer dans la surface de réparation car ils ont plus de chances de marquer. 
+Cependant, on remarque qu'il y a également des tirs plus lointain.
+La deuxième hypothèse est que ce phénomène est dû à comment les données sont récoltées.
+Il est effectivement possible que les opérateurs ou que le logiciel propriétaire de Wyscout détermine qu'un tir ait été fait dans la surface de réparation ou en dehors de celle-ci, plutôt que sur la ligne de la surface de réparation.
+Cela nous montre déjà une des limitations des données que nous utilisons.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/pitchChartFrequency.png}
+    \caption{Pitch chart des tirs effectués}
+    \label{fig:pitch_chart}
+\end{figure}
+
+% Affichage de la visualisation suite au retour de Nils
+
+\section{Méthodologie}
+% Liste des méthodes qui vont être utilisées
+
+\subsection{Cross Validation}
 
 
 % Bibliography
