@@ -616,11 +616,7 @@ Finalement l'équation totale ressemble à cela, une fois que l'on a toutes les 
 
 \noindent Il est d'ailleurs possible d'accéder au schémas géométrique sur Geogebra.
 Cela permet de manipuler les différents points et de voir les valeurs se mettre à jour automatiquement.
-Ils sont disponibles aux liens suivants :
-\begin{itemize}
-    \item Angle : \url{https://www.geogebra.org/geometry/d7tqw4fe}
-    \item Distance : \url{https://www.geogebra.org/geometry/fnx3swex}
-\end{itemize}
+Ils sont disponibles en bas de page\footnote{Angle : \url{https://www.geogebra.org/geometry/d7tqw4fe}}\footnote{Distance : \url{https://www.geogebra.org/geometry/fnx3swex}}.
 
 \begin{figure}[htp]
     \centering
@@ -655,8 +651,8 @@ Grâce à cela, il nous est possible de savoir si le joueur a tiré avec son pie
         Y                          & \begin{tabular}[c]{@{}l@{}}Position Y sur le terrain. Permet de visualiser les \\ tirs via un pitch chart\end{tabular}                 \\ \hline
         distance                   & Distance du tir par rapport au milieu du but                                                                                           \\ \hline
         angle                      & \begin{tabular}[c]{@{}l@{}}Angle des deux poteaux par rapport au tir. En \\ radians\end{tabular}                                       \\ \hline
-        angle\_deg                 & Pareil que "angle" mais en degré.                                                                                                      \\ \hline
-        goal                       & Indique si le tir est un but                                                                                                           \\ \hline
+        angle\_abs                 & L'angle du tir par rapport au centre du terrain.                                                                                                      \\ \hline
+        \textbf{goal}                       & Indique si le tir est un but. \textbf{La variable cible.}                                                                                                       \\ \hline
         header                     & \begin{tabular}[c]{@{}l@{}}Indique si le tir est fait de la tête. Si c'est le cas, \\ "good\_foot\_used" est False\end{tabular}        \\ \hline
         good\_foot\_used           & \begin{tabular}[c]{@{}l@{}}Indique si le tir est fait avec le pied fort du joueur.\\ Si c'est le cas, "header" est False.\end{tabular} \\ \hline
         \end{tabular}
@@ -680,29 +676,26 @@ Le dataset contient 43075 tirs sur une saison de football (2017/2018) dans 7 com
 \end{itemize}
 La description du dataset est disponible sur le tableau \ref{tab:describe_dataset}.
 On peut voir que la distance maximale d'un tir a été de 103.95 mètres et la distance minimale de 0.68 mètre.
-On peut voir que certains tirs n'ont pas été normalisés par rapport au sens du jeu de l'équipe comme indiqué dans la section \ref{subsec:events}. 
-Sachant que 
-La moyenne des tirs a été faite à 18.59 mètres du but adverse.
-
-
+On constate donc que certains tirs n'ont pas été normalisés par rapport au sens du jeu de l'équipe comme indiqué dans la section \ref{subsec:events}. 
+C'est pour cela que notre but va être de retirer certains tirs considérés comme des "outliers".
 \begin{table}[htp]
     \centering
-    \begin{tabular}{r|r|r|r|r|}
-        \cline{2-5}
-        \textbf{}                            & \textbf{X}   & \textbf{Y}   & \textbf{distance} & \textbf{angle} \\ \hline
-        \multicolumn{1}{|r|}{\textbf{count}} & 43075.000000 & 43075.000000 & 43075.000000      & 43075.000000   \\ \hline
-        \multicolumn{1}{|r|}{\textbf{mean}}  & 15.992225    & 33.473176    & 18.593067         & 0.414140       \\ \hline
-        \multicolumn{1}{|r|}{\textbf{std}}   & 8.534333     & 9.366171     & 8.419298          & 0.253173       \\ \hline
-        \multicolumn{1}{|r|}{\textbf{min}}   & 0.000000     & 0.000000     & 0.680000          & 0.000000       \\ \hline
-        \multicolumn{1}{|r|}{\textbf{25\%}}  & 9.450000     & 26.520000    & 12.249445         & 0.250188       \\ \hline
-        \multicolumn{1}{|r|}{\textbf{50\%}}  & 13.650000    & 33.320000    & 17.153297         & 0.327782       \\ \hline
-        \multicolumn{1}{|r|}{\textbf{75\%}}  & 23.100000    & 40.800000    & 24.936000         & 0.505984       \\ \hline
-        \multicolumn{1}{|r|}{\textbf{max}}   & 103.950000   & 68.000000    & 103.952224        & 3.141593       \\ \hline
+    \begin{tabular}{r|r|r|r|r|r|}
+        \cline{2-6}
+        \textbf{}                            & \textbf{X} & \textbf{Y} & \textbf{distance} & \textbf{angle} & \textbf{angle\_abs} \\ \hline
+        \multicolumn{1}{|r|}{\textbf{count}} & 43075      & 43075      & 43075             & 43075          & 43075               \\ \hline
+        \multicolumn{1}{|r|}{\textbf{mean}}  & 15.992225  & 33.473176  & 18.593067         & 0.414140       & 0.484041            \\ \hline
+        \multicolumn{1}{|r|}{\textbf{std}}   & 8.534333   & 9.366171   & 8.419298          & 0.253173       & 0.313051            \\ \hline
+        \multicolumn{1}{|r|}{\textbf{min}}   & 0.000000   & 0.000000   & 0.680000          & 0.000000       & 0.000000            \\ \hline
+        \multicolumn{1}{|r|}{\textbf{25\%}}  & 9.450000   & 26.520000  & 12.249445         & 0.250188       & 0.227296            \\ \hline
+        \multicolumn{1}{|r|}{\textbf{50\%}}  & 13.650000  & 33.320000  & 17.153297         & 0.327782       & 0.452154            \\ \hline
+        \multicolumn{1}{|r|}{\textbf{75\%}}  & 23.100000  & 40.800000  & 24.936000         & 0.505984       & 0.699776            \\ \hline
+        \multicolumn{1}{|r|}{\textbf{max}}   & 103.950000 & 68.000000  & 103.952224        & 3.141593       & 1.570796            \\ \hline
     \end{tabular}
     \caption{Description du dataset final}
     \label{tab:describe_dataset}
 \end{table}
-Pour cela, nous allons utiliser un pitch chart.
+\noindent Pour cela, nous allons utiliser un pitch chart.
 Un pitch chart est un graphique qui affiche un terrain de football.
 Grâce à cela on peut visualiser plus simplement d'où ont été effectuées les tirs.
 Le but de notre pitch chart est de visualiser les tirs qui ont été effectués à leurs positions respectives.
@@ -723,12 +716,170 @@ Cela nous montre déjà une des limitations des données que nous utilisons.
     \label{fig:pitch_chart}
 \end{figure}
 
+\noindent Maintenant, nous allons nous focaliser sur la détection d'éventuelles "outliers".
+En effet, nous avons pu voir que la distance maximale d'un tir a été de 103.95 mètres. 
+Il faut donc vérifier si ce tir est un "outlier" ou non. 
+Nous allons également nous focaliser sur d'autres tirs considérés comme "outliers".
+Tout d'abord, visualisons les graphiques de la distance, l'angle de tir et l'angle de tir absolu (voir fig. \ref{fig:analyse_quantitative}).
+Lorsque l'on observe les histogrammes, on remarque que pour la distance et l'angle de tir, il y a une majorité de tirs qui ont été effectués à une distance inférieure à 50 mètres et un angle de tir inférieur à 1.5 radian.
+On peut également voir qu'il n'y a pas de séparation distincte entre les distributions des tirs selon leur valeur cible via les graphiques de la deuxième colonne.
+Cela aurait été très pertinent puisque l'on aurait pu voir quel attribut aurait été le plus influent directement en observant les données.
+Cependant, on peut remarquer que des outliers ont été trouvés pour la distribution des différentes variables via les boxplots. 
+Les outliers sont déterminées en se basant sur la règle suivante \cite{galarnykUnderstandingBoxplotsHow2022} :
+\begin{equation}
+    \begin{split}
+        x < Q_1 - 1.5 * IQR \\
+        x > Q_3 + 1.5 * IQR    
+    \end{split}
+\end{equation}
+Comme indiqué sur la documentation de Matplotlib concernant les boxplots \cite{MatplotlibPyplotBoxplot}, la valeur de 1.5 est une valeur basée sur la définition initiale des boxplots de John Tukey.
+Ils permettent de définir les "maximum non-outlier" et "minimum non-outlier".
+\newline
+Via cette formule, on peut récupérer tous les outliers pour chaque variable, on obtient donc un tableau comme celui-ci (voir tab. \ref{tab:outliers}):
+L'objectif est maintenant de visualiser la probabilité de chacun des sets d'outliers. 
+Si l'on observe des anomalies ou des données aberrantes, il faudra les supprimer.
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{l|l|l|l|}
+        \cline{2-4}
+        \multicolumn{1}{r|}{}                                                             & \textbf{Distance} & \textbf{Angle} & \textbf{Angle absolu} \\ \hline
+        \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Nombre\\ d'outliers\end{tabular}} & 197               & 2163           & 70                    \\ \hline
+    \end{tabular}
+    \caption{Nombre d'outliers pour chaque variable quantitatives}
+    \label{tab:outliers}
+\end{table}
+
+\noindent Grâce à la figure \ref{fig:analyse_outlier2}, plusieurs observations peuvent être faites. 
+Tout d'abord, il est remarquable que les outliers pour les angles ne sont pas aberrants. 
+En effet, théoriquement, plus l'angle est grand, plus le but est facile à réaliser. 
+Cependant, en ce qui concerne les distances, il existe un nombre très limité d'outliers. 
+En examinant les valeurs situées entre 90 et 105, on constate que trois buts ont été marqués à cette distance. 
+En revanche, le nombre de tirs manqués dans la même plage est plus élevé.
+Théoriquement, marquer un but à 90 mètres du but est considéré comme irréalisable. 
+Par conséquent, ces données peuvent être considérées comme aberrantes et il serait envisageable de les supprimer. 
+Une hypothèse plausible est que ces données n'ont pas été correctement traitées par Wyscout lors de la normalisation des positions des tirs.
+\newline\newline
+Il est également intéressant d'examiner la relation entre la distance et l'angle. 
+La figure \ref{fig:analyse_qualitative} met en évidence le fait que plus la distance est petite, plus l'angle est grand. 
+Cette tendance est observée dans le premier graphique de la figure \ref{fig:analyse_qualitative}, bien que ce ne soit pas toujours le cas. 
+En jouant avec le graphique Geogebra fourni précédemment, il est possible de constater que les tirs effectués depuis le coin de l'équipe attaquante auront un angle plus élevé que les tirs effectués depuis le coin de l'équipe adverse.
+Un tir depuis le coin de l'équipe adverse aura systématiquement un angle de 0 radian puisqu'il est effectué le long de la ligne de but.
+\newline\newline
+Ensuite, nous allons analyser les attributs qualitatifs en utilisant des diagrammes en barres (bar charts). 
+Ces graphiques permettent de visualiser la distribution des données pour chaque attribut qualitatif. 
+Ils sont présentés dans la figure \ref{fig:analyse_qualitative}. 
+À travers ces bar charts, il est possible d'observer que 10\% des tirs sont des buts. 
+On remarque également qu'il y a une majorité de tirs effectués avec le pied fort du tireur. 
+Cependant, les tirs qui ne sont pas effectués avec le pied fort incluent également les tirs de la tête.
+Environ 15\% des tirs sont réalisés de cette manière, ce qui indique que la majorité des tirs sont effectués avec le pied (faible ou fort).
+\newline\newline
+Enfin, nous allons analyser la corrélation entre les variables.
+L'objectif de cette analyse est d'évaluer si les variables sont corrélées les unes avec les autres.
+Pour rappel, deux variables sont corrélées si elles ont tendance à varier ensemble. 
+Une corrélation négative indique que lorsque la valeur d'une variable augmente, la valeur de l'autre variable diminue. 
+Une corrélation positive indique que lorsque la valeur d'une variable augmente, la valeur de l'autre variable augmente également. 
+Une corrélation élevée entre une variable et la variable cible peut améliorer la prédiction et faciliter l'interprétation du modèle. 
+Une corrélation élevée suggère une relation claire entre les deux variables, ce qui peut faciliter la compréhension de l'influence de la variable sur la variable cible.
+\newline\newline
+Dans notre cas, en observant la figure \ref{fig:correlation_matrix}, les variables présentant la corrélation la plus élevée par rapport à l'attribut "goal" sont les attributs "distance" et "angle". 
+Nous remarquons également une forte corrélation entre les attributs "distance" et "X". 
+Cette corrélation s'explique par le fait que l'attribut "distance" est une variable dérivée de l'attribut "X" et de l'attribut "C" qui est elle-même dérivée de l'attribut "Y".
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{img/analyseOutlier.png}
+    \caption{Analyse des attributs quantitatifs}
+    \label{fig:analyse_quantitative}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{img/analyseOutlier2.png}
+    \caption{Analyse des outliers}
+    \label{fig:analyse_outlier2}
+\end{figure}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{img/visualisation_discret.png}
+    \caption{Relation distance-angle et analyse des attributs qualitatifs}
+    \label{fig:analyse_qualitative}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/correlation_matrix.png}
+    \caption{Matrice de corrélation des attributs}
+    \label{fig:correlation_matrix}
+\end{figure}
+\newpage
+\noindent Grâce à cette visualisation approfondie, nous avons pu acquérir une compréhension approfondie des données et des relations entre les différentes variables. 
+Nous avons également identifié certaines données incohérentes et des aberrations dans le jeu de données. 
+Ces observations soulignent l'importance de l'examen attentif et critique des données afin d'éliminer les valeurs aberrantes et d'obtenir des résultats plus fiables.
+\newline\newline
+En analysant les corrélations entre les variables, nous avons constaté que certaines d'entre elles présentaient une forte corrélation avec la variable cible. 
+Cela suggère que ces variables sont des indicateurs significatifs pour prédire la réussite d'un tir au but. 
+Par exemple, les variables "distance" et "angle" ont montré une corrélation élevée avec la variable "goal". 
+Cela signifie que plus la distance et l'angle sont favorables, plus la probabilité de marquer un but est élevée. 
+\newline\newline
+Il est également important de souligner la forte corrélation entre les variables "distance" et "X". 
+Cette corrélation s'explique par le fait que l'attribut "distance" est calculé en utilisant les coordonnées horizontales "X" et "C". 
+Ainsi, lorsque la valeur de l'attribut "X" change, cela influence directement la valeur de l'attribut "distance". 
+\newline\newline
+En résumé, cette analyse approfondie des données nous a permis de mieux comprendre les relations entre les variables et d'identifier les facteurs les plus pertinents pour prédire la réussite d'un tir au but. 
+En éliminant les données aberrantes et en tenant compte des corrélations significatives, nous pouvons améliorer la précision des prédictions.
+Cependant, il convient de noter que des analyses supplémentaires et des modélisations plus avancées peuvent être nécessaires pour tirer des conclusions plus précises et éclairantes.
+
+\newpage
 % Affichage de la visualisation suite au retour de Nils
 
 \section{Méthodologie}
 % Liste des méthodes qui vont être utilisées
+\noindent Dans cette section, nous allons discuter de la méthodologie utilisée pour résoudre le problème de prédiction de la réussite d'un tir au but.
+Tout d'abord, nous allons faire une séparation sur le dataset pour avoir un jeu de données d'entraînement et un jeu de données de test.
+Le jeu de tests sera utilisé pour évaluer la performance des modèles finaux. 
+Tandis que le jeu d'entraînements, nous permettra d'entraîner notre modèle et de choisir le meilleur set d'hyper paramètres pour chaque modèle.
+Le partitionnement choisi pour les jeux de données est le suivant : 90\% des données pour le jeu d'entraînement et 10\% des données pour le jeu de test.
+
+\subsection{Choix des modèles}
+\noindent Plusieurs modèles vont être utlisés pour résoudre ce problème.
+Nous allons utiliser des modèles de classification binaire, car nous cherchons à prédire si un tir au but est réussi ou non.
+Je rappelle également que le but de la thèse est de répondre à la question suivante : "Quels sont les paramètres qui influencent le plus l'expected goal ?".
+Certains de ces modèles ne seront pas les plus performants et les plus cohérents pour avoir la meilleure prédiction possible mais ils permettront de comprendre les paramètres qui influencent le plus l'expected goal.
+Nous allons tester les modèles suivants :
+\begin{itemize}
+    \item Régression logistique
+    \item Arbre de décision
+    \item Random Forest
+    \item SVM (?)
+    \item Réseau de neurones (?)
+\end{itemize}
+
 
 \subsection{Cross Validation}
+\noindent Pour chaque modèle, nous allons utiliser la cross validation pour choisir le meilleur set d'hyper paramètres.
+La cross validation est une méthode qui permet de tester la performance d'un modèle sur un jeu de données.
+Elle consiste à séparer le jeu de données en plusieurs sous-ensembles.
+Comme on peut le voir sur la figure \ref{fig:cross_validation}, le jeu de données est séparé en 5 sous-ensembles.
+Chaque itération consiste à entraîner le modèle sur 4 sous-ensembles et à tester le modèle sur le dernier sous-ensemble.
+Cette opération est répétée 5 fois pour que chaque sous-ensemble soit utilisé comme jeu de test.
+La performance du modèle est calculée en faisant la moyenne des performances obtenues sur chaque sous-ensemble.
+C'est ainsi que nous pouvons choisir le meilleur set d'hyper paramètres pour chaque modèle.
+\newline\newline
+Après avoir choisi nos modèles et leurs hyper paramètres, nous allons les entraîner sur le jeu de données d'entraînement entier et les tester sur le jeu de données de test.
+Cela nous permettra ensuite de comparer les résultats entre les différents modèles.
+Le but est d'avoir la meilleure version d'un modèle et de la comparer avec la meilleure version des autres modèles. 
+C'est ainsi que l'on pourra déterminer quel modèle est le plus performant pour résoudre notre problème.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/cross_validation_schema.png}
+    \caption{Cross Validation - Source : Dataspirant}
+    \label{fig:cross_validation}
+\end{figure}
+
+\subsection{Jeu d'hyper paramètres}
+Cette section consiste à montrer les sets d'hyper paramètres qui seront choisis pour chaque modèle.
+Voici le tableau qui décrit quels sont les jeu d'hyper paramètres utilisés pour chacun des modèles.
+
+
 
 
 % Bibliography
