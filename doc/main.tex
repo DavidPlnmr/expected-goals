@@ -40,8 +40,13 @@
 \newcommand{\fulltitle}{Analyse et optimisation de l'expected goal: application au machine learning}
 \newcommand{\shorttitle}{Analyse et optimisation de l'expected goal}
 
+% On retire l'indentation des paragraphes
+\setlength{\parindent}{0pt}
+% Augmentation de l'espacement entre les sauts de ligne
+%\setlength{\parskip}{5pt} % Modifier la valeur selon vos besoins
+
 % Title
-\title{Title}
+\title{\fulltitle}
 \author{\DP}
 \date{\today}
 
@@ -133,7 +138,7 @@
 
 % Citation avec Zotero et BibLaTeX
 \subsection{Introduction à la problématique}
-\noindent Lorsque les premiers sports sont apparus, l'information la plus importante était le score et le vainqueur de la confrontation.
+Lorsque les premiers sports sont apparus, l'information la plus importante était le score et le vainqueur de la confrontation.
 Au fur et à mesure, plus d'informations sur les matchs sont venues s'ajoutées.
 Le nombre de tirs dans un matchs par équipes, le nombre de passes, le nombre de tirs cadrés, la possession du ballon, le pourcentage de passes réussies, le nombre de passes décisives et d'autres sont venus s'ajouter aux statistiques dans le football.
 Le pourcentage de réussite aux lancers francs, le nombre de rebonds, le nombre de passes décisives, le pourcentage de réussite aux tirs, le nombre de fautes, le nombre de minutes jouées, le pourcentage de réussite à 3 points et d'autres sont venus s'ajouter aux statistiques dans le basketball.
@@ -161,12 +166,12 @@ Un tir qui a un xG de 0.4 a une probabilité de 40\% d'être transformé en but.
 Pour observer ce qu'est réellement un xG, nous allons l'observer avec l'emplacement des tirs sur le terrains.
 Sur la figure \ref{fig:shotmap}, on peut observer un example d'emplacement de tirs et de leur xG.
 \newline \newline
-\noindent Par ailleurs, les xG se sont tellement développés que des métriques dérivées ont été créées. On peut par exemple citer le xA qui est l'expected assist. C'est une métrique qui permet de déterminer la probabilité qu'une passe soit transformée en passe décisive selon les données de cette passe. \cite{XGExplainedFBrefa}
+Par ailleurs, les xG se sont tellement développés que des métriques dérivées ont été créées. On peut par exemple citer le xA qui est l'expected assist. C'est une métrique qui permet de déterminer la probabilité qu'une passe soit transformée en passe décisive selon les données de cette passe. \cite{XGExplainedFBrefa}
 Également, les xGA qui est les expected goals against. Cette métrique permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir mais pour l'équipe adverse. \cite{pettyWhatExpectedGoals2018a}
 
-\noindent Il y en a également d'autres comme les expected points qui sont les points qu'une équipe devrait avoir gagnés basé sur les données relatives aux xG. D'autres dérivées sont indiquées sur l'article de Pinnacle écrit par Luke Petty. \cite{pettyWhatExpectedGoals2018a}
+Il y en a également d'autres comme les expected points qui sont les points qu'une équipe devrait avoir gagnés basé sur les données relatives aux xG. D'autres dérivées sont indiquées sur l'article de Pinnacle écrit par Luke Petty. \cite{pettyWhatExpectedGoals2018a}
 \newline\newline
-\noindent Maintenant que nous avons vu ce qu'est un xG et ces dérivées actuelles, il semble pertinent de décrire l'utilisation de cette métrique dans le football actuel.
+Maintenant que nous avons vu ce qu'est un xG et ces dérivées actuelles, il semble pertinent de décrire l'utilisation de cette métrique dans le football actuel.
 
 \begin{figure}[htp]
     \centering
@@ -176,7 +181,7 @@ Sur la figure \ref{fig:shotmap}, on peut observer un example d'emplacement de ti
     \label{fig:shotmap}
 \end{figure}
 \subsection{Intérêt de la problématique}
-\noindent Cette problématique est très intéressante puisque c'est une donnée qui est dernièrement très populaire dans le monde du football. Elle donne plus d'informations sur le match que les autres statistiques d'un matchs (possession, nombre de passes, nombre de tirs cadrés, nombre de buts, etc.). Par exemple en ce qui concerne la possession, une équipe peut avoir la possession du ballon pendant 70\% du match mais ne pas marquer de buts, ni même être dangereuse avec le ballon. Le nombre de tirs cadrés, s'ils sont effectuées tous à l'extérieur de la surface de réparation, ne sont pas forcément dangereux. L'expected goal permet de donner une valeur à chaque tir et de déterminer si un tir a une chance d'être transformé en but.
+Cette problématique est très intéressante puisque c'est une donnée qui est dernièrement très populaire dans le monde du football. Elle donne plus d'informations sur le match que les autres statistiques d'un matchs (possession, nombre de passes, nombre de tirs cadrés, nombre de buts, etc.). Par exemple en ce qui concerne la possession, une équipe peut avoir la possession du ballon pendant 70\% du match mais ne pas marquer de buts, ni même être dangereuse avec le ballon. Le nombre de tirs cadrés, s'ils sont effectuées tous à l'extérieur de la surface de réparation, ne sont pas forcément dangereux. L'expected goal permet de donner une valeur à chaque tir et de déterminer si un tir a une chance d'être transformé en but.
 \newline \newline
 Certaines personnes utilisent cette métrique pour leurs paris sportifs. Ils observent la métrique lors des derniers matchs et la compare avec le score réel du match. Si la différence est grande, cela peut permettre de constater un manque de réalisme ou un sur-régime d'une des deux équipes. \cite{tennerelBienUtiliserExpected2022a}
 \newline \newline
@@ -188,24 +193,24 @@ Cette métrique est également utilisée pour aider les recruteurs à juger les 
 
 
 \subsection{Questions que l'on souhaite répondre dans ce travail}
-\noindent Il y a deux grandes questions à répondre dans ce travail.
+Il y a deux grandes questions à répondre dans ce travail.
 \begin{itemize}
     \item Quels sont les paramètres qui influencent le plus l'expected goal ?
     \item Quel est le meilleur modèle pour prédire l'expected goal ?
 \end{itemize}
 
-\noindent Le but de ce travail est de comprendre quelles sont les variables qui influences le plus les xG.
+Le but de ce travail est de comprendre quelles sont les variables qui influences le plus les xG.
 Cela permettra de comprendre quelles sont les variables les plus importantes pour prédire les xG.
 Grâce à cela, il est possible pour un analyste de données d'une équipe de football de savoir quelles sont les facteurs qui influencent le plus la qualité d'un tir.
 Cela peut permettre de déterminer les forces et faiblesses d'une équipe et de savoir sur quels aspects travailler pour améliorer les performances de l'équipe.
 \newline \newline
-\noindent Le deuxième objectif de ce travail est de trouver le meilleur modèle pour prédire les xG.
+Le deuxième objectif de ce travail est de trouver le meilleur modèle pour prédire les xG.
 En effet, le but sera d'avoir le modèle le plus performant et de comparer les différents modèles qui peuvent être utilisée pour établir cette métrique.
 Il faut également veiller à ce que le modèle ne fasse pas de sur-apprentissage. Il est donc important de faire attention à la complexité du modèle et de trouver le meilleur compromis entre la complexité et la performance du modèle.
 
 \newpage
 \section{Plan du document}
-\noindent Concernant le déroulement de ce travail, il y a plusieurs étapes.
+Concernant le déroulement de ce travail, il y a plusieurs étapes.
 Tout d'abord, il y a la recherche des travaux existants sur le sujet.
 Parmi les travaux existants, je vais chercher à savoir quels datasets ont été utilisées ainsi que les résultats obtenus.
 Cela me permettra de comparer mes résultats avec les résultats obtenus dans les autres travaux.
@@ -228,7 +233,7 @@ Il sera également intéressant de voir quelles variables peuvent être ajoutée
 \newpage
 \section{Synthèse des travaux existants}
 \label{sec:synthese}
-\noindent Le premier travail repertorié sur les xG et la qualité d'un tir est celui de Richard Pollard, Jake Ensum et Samuel Taylor \cite{pollardEstimatingProbabilityShot2004}.
+Le premier travail repertorié sur les xG et la qualité d'un tir est celui de Richard Pollard, Jake Ensum et Samuel Taylor \cite{pollardEstimatingProbabilityShot2004}.
 Dans ce travail datant de 2004, la seule information indiquée concernant le dataset est que les données proviennent de la Coupe du monde 1986 et de celle de 2002.
 Le modèle a été implémenté en utilisant une régression logistique.
 Le nombre de tirs répertoriées dans ce travail est de 1096.
@@ -252,7 +257,7 @@ Le résultat final de l'analyse de la régression logistique de ce travail resse
     \caption{Résultat de la régression logistique du travail de Pollard, Ensum et Taylor}
 \end{table}
 
-\noindent Le deuxième travail est celui de Izzatul Umami, Deden Hardan Gutama et Heliza Rahmania Hatta \cite{umamiImplementingExpectedGoal2021}. 
+Le deuxième travail est celui de Izzatul Umami, Deden Hardan Gutama et Heliza Rahmania Hatta \cite{umamiImplementingExpectedGoal2021}. 
 Ce travail utilise les données de Wyscout des 5 championnats majeurs en Europe de la saison 2019-20. Ces derniers ont décidés de prendre comme données :
 \begin{itemize}
     \item La distance
@@ -305,7 +310,7 @@ Ensuite, il utilise de multiples facteurs, comme la distance au carré ou encore
     \end{tabular}
     \caption{Résumé de la régression logistique du modèle de xG de David Sumpter}
 \end{table}
-\noindent Il n'y a pas moyen de connaître les coefficients uniquement pour la distance et l'angle car aucun résumé n'est fait pour ces deux facteurs uniquement.
+Il n'y a pas moyen de connaître les coefficients uniquement pour la distance et l'angle car aucun résumé n'est fait pour ces deux facteurs uniquement.
 \newline\newline
 Le dernier travail est fait par H.P.H Eggels. 
 Le but est d'expliquer le résultat d'un match en utilisant les xG. 
@@ -368,7 +373,7 @@ Ce travail donne tout de même de bonnes pistes pour l'ajout de nouvelle donnée
 \subsection{Présentation du dataset}
 
 
-\noindent Le dataset qui a été trouvé pour cette thèse est un dataset provenant de Wyscout. 
+Le dataset qui a été trouvé pour cette thèse est un dataset provenant de Wyscout. 
 Wyscout est un site web qui fournit des données sur le football. 
 On peut par exemple trouver des données sur les joueurs, les équipes, les matchs, les événements d'un match comme les passes, les tirs, etc.
 Ces données sont collectées grâce à une équipe d'experts nommés "opérateur" qui utilisent un logiciel propriétaire nommé "marqueur" pour décrire les événements.
@@ -414,7 +419,7 @@ Les données sont au format JSON qui est un format très récurrent dans le mond
 \label{subsec:events}
 % Utiliser le tableau de la thèse de Luca Pappalardo
 % Egalement utiliser le glossaire de Wyscout pour expliquer les tag id
-\noindent Le dataset fournit par Luca Pappalardo et Emanuele Massuco contient des données sur les événements d'un match. 
+Le dataset fournit par Luca Pappalardo et Emanuele Massuco contient des données sur les événements d'un match. 
 Ces événements sont décrits par des attributs qui sont détaillés dans le tableau \ref{tab:events}.
 \begin{table}[htp]
     \centering
@@ -438,7 +443,7 @@ Ces événements sont décrits par des attributs qui sont détaillés dans le ta
     \label{tab:events}
 \end{table}
 
-\noindent Parmi les informations fournies par le dataset, il y a "eventName".
+Parmi les informations fournies par le dataset, il y a "eventName".
 Cet attribut permet de savoir quel type d'événement a eu lieu.
 Parmi les types d'événements\footnote{Le nom des événements est en anglais mais a été traduit pour les lister}, il y a :
 \begin{itemize}
@@ -451,7 +456,7 @@ Parmi les types d'événements\footnote{Le nom des événements est en anglais m
     \item Touche de balle
 \end{itemize}
 
-\noindent L'attribut "tags" est également important.
+L'attribut "tags" est également important.
 Cette attribut est une liste de tags qui permettent d'apporter des informations supplémentaires sur l'événement.
 La documentation des tags peut être trouvée sur le glossaire de Wyscout. \cite{WyscoutGlossary}
 Par exemple, le tag 101 indique que l'événement est un but. 
@@ -506,7 +511,7 @@ On sait donc que, dans le dataset, les équipes jouent toutes dans le même sens
 \newpage
 % Description de chaque attribut dans le dataset players
 \subsection{Players}
-\noindent Le dataset contient également des informations sur les joueurs.
+Le dataset contient également des informations sur les joueurs.
 Le tableau \ref{tab:players} décrit les attributs du dataset "Players".
 \newline\newline
 On peut voir que le dataset contient des informations sur les joueurs comme leur taille, leur poids, leur date de naissance, leur nationalité, leur poste, etc.
@@ -541,14 +546,14 @@ C'est pour cela qu'il est important de garder cet attribut dans le dataset final
 \subsection{Transformation des données}
 % Parler du présupposé de la taille du terrain 105x68
 % Transformation des positions des événements en angle et distance
-\noindent Comme discuté dans la section \ref{subsec:events}, les coordonnées X et Y sont relatives à la taille du terrain.
+Comme discuté dans la section \ref{subsec:events}, les coordonnées X et Y sont relatives à la taille du terrain.
 Une des premiers présupposé qui est fait est que la taille du terrain est de 105 par 68.
 Cette taille de terrain est la plus commune dans le football professionnel.
 On peut le voir sur le site officiel de la Premier League que la taille du terrain de 105 par 68 est la plus commune. \cite{PremierLeagueClubs} 
 Je démarre déjà par un présupposé que tous les terrains qui ont accueilli les matchs dans le dataset ont comme dimension 105 mètres par 68.
 Ce présupposé nous permettra ainsi de pouvoir calculer la distance en mètre par rapport au but adverse ainsi que l'angle de tir.
 \newpage
-\noindent La première partie est de transformer les coordonnées X et Y qui sont à l'échelle 100 par 100 en coordonnées X et Y à l'échelle 105 par 68.
+La première partie est de transformer les coordonnées X et Y qui sont à l'échelle 100 par 100 en coordonnées X et Y à l'échelle 105 par 68.
 Pour cela, il suffit de multiplier les coordonnées X par 1.05 et les coordonnées Y par 0.68.
 \begin{equation}
     \begin{split}
@@ -573,7 +578,7 @@ Cela nous permet d'avoir la distance par rapport au centre du terrain sur l'axe 
 \newline\newline
 La troisième partie est de calculer la distance du tir par rapport au but adverse.
 
-\noindent Sur la figure \ref{fig:distance_tir}, [C] représente le centre du terrain, [E] représente le centre du but adverse.
+Sur la figure \ref{fig:distance_tir}, [C] représente le centre du terrain, [E] représente le centre du but adverse.
 [DG] représente l'attribut que l'on a calculer précédemment qui contient la distance par rapport au centre du terrain sur l'axe Y.
 [DF] représente la position en X par rapport au but adverse.
 Ce qui est effectué pour calculer la distance du tir par rapport au but adverse est d'utiliser le théorème de Pythagore.
@@ -614,7 +619,7 @@ Finalement l'équation totale ressemble à cela, une fois que l'on a toutes les 
     \end{split}
 \end{equation}
 
-\noindent Il est d'ailleurs possible d'accéder au schémas géométrique sur Geogebra.
+Il est d'ailleurs possible d'accéder au schémas géométrique sur Geogebra.
 Cela permet de manipuler les différents points et de voir les valeurs se mettre à jour automatiquement.
 Ils sont disponibles en bas de page\footnote{Angle : \url{https://www.geogebra.org/geometry/d7tqw4fe}}\footnote{Distance : \url{https://www.geogebra.org/geometry/fnx3swex}}.
 
@@ -634,7 +639,7 @@ Ils sont disponibles en bas de page\footnote{Angle : \url{https://www.geogebra.o
 
 \subsection{Fusion des datasets}
 % Fusion des datasets events et players
-\noindent Cette section vise à expliquer comment les datasets ont été fusionnés.
+Cette section vise à expliquer comment les datasets ont été fusionnés.
 On a pu voir que le dataset events contient l'identifiant du joueur qui a effectué l'action sous le nom d'attribut "playerId" (voir table \ref{tab:events}).
 Cet identifiant correspond à l'identifiant nommé "wyId" dans le dataset players (voir table \ref{tab:players}).
 L'objectif est donc de fusionner les deux datasets en utilisant ce deux attributs pour permettre d'avoir les informations des joueurs dans le dataset events.
@@ -662,7 +667,7 @@ Grâce à cela, il nous est possible de savoir si le joueur a tiré avec son pie
 
 \subsection{Visualisation des données}
 % Visualisation des données
-\noindent Cette section vise à visualiser les données du dataset final.
+Cette section vise à visualiser les données du dataset final.
 Tout d'abord, nous allons effectuer une description simple du dataset.
 Le dataset contient 43075 tirs sur une saison de football (2017/2018) dans 7 compétitions différentes :
 \begin{itemize}
@@ -695,7 +700,7 @@ C'est pour cela que notre but va être de retirer certains tirs considérés com
     \caption{Description du dataset final}
     \label{tab:describe_dataset}
 \end{table}
-\noindent Pour cela, nous allons utiliser un pitch chart.
+Pour cela, nous allons utiliser un pitch chart.
 Un pitch chart est un graphique qui affiche un terrain de football.
 Grâce à cela on peut visualiser plus simplement d'où ont été effectuées les tirs.
 Le but de notre pitch chart est de visualiser les tirs qui ont été effectués à leurs positions respectives.
@@ -716,7 +721,7 @@ Cela nous montre déjà une des limitations des données que nous utilisons.
     \label{fig:pitch_chart}
 \end{figure}
 
-\noindent Maintenant, nous allons nous focaliser sur la détection d'éventuelles "outliers".
+Maintenant, nous allons nous focaliser sur la détection d'éventuelles "outliers".
 En effet, nous avons pu voir que la distance maximale d'un tir a été de 103.95 mètres. 
 Il faut donc vérifier si ce tir est un "outlier" ou non. 
 Nous allons également nous focaliser sur d'autres tirs considérés comme "outliers".
@@ -749,7 +754,7 @@ Si l'on observe des anomalies ou des données aberrantes, il faudra les supprime
     \label{tab:outliers}
 \end{table}
 
-\noindent Grâce à la figure \ref{fig:analyse_outlier2}, plusieurs observations peuvent être faites. 
+Grâce à la figure \ref{fig:analyse_outlier2}, plusieurs observations peuvent être faites. 
 Tout d'abord, il est remarquable que les outliers pour les angles ne sont pas aberrants. 
 En effet, théoriquement, plus l'angle est grand, plus le but est facile à réaliser. 
 Cependant, en ce qui concerne les distances, il existe un nombre très limité d'outliers. 
@@ -811,7 +816,7 @@ Cette corrélation s'explique par le fait que l'attribut "distance" est une vari
     \label{fig:correlation_matrix}
 \end{figure}
 \newpage
-\noindent Grâce à cette visualisation approfondie, nous avons pu acquérir une compréhension approfondie des données et des relations entre les différentes variables. 
+Grâce à cette visualisation approfondie, nous avons pu acquérir une compréhension approfondie des données et des relations entre les différentes variables. 
 Nous avons également identifié certaines données incohérentes et des aberrations dans le jeu de données. 
 Ces observations soulignent l'importance de l'examen attentif et critique des données afin d'éliminer les valeurs aberrantes et d'obtenir des résultats plus fiables.
 \newline\newline
@@ -833,14 +838,14 @@ Cependant, il convient de noter que des analyses supplémentaires et des modéli
 
 \section{Méthodologie}
 % Liste des méthodes qui vont être utilisées
-\noindent Dans cette section, nous allons discuter de la méthodologie utilisée pour résoudre le problème de prédiction de la réussite d'un tir au but.
+Dans cette section, nous allons discuter de la méthodologie utilisée pour résoudre le problème de prédiction de la réussite d'un tir au but.
 Tout d'abord, nous allons faire une séparation sur le dataset pour avoir un jeu de données d'entraînement et un jeu de données de test.
 Le jeu de tests sera utilisé pour évaluer la performance des modèles finaux. 
 Tandis que le jeu d'entraînements, nous permettra d'entraîner notre modèle et de choisir le meilleur set d'hyper paramètres pour chaque modèle.
 Le partitionnement choisi pour les jeux de données est le suivant : 90\% des données pour le jeu d'entraînement et 10\% des données pour le jeu de test.
 
 \subsection{Choix des modèles}
-\noindent Plusieurs modèles vont être utlisés pour résoudre ce problème.
+Plusieurs modèles vont être utlisés pour résoudre ce problème.
 Nous allons utiliser des modèles de classification binaire, car nous cherchons à prédire si un tir au but est réussi ou non.
 Je rappelle également que le but de la thèse est de répondre à la question suivante : "Quels sont les paramètres qui influencent le plus l'expected goal ?".
 Certains de ces modèles ne seront pas les plus performants et les plus cohérents pour avoir la meilleure prédiction possible mais ils permettront de comprendre les paramètres qui influencent le plus l'expected goal.
@@ -855,7 +860,7 @@ Nous allons tester les modèles suivants :
 
 
 \subsection{Cross Validation}
-\noindent Pour chaque modèle, nous allons utiliser la cross validation pour choisir le meilleur set d'hyper paramètres.
+Pour chaque modèle, nous allons utiliser la cross validation pour choisir le meilleur set d'hyper paramètres.
 La cross validation est une méthode qui permet de tester la performance d'un modèle sur un jeu de données.
 Elle consiste à séparer le jeu de données en plusieurs sous-ensembles.
 Comme on peut le voir sur la figure \ref{fig:cross_validation}, le jeu de données est séparé en 5 sous-ensembles.
@@ -876,8 +881,7 @@ C'est ainsi que l'on pourra déterminer quel modèle est le plus performant pour
 \end{figure}
 
 \subsection{Jeu d'hyper paramètres}
-Cette section consiste à montrer les sets d'hyper paramètres qui seront choisis pour chaque modèle.
-Voici le tableau qui décrit quels sont les jeu d'hyper paramètres utilisés pour chacun des modèles.
+
 
 
 
