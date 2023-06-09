@@ -687,16 +687,16 @@ C'est pour cela que notre but va être de retirer certains tirs considérés com
     \centering
     \begin{tabular}{r|r|r|r|r|r|}
         \cline{2-6}
-        \textbf{}                            & \textbf{X} & \textbf{Y} & \textbf{distance} & \textbf{angle} & \textbf{angle\_abs} \\ \hline
-        \multicolumn{1}{|r|}{\textbf{count}} & 43075      & 43075      & 43075             & 43075          & 43075               \\ \hline
-        \multicolumn{1}{|r|}{\textbf{mean}}  & 15.992225  & 33.473176  & 18.593067         & 0.414140       & 0.484041            \\ \hline
-        \multicolumn{1}{|r|}{\textbf{std}}   & 8.534333   & 9.366171   & 8.419298          & 0.253173       & 0.313051            \\ \hline
-        \multicolumn{1}{|r|}{\textbf{min}}   & 0.000000   & 0.000000   & 0.680000          & 0.000000       & 0.000000            \\ \hline
-        \multicolumn{1}{|r|}{\textbf{25\%}}  & 9.450000   & 26.520000  & 12.249445         & 0.250188       & 0.227296            \\ \hline
-        \multicolumn{1}{|r|}{\textbf{50\%}}  & 13.650000  & 33.320000  & 17.153297         & 0.327782       & 0.452154            \\ \hline
-        \multicolumn{1}{|r|}{\textbf{75\%}}  & 23.100000  & 40.800000  & 24.936000         & 0.505984       & 0.699776            \\ \hline
-        \multicolumn{1}{|r|}{\textbf{max}}   & 103.950000 & 68.000000  & 103.952224        & 3.141593       & 1.570796            \\ \hline
-    \end{tabular}
+        \textbf{}                   & \textbf{X}   & \textbf{Y}   & \textbf{distance} & \textbf{angle} & \textbf{angle\_abs} \\ \hline
+        \multicolumn{1}{|r|}{count} & 43075 & 43075 & 43075      & 43075   & 43075        \\ \hline
+        \multicolumn{1}{|r|}{mean}  & 15.992225    & 33.473176    & 18.593067         & 0.414140       & 2.657552            \\ \hline
+        \multicolumn{1}{|r|}{std}   & 8.534333     & 9.366171     & 8.419298          & 0.253173       & 0.313051            \\ \hline
+        \multicolumn{1}{|r|}{min}   & 0.000000     & 0.000000     & 0.680000          & 0.000000       & 1.570796            \\ \hline
+        \multicolumn{1}{|r|}{25\%}  & 9.450000     & 26.520000    & 12.249445         & 0.250188       & 2.441817            \\ \hline
+        \multicolumn{1}{|r|}{50\%}  & 13.650000    & 33.320000    & 17.153297         & 0.327782       & 2.689439            \\ \hline
+        \multicolumn{1}{|r|}{75\%}  & 23.100000    & 40.800000    & 24.936000         & 0.505984       & 2.914297            \\ \hline
+        \multicolumn{1}{|r|}{max}   & 103.950000   & 68.000000    & 103.952224        & 3.141593       & 3.141593            \\ \hline
+        \end{tabular}
     \caption{Description du dataset final}
     \label{tab:describe_dataset}
 \end{table}
@@ -854,8 +854,8 @@ Nous allons tester les modèles suivants :
     \item Régression logistique
     \item Arbre de décision
     \item Random Forest
-    \item SVM (?)
-    \item Réseau de neurones (?)
+    \item SVM
+    \item Réseau de neurones 
 \end{itemize}
 
 
@@ -879,6 +879,139 @@ C'est ainsi que l'on pourra déterminer quel modèle est le plus performant pour
     \caption{Cross Validation - Source : Dataspirant}
     \label{fig:cross_validation}
 \end{figure}
+
+\subsection{Sélection des meilleurs attributs}
+Pour la sélection des meilleurs attributs, nous allons utiliser la méthode de forward elimination.
+Cette méthode consiste à tester tous les attributs un par un en les ajoutant au fur et à mesure au modèle et observer la performance du modèle.
+La p-value est utilisée pour déterminer si un attribut est significatif ou non et s'il apporte une amélioration à la performance du modèle.
+Plus la p-value est faible, plus l'attribut est significatif.
+\newline\newline
+Par exemple, dans le tableau \ref{tab:logistic_regression_result_1}, on peut voir que l'attribut "X" a une p-value de 0.000.
+Cela indique que cet attribut est significatif et qu'il apporte une amélioration à la performance du modèle en plus de la constante.
+\newline\newline
+Sur le tableau \ref{tab:logistic_regression_result_2}, on peut voir que l'attribut "Y" a une p-value de 0.960.
+Cela indique que cet attribut n'est pas du tout significatif et qu'il n'apporte aucune amélioration à la performance du modèle.
+On le remarque d'ailleurs lorsque l'on observe la valeur du coefficient qui est très proche de 0.
+Il faut donc supprimer cet attribut du modèle.
+\newline\newline
+Pour la troisième itération sur le tableau \ref{tab:logistic_regression_result_3}, on ajoute l'attribut "distance" au modèle.
+Cependant, on a supprimé l'attribut "Y" qui n'était pas significatif.
+On remarque donc que les p-values des attributs "X" et "distance" sont très faibles.
+Cela indique que ces deux attributs sont significatifs et qu'ils apportent une amélioration à la performance du modèle.
+La valeur du coefficient de l'attribut "distance" est négative. 
+Cela veut dire que plus la distance est grande, plus la probabilité d'avoir un but est faible.
+\newline\newline
+Pour la quatrième itération sur le tableau \ref{tab:logistic_regression_result_4}, on ajoute l'attribut "angle" au modèle.
+Cependant, dans ce cas-ci, on observe que la p-value de l'attribut "X" est très élevée. 
+Cela est dû à la corrélation entre les attributs "X" et "angle" qui est répétitive dû à la corrélation avec l'attribut "distance".
+C'est pour cela que l'attribut "X" n'est plus significatif et qu'il n'apporte plus d'amélioration à la performance du modèle.
+C'est justement dû au fait que l'attribut "distance" et l'attribut "angle" sont des attributs dérivés de l'attribut "X" et de l'attribut "Y".
+\newline\newline
+Lors de la cinquième itération, on ajoute l'attribut "angle\_abs" au modèle.
+Ici, on observe que la p-value de l'attribut "angle\_abs" est très élevée.
+Cela est dû à la corrélation entre les attributs "angle" et "angle\_abs" qui est répétitive.
+C'est pour cela que l'attribut "angle\_abs" n'est pas significatif et qu'il doit être retiré.
+\newline\newline
+Pour finir, on peut voir sur le tableau \ref{tab:logistic_regression_result_6} que l'ajout de l'attribut "header" et "good\_foot\_used" apporte une amélioration significative au modèle.
+Cela se voit grâce aux p-values très faibles de ces deux attributs lorsqu'on les ajoute aux autres attributs du modèle.
+
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lllllll}
+        \multicolumn{7}{c}{\textbf{Logistic Regression Result}}                        \\ \hline
+              & coef    & std err & z       & P\textgreater{}|z| & {[}0.025 & 0.975{]} \\ \hline
+        const & -0.4809 & 0.037   & -13.120 & 0.000              & -0.553   & -0.409   \\
+        X     & -0.1280 & 0.003   & -42.743 & 0.000              & -0.134   & -0.122   \\ \hline
+        \end{tabular}
+    \caption{Résultat de la régression logistique - 1ère itération}
+    \label{tab:logistic_regression_result_1}
+\end{table}
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lllllll}
+    \multicolumn{7}{c}{\textbf{Logistic Regression Result}}                          \\ \hline
+          & coef      & std err & z       & P\textgreater{}|z| & {[}0.025 & 0.975{]} \\ \hline
+    const & -0.4843   & 0.076   & -6.334  & 0.000              & -0.634   & -0.334   \\
+    X     & -0.1280   & 0.003   & -42.729 & 0.000              & -0.134   & -0.122   \\
+    Y     & 9.939e-05 & 0.002   & 0.050   & 0.960              & -0.004   & 0.004   \\ \hline
+    \end{tabular}
+    \caption{Résultat de la régression logistique - 2ème itération}
+    \label{tab:logistic_regression_result_2}
+\end{table}
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lllllll}
+    \multicolumn{7}{c}{\textbf{Logistic Regression Result}}                           \\ \hline
+             & coef    & std err & z       & P\textgreater{}|z| & {[}0.025 & 0.975{]} \\ \hline
+    const    & 0.1926  & 0.043   & 4.488   & 0.000              & 0.108    & 0.277    \\
+    X        & 0.0692  & 0.008   & 8.579   & 0.000              & 0.053    & 0.085    \\
+    distance & -0.2118 & 0.008   & -26.825 & 0.000              & -0.227   & -0.196   \\ \hline
+    \end{tabular}
+    \caption{Résultat de la régression logistique - 3ème itération}
+    \label{tab:logistic_regression_result_3}
+\end{table}
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lllllll}
+    \multicolumn{7}{c}{\textbf{Logistic Regression Result}}                           \\ \hline
+             & coef    & std err & z       & P\textgreater{}|z| & {[}0.025 & 0.975{]} \\ \hline
+    const    & -1.3884 & 0.123   & -11.294 & 0.000              & -1.629   & -1.147   \\
+    X        & 0.0060  & 0.009   & 0.660   & 0.509              & -0.012   & 0.024    \\
+    distance & -0.0984 & 0.011   & -8.799  & 0.000              & -0.120   & -0.076   \\
+    angle    & 1.3701  & 0.102   & 13.395  & 0.000              & 1.170    & 1.571    \\ \hline
+    \end{tabular}
+    \caption{Résultat de la régression logistique - 4ème itération}
+    \label{tab:logistic_regression_result_4}
+\end{table}
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lllllll}
+    \multicolumn{7}{c}{\textbf{Logistic Regression Result}}                             \\ \hline
+               & coef    & std err & z       & P\textgreater{}|z| & {[}0.025 & 0.975{]} \\ \hline
+    const      & -1.3245 & 0.154   & -8.573  & 0.000              & -1.627   & -1.022   \\
+    distance   & -0.0897 & 0.005   & -18.200 & 0.000              & -0.099   & -0.080   \\
+    angle      & 1.4499  & 0.102   & 14.243  & 0.000              & 1.250    & 1.649    \\
+    angle\_abs & -0.0592 & 0.064   & -0.932  & 0.352              & -0.184   & 0.065    \\ \hline
+    \end{tabular}
+    \caption{Résultat de la régression logistique - 5ème itération}
+    \label{tab:logistic_regression_result_5}
+\end{table}
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lllllll}
+    \multicolumn{7}{c}{\textbf{Logistic Regression Result}}                                   \\ \hline
+                     & coef    & std err & z       & P\textgreater{}|z| & {[}0.025 & 0.975{]} \\ \hline
+    const            & -1.0751 & 0.114   & -9.413  & 0.000              & -1.299   & -0.851   \\
+    distance         & -0.1126 & 0.005   & -23.827 & 0.000              & -0.122   & -0.103   \\
+    angle            & 1.5497  & 0.093   & 16.609  & 0.000              & 1.367    & 1.733    \\
+    header           & -0.9067 & 0.059   & -15.468 & 0.000              & -1.022   & -0.792   \\
+    good\_foot\_used & 0.1224  & 0.046   & 2.634   & 0.008              & 0.031    & 0.214    \\ \hline
+    \end{tabular}
+    \caption{Résultat de la régression logistique - Dernière itération}
+    \label{tab:logistic_regression_result_6}
+\end{table}
+\newpage
+Pour conclure cette partie de sélection d'attributs, on voit donc que les attributs les plus significatifs parmi ceux que l'on a sélectionné pour le dataset final sont :
+\begin{itemize}
+    \item La distance entre la position du tir et le but
+    \item L'angle entre les deux poteaux et la position du tir
+    \item Le tir a été effectué avec le pied fort du joueur
+    \item Le tir a été fait de la tête
+\end{itemize}
+On peut donc en conclure que les attributs que l'on a sélectionné sont pertinents pour la prédiction de la réussite d'un tir. 
+On peut également voir que les attributs que l'on a sélectionné sont cohérents avec les résultats de la littérature. 
+En effet, on retrouve les attributs suivants :
+\begin{itemize}
+    \item La distance entre la position du tir et le but
+    \item L'angle entre les deux poteaux et la position du tir
+\end{itemize}
+
+Avec cette conclusion, on a pu répondre à la première question de la thèse : \newline\textbf{Quels sont les paramètres qui influencent le plus l’expected goal ?}
+
 
 \subsection{Jeu d'hyper paramètres}
 
