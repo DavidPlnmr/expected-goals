@@ -146,7 +146,8 @@ Ces statistiques sont également devenus personnelles à chacun des joueurs.
 On peut également compter pour le baseball le nombre de fois qu'un joueur était au bâton, son nombre de double, de triples, son nombre de buts et bien d'autres.
 \newline\newline
 C'est d'ailleurs dans le baseball que l'on peut retrouver la première utilisation de statistiques avancées pour établir des stratégies.
-En effet, au début des années 1970, le joueur des Baltimore Orioles a développé une analyse statistiques pour choisir le meilleur alignement possible pour son équipe de départ.
+En effet, au début des années 1970, un joueur des Baltimore Orioles a développé une analyse statistiques pour choisir le meilleur alignement possible pour son équipe de départ.
+Il s'agit de Davey Johnson.
 Cependant, il n'a pas pu l'utiliser à ce moment-là puisque le président de sa franchise n'avait pas confiance. C'est qu'à partir de 1984 où il fut le coach des New York Mets qu'il a pu mettre en place son analyse statistiques avancées pour établir le meilleur choix pour son équipe de départ. \cite{incPCMag1984}
 Deux saisons plus tard, il remporte la Série mondiale 1986 \footnote{En MLB, la Série mondiale est la série finale qui permet de déterminer qui est l'équipe championne de la ligue.}. Les Mets étaient situés à la dernière place de leur conférence avant l'arrivée de Davey Johnson et son management orienté sur les statistiques.
 \newline
@@ -200,7 +201,7 @@ Il y a deux grandes questions à répondre dans ce travail.
 \end{itemize}
 
 Le but de ce travail est de comprendre quelles sont les variables qui influences le plus les xG.
-Cela permettra de comprendre quelles sont les variables les plus importantes pour prédire les xG.
+Cela permettra de comprendre quelles sont les variables les plus importantes pour prédire ces estimations de buts.
 Grâce à cela, il est possible pour un analyste de données d'une équipe de football de savoir quelles sont les facteurs qui influencent le plus la qualité d'un tir.
 Cela peut permettre de déterminer les forces et faiblesses d'une équipe et de savoir sur quels aspects travailler pour améliorer les performances de l'équipe.
 \newline \newline
@@ -285,7 +286,7 @@ En conclusion de leur travail, ils ont obtenu une sensibilité de 0.967194570135
 Ils indiquent finalement que le modèle de xG est plus performant si l'on prend la distance et l'angle en compte plutôt que de prendre uniquement la distance.
 Un graphique ROC \footnote{Receiver Operating Characteristic} a été fait pour montrer la performance du modèle. Cela permet de comparer la sensibilité et la spécificité pour chaque seuil.
 \newline\newline
-Un autre travail qui fournit également du code est celui de David Sumpter \cite{sumpterFittingXGModel}. 
+Un travail qui fournit également du code est celui de David Sumpter \cite{sumpterFittingXGModel}. 
 Le travail de ce dernier est de créer un modèle de xG en utilisant une régression logistique. 
 Il utilise les données de Wyscout du championnat anglais de la saison 2017-18. 
 Ce dernier explique étape par étape ce qui est effectué pour créer et améliorer son modèle.
@@ -351,7 +352,7 @@ Le set de test permet de tester le modèle avec les paramètres trouvés et le c
 Le modèle le plus performant parmi les quatres cités est le Random Forest avec une précision de 0.771.
 Cependant, il n'est pas possible de connaître les meilleurs hyper paramètres pour chacun des modèles.
 Ce travail donne tout de même de bonnes pistes pour l'ajout de nouvelle données pour améliorer le modèle de xG.
-
+\newpage
 
 \subsection{Récapitulatif des travaux existants}
 \begin{table}[htp]
@@ -359,13 +360,16 @@ Ce travail donne tout de même de bonnes pistes pour l'ajout de nouvelle donnée
     \begin{tabular}{lll}
     \hline
     \textbf{Auteur(s)}                                                                                   & \textbf{Source de données}                                                                               & \textbf{Conclusion}                                                                                                                                          \\ \hline
-    \begin{tabular}[c]{@{}l@{}}Richard Pollard\\ Jake Ensum\\ Samuel Taylor\end{tabular}                 & \begin{tabular}[c]{@{}l@{}}Coupe du monde \\ 1986 et 2002\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}La distance, l'angle \\ et l'espace avec le \\ joueur le plus proche\end{tabular}                                                 \\ \hline
+    \begin{tabular}[c]{@{}l@{}}Richard Pollard\\ Jake Ensum\\ Samuel Taylor\end{tabular}                 & \begin{tabular}[c]{@{}l@{}}Coupe du monde \\ 1986 et 2002\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}La distance, l'angle \\ et l'espace avec le \\ joueur le plus proche \\sont les variables \\qui ont le plus d'influences \\sur l'estimation de but\end{tabular}                                                 \\ \hline
     \begin{tabular}[c]{@{}l@{}}Izzatul Umami\\ Deden Hardan Gautama\\ Heliza Rahmania Hatta\end{tabular} & \begin{tabular}[c]{@{}l@{}}Wyscout, \\ 5 championnats \\ majeuren Europe. \\ Saison 2019-20\end{tabular} & \begin{tabular}[c]{@{}l@{}}La distance et l'angle\\ apporte plus \\ d'informations \\ qu'uniquement\\  la distance\end{tabular}                              \\ \hline
     David Sumpter                                                                                        & \begin{tabular}[c]{@{}l@{}}Wyscout, \\ Premier League.\\ Saison 2017-18\end{tabular}                     & \begin{tabular}[c]{@{}l@{}}La distance et l'angle \\ sont les facteurs avec\\  le plus d'influence\end{tabular}                                              \\ \hline
     H. P. H Eggels                                                                                       & \begin{tabular}[c]{@{}l@{}}ORTEC, \\ Immotio, \\ FIFA\end{tabular}                                       & \begin{tabular}[c]{@{}l@{}}Le but du travail \\ est de prédire les \\ résultats des matchs. \\ Rien n'indique les\\ facteurs les plus influents\end{tabular} \\ \hline
     \end{tabular}
     \caption{Récapitulatif des travaux existants}
 \end{table}
+On observe donc que la majorité des travaux existants utilisent la distance et l'angle pour estimer les xG.
+C'est essentiellement ces deux facteurs qui sont utilisés pour établir la prédiction.
+Concernant les autres facteurs, ils sont utilisés pour améliorer la prédiction mais rien n'indique s'ils ont autant d'influence que la distance et l'angle.
 
 \newpage
 \section{Dataset}
@@ -396,7 +400,7 @@ Par exemple, il vérifie que la position des duels spécifiés par les deux opé
 Le marqueur se charge également de proposer des événements manquants et vérifie si des combinaisons de données d'événements impossibles ont été inscrites.
 Par exemple, un événement de type tir qui aurait un sous-événement duel aérien serait une combinaison impossible.
 La deuxième phase de contrôle qualité est manuelle est gérée par des contrôleurs qualités qui vont vérifier de manière approfondie les événements de certains matchs et les corriger si besoin." \cite{pappalardoPublicDataSet2019}
-\newline
+
 Il se peut que certains matchs n'aient pas subi de contrôle qualité car ils utilisent un algorithme de sélection de matchs pour le contrôle qualité.
 \begin{figure}[t]
     \centering
@@ -410,6 +414,7 @@ La partie (b) montre les informations d'un événement ainsi que l'indication de
 \newline\newline
 Le dataset utilisé est un sample du dataset de Wyscout. 
 Il a été mis à disposition par Luca Pappalardo et Emanuele Massuco dans leur article "A public data set of spatio-temporal match events in soccer competitions" \cite{pappalardoPublicDataSet2019}.
+\newline
 Ce dataset est composé des 5 championnats européens majeurs (Premier League, La Liga, Bundesliga, Serie A et Ligue 1) de la saison 2017-2018. 
 Le dataset contient également les informations de la Coupe du Monde 2018 et de l'Euro 2016.
 Les données sont au format JSON qui est un format très récurrent dans le monde du web. Il est également utilisé lors de communication avec des API REST.
@@ -475,8 +480,7 @@ En effet, les terrains de football ont une taille qui peut varier entre 90 et 12
 \newline\newline 
 Une autre information importante qui est indiqué dans la documentation de l'API de Wyscout \cite{WyscoutAPI} est que les positions des événements ont été normalisées par rapport à l'emplacement du but de l'équipe qui a généré l'événement.
 Cela veut dire que dans les données fournies par le dataset, les équipes jouent toujours dans le même sens du terrain.
-On peut d'ailleurs constater cela lorsqu'on regarde les positions des événements de tirs \ref{fig:events_tirs_emplacements}.
-En effet sur la figure \ref{fig:events_tirs_emplacements}, on peut voir que les tirs sont toujours effectués du même côté du terrain\footnote{Certains sont effectuées dans l'autre partie du terrain mais jamais dans la surface de réparation opposée.}.
+On peut d'ailleurs constater cela lorsqu'on regarde les positions des événements de tirs \ref{fig:events_tirs_emplacements}, en effet sur la figure \ref{fig:events_tirs_emplacements}, on peut voir que les tirs sont toujours effectués du même côté du terrain\footnote{Certains sont effectuées dans l'autre partie du terrain mais jamais dans la surface de réparation opposée.}.
 Il est également possible de visualiser la distribution des positions X des tirs sur la figure \ref{fig:histogramme_position_x_tirs}.
 On voit bien que les tirs sont toujours effectués dans la même partie du terrain.
 Le fait que les tirs sont relatives à la position du but de l'équipe qui a généré l'événement règle déjà un problème qui aurait pu se poser.
@@ -524,7 +528,7 @@ C'est pour cela qu'il est important de garder cet attribut dans le dataset final
     \hline
     \textbf{Nom de l'attribut} & \textbf{Description}                                                                                              \\ \hline
     birthArea                  & Pays de naissance du joueur                                                                                       \\ \hline
-    birthDate                  & Date de naissance du joueur                                                                                       \\ \hline
+    birthDate                  & Date de naissancxwe du joueur                                                                                       \\ \hline
     currentNationalTeamId      & Equipe nationale du joueur                                                                                        \\ \hline
     currentTeamId              & \begin{tabular}[c]{@{}l@{}}Equipe actuelle du joueur. \\ Est lié à l'attribut "wyId" de l'équipe\end{tabular}     \\ \hline
     firstName                  & Prénom du joueur                                                                                                  \\ \hline
@@ -547,13 +551,14 @@ C'est pour cela qu'il est important de garder cet attribut dans le dataset final
 % Parler du présupposé de la taille du terrain 105x68
 % Transformation des positions des événements en angle et distance
 Comme discuté dans la section \ref{subsec:events}, les coordonnées X et Y sont relatives à la taille du terrain.
-Une des premiers présupposé qui est fait est que la taille du terrain est de 105 par 68.
+Un présupposé qui est fait est que la taille du terrain est de 105 par 68.
 Cette taille de terrain est la plus commune dans le football professionnel.
-On peut le voir sur le site officiel de la Premier League que la taille du terrain de 105 par 68 est la plus commune. \cite{PremierLeagueClubs} 
-Je démarre déjà par un présupposé que tous les terrains qui ont accueilli les matchs dans le dataset ont comme dimension 105 mètres par 68.
+On peut notamment le voir sur le site officiel de la Premier League \cite{PremierLeagueClubs}.
+Je démarre donc par un présupposé que tous les terrains qui ont accueilli les matchs dans le dataset ont comme dimension 105 mètres par 68.
 Ce présupposé nous permettra ainsi de pouvoir calculer la distance en mètre par rapport au but adverse ainsi que l'angle de tir.
 \newpage
-La première partie est de transformer les coordonnées X et Y qui sont à l'échelle 100 par 100 en coordonnées X et Y à l'échelle 105 par 68.
+Nous elaborerons notre travail sur la transformation des données en quatre parties distinctes.
+Pour commencer, nous transformons les coordonnées X et Y qui sont à l'échelle 100 par 100 en coordonnées X et Y à l'échelle 105 par 68.
 Pour cela, il suffit de multiplier les coordonnées X par 1.05 et les coordonnées Y par 0.68.
 \begin{equation}
     \begin{split}
@@ -565,7 +570,7 @@ On passe également les coordonnées X de l'autre côté du terrain.
 Cela permettra de calculer la distance par rapport au centre du terrain.
 Il suffit de soustraire les coordonnées X à 105\footnote{Dans mon cas, j'ai soustrait les coordonnées avant de passer à l'échelle 105x68, donc j'ai soustrait les coordonnées de X à 100.}.
 \newline\newline
-La deuxième partie est de créer un attribut qui contient la distance par rapport au centre du terrain sur l'axe Y.
+Par la suite, nous allons créer un attribut qui contient la distance par rapport au centre du terrain sur l'axe Y.
 Cet attribut permettra de calculer la distance du tir ainsi que son angle.
 Pour cela, il suffit de calculer la distance entre le centre du terrain et la position du tir, mais uniquement sur l'axe Y.
 \begin{equation}
@@ -576,7 +581,7 @@ Pour cela, il suffit de calculer la distance entre le centre du terrain et la po
 34 étant la moitié de la largeur du terrain. 
 Cela nous permet d'avoir la distance par rapport au centre du terrain sur l'axe Y \footnote{Pareil que pour la coordonnée X, la soustraction a été faite sur l'échelle 100x100 avant de passer à l'échelle 105x68}.
 \newline\newline
-La troisième partie est de calculer la distance du tir par rapport au but adverse.
+Ensuite, nous calculons la distance du tir par rapport au but adverse.
 
 Sur la figure \ref{fig:distance_tir}, [C] représente le centre du terrain, [E] représente le centre du but adverse.
 [DG] représente l'attribut que l'on a calculer précédemment qui contient la distance par rapport au centre du terrain sur l'axe Y.
@@ -589,7 +594,7 @@ Avec le théorème de Pythagore, on peut savoir que :
 \end{equation}
 Il suffit de faire une racine carré de la somme de $DG^2$ et $DF^2$ pour avoir la distance du tir par rapport au centre du but adverse.
 \newline\newline
-La quatrième partie est de calculer l'angle du tir par rapport au but adverse.
+Pour finir, nous allons calculer l'angle du tir par rapport au but adverse.
 Il est d'abord important d'amener une autre information qui, cette fois-ci, n'est pas un présupposé.
 En effet, la largeur des buts de football est de 7.32 mètres \cite{TerrainIFAB}.
 Pour cette partie, le choix a été d'utiliser l'inverse de la tangente et la règle qui dit que la somme des angles d'un triangle est égale à 180 degrés.
@@ -700,7 +705,8 @@ C'est pour cela que notre but va être de retirer certains tirs considérés com
     \caption{Description du dataset final}
     \label{tab:describe_dataset}
 \end{table}
-Pour cela, nous allons utiliser un pitch chart.
+
+Tout d'abord, nous allons visualiser la fréquence des tirs en fonction de leur position à l'aide d'une heatmap sur un pitch chart.
 Un pitch chart est un graphique qui affiche un terrain de football.
 Grâce à cela on peut visualiser plus simplement d'où ont été effectuées les tirs.
 Le but de notre pitch chart est de visualiser les tirs qui ont été effectués à leurs positions respectives.
@@ -1014,7 +1020,10 @@ Avec cette conclusion, on a pu répondre à la première question de la thèse :
 
 
 \subsection{Jeu d'hyper paramètres}
-
+Pour le choix des hyper paramètres, le but est d'utiliser une méthode de validation croisée pour trouver les meilleurs hyper paramètres pour chacun de nos modèles.
+Chacun d'entre eux passera sera créé avec un jeu d'hyper paramètres différent et passera par une validation croisée.
+Chaque résultat de validation croisée sera ensuite comparé pour trouver le meilleur jeu d'hyper paramètres pour chaque modèle.
+Concernant SVM, qui est un modèle qui nécessite beaucoup de temps de calcul
 
 
 
