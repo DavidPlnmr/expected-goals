@@ -860,12 +860,13 @@ Nous allons tester les modèles suivants :
     \item Régression logistique
     \item Arbre de décision
     \item Random Forest
-    \item SVM
-    \item Réseau de neurones 
+    \item KNN
+    \item Réseau de neurones (MLP)
 \end{itemize}
 
 
 \subsection{Cross Validation}
+\label{sec:cross_validation}
 Pour chaque modèle, nous allons utiliser la cross validation pour choisir le meilleur set d'hyper paramètres.
 La cross validation est une méthode qui permet de tester la performance d'un modèle sur un jeu de données.
 Elle consiste à séparer le jeu de données en plusieurs sous-ensembles.
@@ -873,6 +874,8 @@ Comme on peut le voir sur la figure \ref{fig:cross_validation}, le jeu de donné
 Chaque itération consiste à entraîner le modèle sur 4 sous-ensembles et à tester le modèle sur le dernier sous-ensemble.
 Cette opération est répétée 5 fois pour que chaque sous-ensemble soit utilisé comme jeu de test.
 La performance du modèle est calculée en faisant la moyenne des performances obtenues sur chaque sous-ensemble.
+Dans notre cas, cette performance est effectuée en utilisant la "log loss" comme métrique.
+Cette métrique est utilisée pour évaluer la performance d'un modèle de classification probabiliste\footnote{Pour rappel, le xG est une métrique probabiliste puisqu'elle indique la chance qu'un tir soit transformé en but sous forme de pourcentage.}.
 C'est ainsi que nous pouvons choisir le meilleur set d'hyper paramètres pour chaque modèle.
 \newline\newline
 Après avoir choisi nos modèles et leurs hyper paramètres, nous allons les entraîner sur le jeu de données d'entraînement entier et les tester sur le jeu de données de test.
@@ -1019,13 +1022,85 @@ En effet, on retrouve les attributs suivants :
 Avec cette conclusion, on a pu répondre à la première question de la thèse : \newline\textbf{Quels sont les paramètres qui influencent le plus l’expected goal ?}
 
 
-\subsection{Jeu d'hyper paramètres}
-Pour le choix des hyper paramètres, le but est d'utiliser une méthode de validation croisée pour trouver les meilleurs hyper paramètres pour chacun de nos modèles.
-Chacun d'entre eux passera sera créé avec un jeu d'hyper paramètres différent et passera par une validation croisée.
+\subsection{Jeu d'hyper paramètres et séléction}
+Pour le choix des hyper paramètres pour chacun des nos modèles, le but est d'utiliser une méthode de validation croisée.
+Chacun des modèles sera créé avec un jeu d'hyper paramètres différent et passera par une validation croisée.
 Chaque résultat de validation croisée sera ensuite comparé pour trouver le meilleur jeu d'hyper paramètres pour chaque modèle.
-Concernant SVM, qui est un modèle qui nécessite beaucoup de temps de calcul
+Comme indiqué dans la partie \ref{sec:cross_validation}, on utilisera une validation croisée à 5 folds pour chacun des modèles en utilisant la métrique du log loss.
+On utilisera la méthode en grille pour trouver les meilleurs hyper paramètres pour chacun des modèles.
+Il est possible de trouver les hyper paramètres les plus optimaux pour chacun des modèles relatifs à notre cas dans les tableaux qui suivent.
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|lll|}
+        \hline
+        \multicolumn{3}{|c|}{\textbf{Régression logistique}}                                                                                                                                           \\ \hline
+        \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                   \\ \hline
+        \multicolumn{1}{|l|}{penalty}                  & \multicolumn{1}{l|}{l2}              & \begin{tabular}[c]{@{}l@{}}Indique la méthode \\ de régularisation du modèle\end{tabular}              \\ \hline
+        \multicolumn{1}{|l|}{C}                        & \multicolumn{1}{l|}{100}             & \begin{tabular}[c]{@{}l@{}}Indique la force de la \\ régularisation du modèle\end{tabular}             \\ \hline
+        \multicolumn{1}{|l|}{max\_iter}                & \multicolumn{1}{l|}{100.0}           & \begin{tabular}[c]{@{}l@{}}Nombre d'itérations maximale \\ pour arriver à une convergence\end{tabular} \\ \hline
+        \multicolumn{1}{|l|}{solver}                   & \multicolumn{1}{l|}{liblinear}       & \begin{tabular}[c]{@{}l@{}}L'algorithme utilisé pour résoudre \\ le modèle\end{tabular}                \\ \hline
+        \end{tabular}
+    \caption{Jeu d'hyper paramètres choisi pour la régression logistique}
+\end{table}
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|lll|}
+    \hline
+    \multicolumn{3}{|c|}{\textbf{Arbre de décision}}                                                                                                                                                       \\ \hline
+    \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                           \\ \hline
+    \multicolumn{1}{|l|}{criterion}                & \multicolumn{1}{l|}{gini}            & \begin{tabular}[c]{@{}l@{}}Critère qui détermine \\ la séparation de l'arbre\end{tabular}                      \\ \hline
+    \multicolumn{1}{|l|}{max\_depth}               & \multicolumn{1}{l|}{5}               & Profondeur maximale acceptée.                                                                                  \\ \hline
+    \multicolumn{1}{|l|}{min\_samples\_leaf}       & \multicolumn{1}{l|}{100}             & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ acceptée en tant que feuille.\end{tabular}          \\ \hline
+    \multicolumn{1}{|l|}{min\_samples\_split}      & \multicolumn{1}{l|}{5}               & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ pour créer une séparation sur un noeud\end{tabular} \\ \hline
+    \end{tabular}
+    \caption{Jeu d'hyper paramètres choisi pour l'arbre de décision}
+\end{table}
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|lll|}
+    \hline
+    \multicolumn{3}{|c|}{\textbf{Random Forest}}                                                                                                                                                           \\ \hline
+    \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                           \\ \hline
+    \multicolumn{1}{|l|}{criterion}                & \multicolumn{1}{l|}{entropy}         & \begin{tabular}[c]{@{}l@{}}Critère qui détermine la\\ séparation de chaque arbre \\ dans la forêt\end{tabular} \\ \hline
+    \multicolumn{1}{|l|}{max\_depth}               & \multicolumn{1}{l|}{5}               & Profondeur maximale acceptée.                                                                                  \\ \hline
+    \multicolumn{1}{|l|}{min\_samples\_leaf}       & \multicolumn{1}{l|}{10}              & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ acceptée en tant que feuille.\end{tabular}          \\ \hline
+    \multicolumn{1}{|l|}{min\_samples\_split}      & \multicolumn{1}{l|}{100}             & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ pour créer une séparation sur un noeud\end{tabular} \\ \hline
+    \multicolumn{1}{|l|}{n\_estimators}            & \multicolumn{1}{l|}{25}              & Nombre d'arbres dans la forêt                                                                                  \\ \hline
+    \end{tabular}
+    \caption{Jeu d'hyper paramètres choisi pour la forêt aléatoire}
+\end{table}
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|lll|}
+    \hline
+    \multicolumn{3}{|c|}{\textbf{KNN}}                                                                                                                                                                                                                           \\ \hline
+    \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                                                                                 \\ \hline
+    \multicolumn{1}{|l|}{n\_neighbors}             & \multicolumn{1}{l|}{101}             & \begin{tabular}[c]{@{}l@{}}Nombre de voisins à observer \\ pour déterminer la classification.\\ La classe majoritaire parmi \\ les voisins est prédite.\end{tabular} \\ \hline
+    \end{tabular}
+    \caption{Jeu d'hyper paramètres choisi pour KNN}
+\end{table}
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|lll|}
+        \hline
+        \multicolumn{3}{|c|}{\textbf{Perceptron mutli-couches}}                                                                                                                                                                   \\ \hline
+        \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                                              \\ \hline
+        \multicolumn{1}{|l|}{activation}               & \multicolumn{1}{l|}{logistic}        & Type de fonction d'activation                                                                                                     \\ \hline
+        \multicolumn{1}{|l|}{alpha}                    & \multicolumn{1}{l|}{0.001}           & \begin{tabular}[c]{@{}l@{}}La force de la régularisation\\ (pénalité)\end{tabular}                                                \\ \hline
+        \multicolumn{1}{|l|}{hidden\_layer\_sizes}     & \multicolumn{1}{l|}{(50, 50, 50)}    & \begin{tabular}[c]{@{}l@{}}Indique le nombre de couches et\\  le nombre de neurones par couche\end{tabular}                       \\ \hline
+        \multicolumn{1}{|l|}{learning\_rate}           & \multicolumn{1}{l|}{constant}        & \begin{tabular}[c]{@{}l@{}}Indique le taux d'apprentissage \\ pour mettre à jour les poids \\ de chacun des neurones\end{tabular} \\ \hline
+        \multicolumn{1}{|l|}{solver}                   & \multicolumn{1}{l|}{adam}            & \begin{tabular}[c]{@{}l@{}}L'algorithme utilisé pour \\ apprendre les poids pour \\ chacun des neurones\end{tabular}              \\ \hline
+        \end{tabular}
+    \caption{Jeu d'hyper paramètres choisi pour le perceptron multi-couches}
+\end{table}
 
 
+\newpage
+\section{Résultats}
 
 
 % Bibliography
