@@ -1087,7 +1087,7 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
     \centering
     \begin{tabular}{|lll|}
         \hline
-        \multicolumn{3}{|c|}{\textbf{Perceptron mutli-couches}}                                                                                                                                                                   \\ \hline
+        \multicolumn{3}{|c|}{\textbf{Perceptron multi-couches}}                                                                                                                                                                   \\ \hline
         \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                                              \\ \hline
         \multicolumn{1}{|l|}{activation}               & \multicolumn{1}{l|}{logistic}        & Type de fonction d'activation                                                                                                     \\ \hline
         \multicolumn{1}{|l|}{alpha}                    & \multicolumn{1}{l|}{0.001}           & \begin{tabular}[c]{@{}l@{}}La force de la régularisation\\ (pénalité)\end{tabular}                                                \\ \hline
@@ -1101,6 +1101,129 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
 
 \newpage
 \section{Résultats}
+\subsection{Comparaison des performances sur la log loss}
+Cette section vise à discuter des résultats.
+En effet, après avoir effectuée la validation croisée sur tous les modèles pour trouver leurs meilleurs hyper paramètres, il a fallu tester les meilleurs versions des modèles sur les données de test qui étaient, jusque là, jamais utilisées.
+Les résultats sont présentés dans le tableau \ref{tab:results}.
+Chacun des modèles a été évalué en utilisant la métrique de perte logarithmique (log loss), qui mesure la performance des prédictions probabilistes. 
+Une valeur plus faible de log loss indique de meilleures performances du modèle.
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Modèle}          & \textbf{Valeur de log loss} \\ \hline
+    Régression logistique    & 0.2882034140214798          \\ \hline
+    Random Forest            & 0.2884725624041776          \\ \hline
+    Perceptron multi-couches & 0.2888731795934776          \\ \hline
+    Arbre de décision        & 0.29005568551254723         \\ \hline
+    KNN                      & 0.43044530384474966         \\ \hline
+    Classificateur naïf      & 3.8152056512157433          \\ \hline
+    \end{tabular}
+    \caption{Résultats des modèles sur les données de test}
+    \label{tab:results}
+\end{table}
+
+Le classificateur naïf part du principe que toutes les futures instances sont de la classe majoritaire du jeu de données d'entraînement. 
+Il est important de noter que ce classifieur ne sera jamais utilisé dans un contexte réel.
+Il est utilisé ici pour avoir une référence de base et donc, pouvoir comparer les autres modèles sur cette base.
+Cela explique pourquoi il obtient une log loss aussi élevée.
+En effet, le décalage entre la prédiction de ce classifieur et la valeur réelle est très grand et cela a une influence direct sur la valeur finale du log loss.
+\newline\newline 
+En examinant les résultats, nous constatons que la régression logistique est le modèle le plus performant. 
+Cependant, le modèle de Random Forest suit de près. 
+La différence entre ces deux modèles est très faible, ce qui indique qu'ils ont des performances similaires.
+\newline\newline
+Le perceptron multi-couches et l'arbre de décision affichent également des performances comparables. 
+Encore une fois, la différence entre ces deux modèles est minime.
+\newline\newline
+En revanche, le modèle KNN se classe comme le modèle le moins performant parmi ceux testés (hormis le classificateur naïf). 
+De ce fait, on peut déjà savoir que ce modèle n'est pas le plus approprié pour ce problème.
+\subsection{Visualisation de la distribution des prédictions}
+Par la suite, il a été intéressant d'observer la distribution des résultats prédits sur les données de tests.
+Cela nous permet de constater les différences parmi les modèles qui sont similaires en termes de log loss.
+Par exemple, les modèles de régression logistique et de Random Forest ont des performances similaires, mais leurs distributions de résultats prédits diffèrent légèrement.
+Cependant, cela n'indique toujours pas si le modèle est significativement plus performant qu'un autre puisque c'est basée sur les données de tests seulement.
+Autrement, on peut observer que la distribution des résultats prédits par le modèle KNN est très différente des autres modèles.
+Il en va de même pour l'arbre de décision qui était très similaire au perceptron multi-couches en termes de log loss mais qui a une distribution de résultats prédits très différente.
+\newline\newline
+Finalement, on observe que le classificateur naïf prédit systématiquement la classe majoritaire (qui est un tir manqué), ce qui était prévisible puisque c'est le principe de ce modèle.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{img/predictions_result_from_models.png}
+    \caption{Distribution des résultats prédits sur les données de test}
+    \label{fig:results}
+\end{figure}
+
+\newpage
+
+\subsection{Visualisation des résultats sur un terrain}
+Pour ajouter une nouvelle manière d'analyser et visualiser les résultats, j'ai décidé de créer une heatmap pour chacune des positions du terrains de football.
+À partir de cela, on calculera la distance et l'angle. 
+J'ai également indiqué que tous les tirs effectués à chacune des positions n'ont pas été effectuées de la tête et qu'ils ont été effectuées avec le pied fort du joueur.
+On peut voir justement que la majorité des tirs ont été effectués avec le pied fort du joueur et qu'ils n'ont pas été effectuées de la tête (voir figure \ref{fig:analyse_qualitative}).
+Il est donc plus pertinent, pour cette visualisation, de se concentrer sur la position du tir pour éviter d'ajouter un éventuel biais à notre visualisation en prenant uniquement en compte les tirs du pied faible ou de la tête.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/pitch_visualisation_log_reg.png}
+    \caption{Heatmap des résultats prédits par la régression logistique}
+    \label{fig:result_log_reg}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/pitch_visualisation_random_forest.png}
+    \caption{Heatmap des résultats prédits par le modèle Random Forest}
+    \label{fig:result_random_forest}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/pitch_visualisation_mlp.png}
+    \caption{Heatmap des résultats prédits par le perceptron multi-couches}
+    \label{fig:result_mlp}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/pitch_visualisation_tree.png}
+    \caption{Heatmap des résultats prédits par l'arbre de décision}
+    \label{fig:result_tree}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/pitch_visualisation_knn.png}
+    \caption{Heatmap des résultats prédits par le modèle KNN}
+    \label{fig:result_knn}
+\end{figure}
+\newpage
+Lorsque l'on observe les figures \ref{fig:result_log_reg}, \ref{fig:result_random_forest}, \ref{fig:result_mlp}, \ref{fig:result_tree}, on constate que la tendance générale des modèles est la même.
+C'est-à-dire qu'ils prédisent que les tirs effectués dans la surface de réparation ont une plus grande chance d'être transformée en but que ceux effectués à l'extérieur de la surface.
+Cependant, on peut constater plusieurs choses.
+Tout d'abord, on peut voir que le modèle Random Forest prédit que les tirs effectués à l'extérieur de notre côté du terrain ont une plus grande chance d'être marqué que ceux qui sont effectuées à l'extérieur de la surface mais dans le camp adverse.
+C'est également visible pour l'arbre de décision qui prédit une plus forte chance de marquer pour les tirs effectués dans le propre camp que ceux effectués dans la surface adverse dans un angle relativement faible.
+\newline\newline
+Ensuite, on peut voir que le modèle KNN prédit de manière incorrecte les probabilités.
+On a pu le voir notamment via sa log loss qui était relativement élevée par rapport aux autres modèles.
+On peut également le voir sur la figure \ref{fig:result_knn} où l'on constate que les probabilités prédites sont très similaires pour toutes les positions du terrain, sauf pour les tirs effectués à 1 mètre du but adverse.
+\newline\newline
+C'est alors via ces visualisations que l'on peut constater et comparer les différences entre les modèles.
+On constate donc que les deux modèles les plus performants sont la régression logistique et le perceptron multi-couches.
+La régression logistique a une meilleure log loss que le perceptron multi-couches.
+On voit notamment que malgré le fait que la log loss du perceptron multi-couches soit plus élevée que le modèle Random Forest, sa visualisation en heatmap est plus proche de la réalité que le modèle Random Forest qui lui fournit quelques résultats incohérents.
+\newline\newline
+Pour conclure cette section sur l'analyse des résultats, on peut dire que la régression logistique est le modèle le plus performant pour résoudre ce problème. 
+Il est important de rappeler qu'uniquement 5 modèles de classifications ont été testés.
+Dû à un manque de puissance de calcul, il n'a pas été possible de tester plus de modèles ni de fournir davantage d'hyper paramètres.
+Il est donc possible qu'un autre modèle soit plus performant que la régression logistique pour la résolution de ce cas.
+\newpage
+\section{Conclusion}
+
+\subsection{Conclusion générale}
+\subsection{Améliorations possibles}
+\subsection{Remerciements}
 
 
 % Bibliography
