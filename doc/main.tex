@@ -129,6 +129,73 @@
 
 \newpage
 
+\section{Déclaration}
+Ce travail de Bachelor est réalisé dans le cadre de l'examen final de la Haute école de gestion de Genève, en vue de l'obtention du titre de Bachelor of Science HES-SO en Informatique de gestion.
+\newline\newline
+L'étudiant a envoyé ce document par email à l'adresse remise par son conseiller au travail de Bachelor pour analyse par le logiciel de détection de plagiat URKUND, selon la procédure détaillée à l'URL suivante : \url{https://www.urkund.com}
+\newline\newline
+L'étudiant accepte, le cas échéant, la clause de confidentialité. 
+L'utilisation des conclusions et recommendations formulées dans le travail de Bachelor, sans préjuger de leur valeur, n'engage ni la responsabilité de l'auteur, ni celle du conseiller au travail de Bachelor, du juré et de la HEG.
+\newline\newline
+"J'atteste avoir réalisé seul le présent travail, sans avoir utilisé des sources autres que celles citées dans la bibliographie."
+% Faire un grand saut de ligne
+\vspace{4cm}
+% Aligner le texte à droite
+\begin{flushright}
+    Fait à \place, le \today
+\end{flushright}
+
+\begin{flushright}
+    \DP
+\end{flushright}
+\vspace{1cm}
+\begin{flushright}
+    --------------------------------
+\end{flushright}
+
+
+\newpage
+
+\section{Remerciements}
+% Insérer les remerciements ici
+
+J'aimerais tout d'abord remercier mon conseiller au travail de Bachelor, le docteur Nils Schätti pour son aide et ses conseils tout au long de ce travail. 
+Ses remarques et son investissement ont été très utiles pour améliorer la qualité de cette thèse. 
+\newline\newline
+Je remercie également mon deuxième conseiller au travail de Bachelor, le professeur Alexandros Kalousis pour l'apport de ses idées et ses explications sur les concepts de machine learning.
+\newline\newline
+Je remercie également mon ami Rayane Ammad ainsi que ma belle-soeur, Alessia Marques, pour leur relecture et leurs retours sur ce travail.
+\newline\newline
+Finalement, je remercie ma famille pour leur soutien et leur patience tout au long de ma formation, spécialement mon père et ma mère.
+
+\newpage
+
+\section{Résumé}
+% Insérer le résumé ici
+Ce travail a pour but d'analyser et d'optimiser l'expected goal (xG) dans le football.
+On cherche à comprendre comment est calculé l'expected goal, quelles sont ses variables les plus influentes et quels sont les modèles les plus performants pour établir un xG.
+\newline\newline
+Ce travail passe par plusieurs phases :
+\begin{itemize}
+    \item Une phase de recherche pour comprendre le fonctionnement du xG et les modèles existants
+    \item Une phase de préparation des données pour les modèles
+    \item Une phase de modélisation pour trouver le modèle le plus performant
+    \item Une phase d'analyse des résultats
+\end{itemize}
+
+
+\newpage
+
+% Liste des tableaux
+\listoftables
+
+\newpage
+
+% Liste des figures
+\listoffigures
+
+\newpage
+
 % Table of contents
 \tableofcontents
 \newpage
@@ -213,23 +280,28 @@ Il faut également veiller à ce que le modèle ne fasse pas de sur-apprentissag
 \section{Plan du document}
 Concernant le déroulement de ce travail, il y a plusieurs étapes.
 Tout d'abord, il y a la recherche des travaux existants sur le sujet.
+Cette étape est effectuée dans la section \ref{sec:synthese}.
 Parmi les travaux existants, je vais chercher à savoir quels datasets ont été utilisées ainsi que les résultats obtenus.
-Cela me permettra de comparer mes résultats avec les résultats obtenus dans les autres travaux.
+Cela me permettra de comparer mes résultats avec les résultats obtenus dans les autres travaux et ainsi savoir si les résultats sont cohérents par rapport à l'état de l'art actuel des recherches scientifiques.
 \newline \newline
 La suite sera de trouver un dataset avec les informations nécessaires pour implémenter le modèle.
+Cette étape de la thèse est très importante puisque c'est la base de la thèse.
 Une fois ce dataset trouvé, il va falloir le documenter. En effet, il est important de comprendre ce que chaque attribut représente.
 L'étape suivante est également importante puisque le but sera de visualiser les données.
 Cela permettra de voir si les données sont exploitables et si elles sont cohérentes.
 Cela pourra également nous indiquer si des biais seront présents dans le modèle.
+Cette section d'analyse du dataset est trouvable dans la section \ref{sec:dataset}.
 \newline \newline
 Une fois que les données sont documentées et visualisées, il va falloir les préparer.
 En effet, il pourrait y avoir des données manquantes mais qui sont disponibles après un traitement.
 Il pourrait également y avoir des données qui ne sont pas exploitables et qui doivent être supprimées.
 Par exemple, l'identifiant de la base de données d'un tir pourrait être supprimée car il n'appporte rien pour la prédiction de l'expected goal.
+Cette section de transformation du dataset est également trouvable dans la section \ref{sec:dataset} qui fait suite à la section d'analyse du dataset initial.
 \newline \newline
 Ensuite, on pourra commencer à implémenter le modèle et observer les facteurs qui influencent le plus sa prédiction du xG.
+Cette partie est trouvable dans la section \ref{sec:methodologie}.
 C'est également à ce moment-là qu'il faudra comparer les différents modèles pour voir lequel est le plus performant pour prédire les xG.
-Il sera également intéressant de voir quelles variables peuvent être ajoutées au modèle pour améliorer sa précision.
+La comparaison est trouvable dans la section \ref{sec:results} qui visent à montrer la fiabilité et la cohérence du modèle par rapport à la problématique initial.
 
 \newpage
 \section{Synthèse des travaux existants}
@@ -284,7 +356,6 @@ Dans le cas où le modèle est utilisé pour prédire un cancer, nous allons che
 Cela leur permet de savoir comment choisir le seuil pour la classification.
 En conclusion de leur travail, ils ont obtenu une sensibilité de 0.9671945701357466 et une spécificité de 0.19034406215316316 pour un seuil 0.02.
 Ils indiquent finalement que le modèle de xG est plus performant si l'on prend la distance et l'angle en compte plutôt que de prendre uniquement la distance.
-Un graphique ROC \footnote{Receiver Operating Characteristic} a été fait pour montrer la performance du modèle. Cela permet de comparer la sensibilité et la spécificité pour chaque seuil.
 \newline\newline
 Un travail qui fournit également du code est celui de David Sumpter \cite{sumpterFittingXGModel}. 
 Le travail de ce dernier est de créer un modèle de xG en utilisant une régression logistique. 
@@ -373,6 +444,7 @@ Concernant les autres facteurs, ils sont utilisés pour améliorer la prédictio
 
 \newpage
 \section{Dataset}
+\label{sec:dataset}
 
 \subsection{Présentation du dataset}
 
@@ -694,13 +766,13 @@ C'est pour cela que notre but va être de retirer certains tirs considérés com
         \cline{2-6}
         \textbf{}                   & \textbf{X}   & \textbf{Y}   & \textbf{distance} & \textbf{angle} & \textbf{angle\_abs} \\ \hline
         \multicolumn{1}{|r|}{count} & 43075 & 43075 & 43075      & 43075   & 43075        \\ \hline
-        \multicolumn{1}{|r|}{mean}  & 15.992225    & 33.473176    & 18.593067         & 0.414140       & 2.657552            \\ \hline
-        \multicolumn{1}{|r|}{std}   & 8.534333     & 9.366171     & 8.419298          & 0.253173       & 0.313051            \\ \hline
-        \multicolumn{1}{|r|}{min}   & 0.000000     & 0.000000     & 0.680000          & 0.000000       & 1.570796            \\ \hline
-        \multicolumn{1}{|r|}{25\%}  & 9.450000     & 26.520000    & 12.249445         & 0.250188       & 2.441817            \\ \hline
-        \multicolumn{1}{|r|}{50\%}  & 13.650000    & 33.320000    & 17.153297         & 0.327782       & 2.689439            \\ \hline
-        \multicolumn{1}{|r|}{75\%}  & 23.100000    & 40.800000    & 24.936000         & 0.505984       & 2.914297            \\ \hline
-        \multicolumn{1}{|r|}{max}   & 103.950000   & 68.000000    & 103.952224        & 3.141593       & 3.141593            \\ \hline
+        \multicolumn{1}{|r|}{mean}  & 15.99    & 33.47    & 18.59         & 0.4141       & 2.6576            \\ \hline
+        \multicolumn{1}{|r|}{std}   & 8.53     & 9.37     & 8.42          & 0.2532       & 0.3131            \\ \hline
+        \multicolumn{1}{|r|}{min}   & 0.00     & 0.00     & 0.68          & 0.0000       & 1.5708            \\ \hline
+        \multicolumn{1}{|r|}{25\%}  & 9.45     & 26.52    & 12.25         & 0.25019       & 2.4418            \\ \hline
+        \multicolumn{1}{|r|}{50\%}  & 13.65    & 33.32    & 17.15         & 0.3278       & 2.6894            \\ \hline
+        \multicolumn{1}{|r|}{75\%}  & 23.10   & 40.80    & 24.94         & 0.5060       & 2.9143            \\ \hline
+        \multicolumn{1}{|r|}{max}   & 103.95   & 68    & 103.95        & 3.1416       & 3.1416            \\ \hline
         \end{tabular}
     \caption{Description du dataset final}
     \label{tab:describe_dataset}
@@ -843,6 +915,7 @@ Cependant, il convient de noter que des analyses supplémentaires et des modéli
 % Affichage de la visualisation suite au retour de Nils
 
 \section{Méthodologie}
+\label{sec:methodologie}
 % Liste des méthodes qui vont être utilisées
 Dans cette section, nous allons discuter de la méthodologie utilisée pour résoudre le problème de prédiction de la réussite d'un tir au but.
 Tout d'abord, nous allons faire une séparation sur le dataset pour avoir un jeu de données d'entraînement et un jeu de données de test.
@@ -1028,7 +1101,7 @@ Chacun des modèles sera créé avec un jeu d'hyper paramètres différent et pa
 Chaque résultat de validation croisée sera ensuite comparé pour trouver le meilleur jeu d'hyper paramètres pour chaque modèle.
 Comme indiqué dans la partie \ref{sec:cross_validation}, on utilisera une validation croisée à 5 folds pour chacun des modèles en utilisant la métrique du log loss.
 On utilisera la méthode en grille pour trouver les meilleurs hyper paramètres pour chacun des modèles.
-Il est possible de trouver les hyper paramètres les plus optimaux pour chacun des modèles relatifs à notre cas dans les tableaux qui suivent.
+Il est possible de trouver les hyper paramètres les plus optimaux pour chacun des modèles relatifs à notre cas dans les tableaux \ref{tab:logistic_regression_hyperparameters}, \ref{tab:decision_tree_hyperparameters}, \ref{tab:random_forest_hyperparameters}, \ref{tab:knn_hyperparameters} et \ref{tab:mlp_hyperparameters} .
 \begin{table}[htp]
     \centering
     \begin{tabular}{|lll|}
@@ -1041,6 +1114,7 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
         \multicolumn{1}{|l|}{solver}                   & \multicolumn{1}{l|}{liblinear}       & \begin{tabular}[c]{@{}l@{}}L'algorithme utilisé pour résoudre \\ le modèle\end{tabular}                \\ \hline
         \end{tabular}
     \caption{Jeu d'hyper paramètres choisi pour la régression logistique}
+    \label{tab:logistic_regression_hyperparameters}
 \end{table}
 
 \begin{table}[htp]
@@ -1055,6 +1129,7 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
     \multicolumn{1}{|l|}{min\_samples\_split}      & \multicolumn{1}{l|}{5}               & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ pour créer une séparation sur un noeud\end{tabular} \\ \hline
     \end{tabular}
     \caption{Jeu d'hyper paramètres choisi pour l'arbre de décision}
+    \label{tab:decision_tree_hyperparameters}
 \end{table}
 
 \begin{table}[htp]
@@ -1070,6 +1145,7 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
     \multicolumn{1}{|l|}{n\_estimators}            & \multicolumn{1}{l|}{25}              & Nombre d'arbres dans la forêt                                                                                  \\ \hline
     \end{tabular}
     \caption{Jeu d'hyper paramètres choisi pour la forêt aléatoire}
+    \label{tab:random_forest_hyperparameters}
 \end{table}
 
 \begin{table}[htp]
@@ -1081,6 +1157,7 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
     \multicolumn{1}{|l|}{n\_neighbors}             & \multicolumn{1}{l|}{101}             & \begin{tabular}[c]{@{}l@{}}Nombre de voisins à observer \\ pour déterminer la classification.\\ La classe majoritaire parmi \\ les voisins est prédite.\end{tabular} \\ \hline
     \end{tabular}
     \caption{Jeu d'hyper paramètres choisi pour KNN}
+    \label{tab:knn_hyperparameters}
 \end{table}
 
 \begin{table}[htp]
@@ -1096,11 +1173,13 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
         \multicolumn{1}{|l|}{solver}                   & \multicolumn{1}{l|}{adam}            & \begin{tabular}[c]{@{}l@{}}L'algorithme utilisé pour \\ apprendre les poids pour \\ chacun des neurones\end{tabular}              \\ \hline
         \end{tabular}
     \caption{Jeu d'hyper paramètres choisi pour le perceptron multi-couches}
+    \label{tab:mlp_hyperparameters}
 \end{table}
 
 
 \newpage
 \section{Résultats}
+\label{sec:results}
 \subsection{Comparaison des performances sur la log loss}
 Cette section vise à discuter des résultats.
 En effet, après avoir effectuée la validation croisée sur tous les modèles pour trouver leurs meilleurs hyper paramètres, il a fallu tester les meilleurs versions des modèles sur les données de test qui étaient, jusque là, jamais utilisées.
@@ -1150,7 +1229,7 @@ Il en va de même pour l'arbre de décision qui était très similaire au percep
 Finalement, on observe que le classificateur naïf prédit systématiquement la classe majoritaire (qui est un tir manqué), ce qui était prévisible puisque c'est le principe de ce modèle.
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=\textwidth]{img/predictions_result_from_models.png}
+    \includegraphics[width=\textwidth]{img/distributions_result_from_models.png}
     \caption{Distribution des résultats prédits sur les données de test}
     \label{fig:results}
 \end{figure}
@@ -1223,7 +1302,6 @@ Il est donc possible qu'un autre modèle soit plus performant que la régression
 
 \subsection{Conclusion générale}
 \subsection{Améliorations possibles}
-\subsection{Remerciements}
 
 
 % Bibliography
