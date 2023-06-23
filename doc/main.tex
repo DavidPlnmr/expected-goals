@@ -210,64 +210,74 @@ Au fur et à mesure, plus d'informations sur les matchs sont venues s'ajoutées.
 Le nombre de tirs dans un matchs par équipes, le nombre de passes, le nombre de tirs cadrés, la possession du ballon, le pourcentage de passes réussies, le nombre de passes décisives et d'autres sont venus s'ajouter aux statistiques dans le football.
 Le pourcentage de réussite aux lancers francs, le nombre de rebonds, le nombre de passes décisives, le pourcentage de réussite aux tirs, le nombre de fautes, le nombre de minutes jouées, le pourcentage de réussite à 3 points et d'autres sont venus s'ajouter aux statistiques dans le basketball.
 Ces statistiques sont également devenus personnelles à chacun des joueurs.
-On peut également compter pour le baseball le nombre de fois qu'un joueur était au bâton, son nombre de double, de triples, son nombre de buts et bien d'autres.
+Nous pouvons également compter, pour le baseball, le nombre de fois qu'un joueur était au bâton, son nombre de double, de triples, son nombre de buts et bien d'autres.
 \newline\newline
-C'est d'ailleurs dans le baseball que l'on peut retrouver la première utilisation de statistiques avancées pour établir des stratégies.
-En effet, au début des années 1970, un joueur des Baltimore Orioles a développé une analyse statistiques pour choisir le meilleur alignement possible pour son équipe de départ.
+C'est d'ailleurs dans le baseball que nous retrouvons la première utilisation de statistiques avancées pour établir des stratégies.
+En effet, au début des années 1970, un joueur des Baltimore Orioles a développé une analyse statistique pour choisir le meilleur alignement possible pour son équipe de départ.
 Il s'agit de Davey Johnson.
-Cependant, il n'a pas pu l'utiliser à ce moment-là puisque le président de sa franchise n'avait pas confiance. C'est qu'à partir de 1984 où il fut le coach des New York Mets qu'il a pu mettre en place son analyse statistiques avancées pour établir le meilleur choix pour son équipe de départ. \cite{incPCMag1984}
+Cependant, il n'a pas pu l'utiliser à ce moment-là puisque le président de sa franchise n'avait pas confiance. C'est qu'à partir de 1984 où il fut le coach des New York Mets qu'il a pu mettre en place son analyse statistique avancée pour établir le meilleur choix pour son équipe de départ. \cite{incPCMag1984}
 Deux saisons plus tard, il remporte la Série mondiale 1986 \footnote{En MLB, la Série mondiale est la série finale qui permet de déterminer qui est l'équipe championne de la ligue.}. Les Mets étaient situés à la dernière place de leur conférence avant l'arrivée de Davey Johnson et son management orienté sur les statistiques.
 \newline
 Après cette réussite, les autres franchises de la MLB\footnote{Ligue majeure de baseball} ont également commencé à adopter l'analyse de statistiques dans le sport et cela a également été populaire dans les autres sports avec par exemple Daryl Morey qui a été le premier coach analyste statistiques recruté chez les Rockets de Houston en NBA en 2007. \cite{DarylMorey13year2020}
 Les franchises de la NBA\footnote{Ligue nationale de basketball} ont par la suite également adopté une approche managériale statistique.
-On constate alors que cette culture de la statistique dans le sport provient des États-Unis.
+Nous constatons alors que cette culture de la statistique dans le sport provient des États-Unis.
 \newline
 Il est désormais important d'amener l'arrivée des expected goals. L'une des premières études sur un modèle d'expected goals vient d'Alan Ryder qui a publié une étude sur la qualité des tirs effectuées dans des matchs de hockey. \cite{ryderIsolatingShotQuality2004}
-Ce dernier a pu analyser les différentes circonstances lors d'un tir et développer un modèle qui prédit la probabilité d'un tir selon les circonstances de ce tir.
-Dans le football, l'une des premieres études sur l'expected goal vient de Richard Pollard, Jake Ensum et Samuel Taylor qui ont analysé les facteurs qui influent la chance de marquer un but. \cite{pollardEstimatingProbabilityShot2004} La problématique de ce travail est donc de pouvoir analyser et optimiser l'expected goal.
+Ce dernier a pu analyser les différentes circonstances lors d'un tir et développer un modèle qui prédit la probabilité d'un tir selon les circonstances de celui-ci.
+Dans le football, l'une des premieres études sur l'expected goal vient de Richard Pollard, Jake Ensum et Samuel Taylor ayant analysé les facteurs qui influent la chance de marquer un but. \cite{pollardEstimatingProbabilityShot2004} La problématique de ce travail est donc de pouvoir analyser et optimiser l'expected goal.
 \newline\newline
-Il semble maintenant important de savoir ce qu'est l'expected goal. L'expected goal
-\footnote{Très souvent réduit par xG} est une métrique qui permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir \cite{XGExplainedFBrefa}.
-Un tir qui a un xG de 0.4 a une probabilité de 40\% d'être transformé en but. Un tir avec un xG à 1 est la plus grande valeur possible et aurait donc 100\% de chance d'être transformé en but.
+Il semble maintenant important de savoir ce qu'est l'expected goal\footnote{Très souvent réduit par xG}. 
+Il est une métrique qui permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir \cite{XGExplainedFBrefa}.
+Ce dernier ayant un xG de 0.4 a une probabilité de 40\% d'être transformé en but. Un autre avec un xG à 1, qui est la plus grande valeur possible, aurait donc 100\% de chance d'être transformé en but.
 \footnote{Il est important d'indiquer qu'il est très rare qu'un xG d'un tir soit égal à 1 mais il va généralement s'en rapprocher fortement selon ses paramètres.} \cite{pettyWhatExpectedGoals2018a}
 \newline\newline
-Pour observer ce qu'est réellement un xG, nous allons l'observer avec l'emplacement des tirs sur le terrains.
-Sur la figure \ref{fig:shotmap}, on peut observer un example d'emplacement de tirs et de leur xG.
+Pour comprendre ce qu'est réellement un xG, nous allons l'observer avec l'emplacement des tirs sur le terrains.
+Sur la figure \ref{fig:shotmap}, nous pouvons voir un exemple d'emplacement de tirs et de leur xG.
 \newline \newline
-Par ailleurs, les xG se sont tellement développés que des métriques dérivées ont été créées. On peut par exemple citer le xA qui est l'expected assist. C'est une métrique qui permet de déterminer la probabilité qu'une passe soit transformée en passe décisive selon les données de cette passe. \cite{XGExplainedFBrefa}
-Également, les xGA qui est les expected goals against. Cette métrique permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir mais pour l'équipe adverse. \cite{pettyWhatExpectedGoals2018a}
+Par ailleurs, les xG se sont tellement développés que des métriques dérivées ont été créées. 
+Nous pouvons, par exemple, citer le xA, qui est l'expected assist.
+C'est une métrique qui permet de déterminer la probabilité qu'une passe soit transformée en passe décisive selon les données de cette passe. \cite{XGExplainedFBrefa}
+Il existe également les xGA, qui sont les expected goals against. 
+Ceux-ci permettent de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir mais pour l'équipe adverse. \cite{pettyWhatExpectedGoals2018a}
 
-Il y en a également d'autres comme les expected points qui sont les points qu'une équipe devrait avoir gagnés basé sur les données relatives aux xG. D'autres dérivées sont indiquées sur l'article de Pinnacle écrit par Luke Petty. \cite{pettyWhatExpectedGoals2018a}
+Il y en a également d'autres comme les expected points qui sont les points qu'une équipe devrait avoir gagnés, ceci basé sur les données relatives aux xG. D'autres dérivées sont indiquées sur l'article de Pinnacle écrit par Luke Petty. \cite{pettyWhatExpectedGoals2018a}
 \newline\newline
-Maintenant que nous avons vu ce qu'est un xG et ces dérivées actuelles, il semble pertinent de décrire l'utilisation de cette métrique dans le football actuel.
+Maintenant que nous avons vu ce qu'est un xG et ces dérivés actuels, il semble pertinent de décrire l'utilisation de cette métrique dans le football actuel.
 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.8\textwidth]{img/SchemaXG.jpeg}
 
-    \caption{Schéma qui montre les chances de buts selon les positions des tirs - Source : Opta}
+    \caption{Schéma montrant les chances de buts selon les positions des tirs - Source : Opta}
     \label{fig:shotmap}
 \end{figure}
 \subsection{Intérêt de la problématique}
-Cette problématique est très intéressante puisque c'est une donnée qui est dernièrement très populaire dans le monde du football. Elle donne plus d'informations sur le match que les autres statistiques d'un matchs (possession, nombre de passes, nombre de tirs cadrés, nombre de buts, etc.). Par exemple en ce qui concerne la possession, une équipe peut avoir la possession du ballon pendant 70\% du match mais ne pas marquer de buts, ni même être dangereuse avec le ballon. Le nombre de tirs cadrés, s'ils sont effectuées tous à l'extérieur de la surface de réparation, ne sont pas forcément dangereux. L'expected goal permet de donner une valeur à chaque tir et de déterminer si un tir a une chance d'être transformé en but.
+Cette problématique est très intéressante puisque cette métrique représente une donnée dernièrement très populaire dans le monde du football. Elle donne plus d'informations sur le match que les autres statistiques d'un match (possession, nombre de passes, nombre de tirs cadrés, nombre de buts, etc.). 
+Prenons comme example la possession de balle, une équipe peut en avoir 70\% pendant le match mais ne pas marquer de buts, ni même être dangereuse avec le ballon. 
+Les tirs cadrés, s'ils sont tous effectués à l'extérieur de la surface de réparation, ne sont pas forcément dangereux. 
+L'expected goal permet de donner une valeur à chaque tir et de déterminer si celui-ci a une chance d'être transformé en but.
 \newline \newline
-Certaines personnes utilisent cette métrique pour leurs paris sportifs. Ils observent la métrique lors des derniers matchs et la compare avec le score réel du match. Si la différence est grande, cela peut permettre de constater un manque de réalisme ou un sur-régime d'une des deux équipes. \cite{tennerelBienUtiliserExpected2022a}
+Certaines personnes utilisent cette métrique pour leurs paris sportifs. 
+Ils observent la métrique lors des derniers matchs et la compare avec le score réel du match. Si la différence est grande, cela peut permettre de constater un manque de réalisme ou un sur-régime d'une des deux équipes. \cite{tennerelBienUtiliserExpected2022a}
 \newline \newline
-Les analystes de données des équipes utilisent cette donnée pour analyser les performances de leurs joueurs et de leurs équipes. Par exemple, la comparaison des xG et du nombre de buts marqués d'un joueur sur une période donnée peut permettre de déterminer la dangerosité et la capacité d'un buteur à terminer des actions. \cite{pettyWhatExpectedGoals2018a}
+Les analystes utilisent cette donnée pour analyser les performances de leurs joueurs et de leurs équipes. Par exemple, la comparaison des xG et du nombre de buts marqués d'un joueur sur une période donnée peut permettre de déterminer la dangerosité et la capacité d'un buteur à terminer des actions. \cite{pettyWhatExpectedGoals2018a}
 Les xG peuvent aussi être utilisés pour analyser les performances d'une équipe dans des situations bien précises. Une équipe qui possède un haut xG sur des contre-attaques montre qu'elle est très dangereuse sur ce type de situation. \cite{XGExplainedFBrefa}
-L'une des choses les plus intéressante de cette métrique est qu'elle peut être utilisée pour analyser les forces et faiblesses des équipes. Par exemple, une équipe peut observer que ses xG sont très faibles lorsqu'elle tente des centres. Cela peut lui permettre de trouver son identité de jeu et de décider d'abandonner cette stratégie. Cette métrique est tout autant valable pour analyser les forces et faiblesses d'une équipe adverse. Dans la même situation, si une équipe vient à affronter l'équipe qui a dû mal à produire des xG sur des centres, elle peut décider de la forcer à jouer sur des centres en libérant de l'espace sur les côtés par exemple.
+L'une des choses les plus intéressante de cette métrique est qu'elle peut être utilisée pour analyser les forces et faiblesses des équipes. Par exemple, une équipe peut observer que ses xG sont très faibles lorsqu'elle tente des centres. Cela peut lui permettre de trouver son identité de jeu et de décider d'abandonner cette stratégie. Cette métrique est tout autant valable pour analyser les forces et faiblesses d'une équipe adverse. 
+Dans la même situation, si une équipe vient à affronter une équipe qui a dû mal à produire des xG sur des centres, elle peut décider de la forcer à jouer sur des centres en libérant de l'espace sur les côtés par exemple.
 \newline \newline
-Cette métrique est également utilisée pour aider les recruteurs à juger les performances de finition d'un joueur \cite{garratt-stanleyWhatExpectedGoals2022}. Nous avons vu précédemment qu'il existait des dérivées des xG comme les xA\footnote{Passes décisives attendues}. Les différentes dérivées peuvent permettre de juger les performances et qualités d'un joueur qui se trouve dans un poste bien précis. Par exemple, un milieu de terrain ou un défenseur peut être jugé sur ses xA et un attaquant sur ses xG.
+Cette métrique est également utilisée pour aider les recruteurs à juger les performances de finition d'un joueur \cite{garratt-stanleyWhatExpectedGoals2022}. Nous avons vu précédemment qu'il existait des dérivés des xG comme les xA\footnote{Passes décisives attendues}. 
+Les différents dérivés peuvent permettre de juger les performances et qualités d'un joueur qui se trouve à un poste bien précis. 
+Par exemple, un milieu de terrain ou un défenseur peut être jugé sur ses xA et un attaquant sur ses xG.
 
 
-\subsection{Questions que l'on souhaite répondre dans ce travail}
+\subsection{Questions auquelles nous souhaitons répondre dans ce travail}
 Il y a deux grandes questions à répondre dans ce travail.
 \begin{itemize}
     \item Quels sont les paramètres qui influencent le plus l'expected goal ?
     \item Quel est le meilleur modèle pour prédire l'expected goal ?
 \end{itemize}
 
-Le but de ce travail est de comprendre quelles sont les variables qui influences le plus les xG.
+Le but de ce travail est de comprendre quelles sont les variables qui influencent le plus les xG.
 Cela permettra de comprendre quelles sont les variables les plus importantes pour prédire ces estimations de buts.
 Grâce à cela, il est possible pour un analyste de données d'une équipe de football de savoir quelles sont les facteurs qui influencent le plus la qualité d'un tir.
 Cela peut permettre de déterminer les forces et faiblesses d'une équipe et de savoir sur quels aspects travailler pour améliorer les performances de l'équipe.
@@ -277,28 +287,28 @@ En effet, le but sera d'avoir le modèle le plus performant et de comparer les d
 Il faut également veiller à ce que le modèle ne fasse pas de sur-apprentissage. Il est donc important de faire attention à la complexité du modèle et de trouver le meilleur compromis entre la complexité et la performance du modèle.
 
 \newpage
-\section{Plan du document}
+\subsection{Plan du document}
 Concernant le déroulement de ce travail, il y a plusieurs étapes.
 Tout d'abord, il y a la recherche des travaux existants sur le sujet.
 Cette étape est effectuée dans la section \ref{sec:synthese}.
-Parmi les travaux existants, je vais chercher à savoir quels datasets ont été utilisées ainsi que les résultats obtenus.
-Cela me permettra de comparer mes résultats avec les résultats obtenus dans les autres travaux et ainsi savoir si les résultats sont cohérents par rapport à l'état de l'art actuel des recherches scientifiques.
+Parmi ceux-ci, nous chercherons à savoir quels datasets ont été utilisés ainsi que les résultats obtenus.
+Cela nous permettra de comparer nos résultats avec ceux obtenus dans les autres travaux et ainsi savoir si les résultats sont cohérents par rapport à l'état de l'art actuel des recherches scientifiques.
 \newline \newline
 La suite sera de trouver un dataset avec les informations nécessaires pour implémenter le modèle.
 Cette étape de la thèse est très importante puisque c'est la base de la thèse.
 Une fois ce dataset trouvé, il va falloir le documenter. En effet, il est important de comprendre ce que chaque attribut représente.
-L'étape suivante est également importante puisque le but sera de visualiser les données.
-Cela permettra de voir si les données sont exploitables et si elles sont cohérentes.
+L'étape suivante est importante pour visualiser les données.
+Cela permettra de voir si les données sont exploitables et cohérentes.
 Cela pourra également nous indiquer si des biais seront présents dans le modèle.
 Cette section d'analyse du dataset est trouvable dans la section \ref{sec:dataset}.
 \newline \newline
-Une fois que les données sont documentées et visualisées, il va falloir les préparer.
+Une fois les données documentées et visualisées, il va falloir les préparer.
 En effet, il pourrait y avoir des données manquantes mais qui sont disponibles après un traitement.
 Il pourrait également y avoir des données qui ne sont pas exploitables et qui doivent être supprimées.
-Par exemple, l'identifiant de la base de données d'un tir pourrait être supprimée car il n'appporte rien pour la prédiction de l'expected goal.
+Par exemple, l'identifiant de la base de données d'un tir pourrait être supprimé car il n'appporte rien pour la prédiction de l'expected goal.
 Cette section de transformation du dataset est également trouvable dans la section \ref{sec:dataset} qui fait suite à la section d'analyse du dataset initial.
 \newline \newline
-Ensuite, on pourra commencer à implémenter le modèle et observer les facteurs qui influencent le plus sa prédiction du xG.
+Ensuite, nous pourrons commencer à implémenter le modèle et observer les facteurs qui influencent la prédiction du xG.
 Cette partie est trouvable dans la section \ref{sec:methodologie}.
 C'est également à ce moment-là qu'il faudra comparer les différents modèles pour voir lequel est le plus performant pour prédire les xG.
 La comparaison est trouvable dans la section \ref{sec:results} qui visent à montrer la fiabilité et la cohérence du modèle par rapport à la problématique initial.
@@ -309,7 +319,7 @@ La comparaison est trouvable dans la section \ref{sec:results} qui visent à mon
 Le premier travail repertorié sur les xG et la qualité d'un tir est celui de Richard Pollard, Jake Ensum et Samuel Taylor \cite{pollardEstimatingProbabilityShot2004}.
 Dans ce travail datant de 2004, la seule information indiquée concernant le dataset est que les données proviennent de la Coupe du monde 1986 et de celle de 2002.
 Le modèle a été implémenté en utilisant une régression logistique.
-Le nombre de tirs répertoriées dans ce travail est de 1096.
+Le nombre de tirs répertoriés dans ce travail est de 1096.
 La conclusion de ce travail est que les 3 facteurs les plus influents pour la prédiction des xG sont :
 \begin{itemize}
     \item La distance entre le tireur et le but
@@ -327,21 +337,22 @@ Le résultat final de l'analyse de la régression logistique de ce travail resse
         Angle              & -0.0222              & -3.81      & 0.000      & 0.98           & 0.97           & 0.99           \\ \hline
         Space              & 0.7991               & 3.22       & 0.001      & 2.22           & 1.37           & 3.62           \\ \hline
     \end{tabular}
-    \caption{Résultat de la régression logistique du travail de Pollard, Ensum et Taylor}
+    \caption{Résultats de la régression logistique du travail de Pollard, Ensum et Taylor}
 \end{table}
 
 Le deuxième travail est celui de Izzatul Umami, Deden Hardan Gutama et Heliza Rahmania Hatta \cite{umamiImplementingExpectedGoal2021}. 
-Ce travail utilise les données de Wyscout des 5 championnats majeurs en Europe de la saison 2019-20. Ces derniers ont décidés de prendre comme données :
+Il utilise les données de Wyscout des 5 championnats majeurs en Europe de la saison 2019-20. 
+Les auteurs ont décidés de prendre comme données :
 \begin{itemize}
     \item La distance
     \item L'angle
     \item Si le tir est un tir de la tête ou pas
 \end{itemize}
-Dans le dataset, 32000 tirs ont été utilisées pour la création du modèle.
+Dans le dataset, 32000 tirs ont été utilisés pour la création du modèle.
 Comme pour le travail précédent, la régression logistique a été utilisée.
-Il est également indiqué qu'une séparation du dataset a été faite pour avoir des données d'entraînement et de tests.
+Il est également indiqué qu'une séparation du dataset a été faite pour avoir des données d'entraînement et de test.
 Dans leurs tests du modèle, il est indiqué que le but est de faire de la classification pour de futures instances, il faut donc utiliser un seuil.
-Suite à l'utilisation d'un seuil pour la classification, une matrice de confusion a été faite pour ensuite calculer la spécificité et la sensibilité du modèle.
+Suite à l'utilisation de ce dernier pour la classification, une matrice de confusion a été faite pour ensuite calculer la spécificité et la sensibilité du modèle.
 Ce principe de sensibilité et spécificité permet de choisir la meilleure performance selon le contexte d'utilisation du modèle.
 \begin{equation}
     Sensitivity = \frac{True Positive}{True Positive + False Negative}
@@ -349,22 +360,22 @@ Ce principe de sensibilité et spécificité permet de choisir la meilleure perf
 \begin{equation}
     Specificity = \frac{True Negative}{True Negative + False Positive}
 \end{equation}
-La sensibilité permet de voir la capacité du modèle à prédire correctement les tirs qui sont des buts.
-De l'autre côté, la spécificité permet de voir la capacité du modèle à prédire correctement les tirs qui ne sont pas des buts.
+La sensibilité permet de voir la capacité du modèle à prédire correctement les tirs qui seront des buts.
+De l'autre côté, la spécificité permet de voir la capacité du modèle à prédire correctement les tirs qui ne seront pas des buts.
 Comme indiqué dans le travail de Umami, Gutama et Hatta, la spécificité est plus importante que la sensibilité selon le contexte.
 Dans le cas où le modèle est utilisé pour prédire un cancer, nous allons chercher à avoir une meilleur sensibilité pour éviter de passer à côté d'un cancer. \cite{umamiImplementingExpectedGoal2021}
 Cela leur permet de savoir comment choisir le seuil pour la classification.
 En conclusion de leur travail, ils ont obtenu une sensibilité de 0.9671945701357466 et une spécificité de 0.19034406215316316 pour un seuil 0.02.
-Ils indiquent finalement que le modèle de xG est plus performant si l'on prend la distance et l'angle en compte plutôt que de prendre uniquement la distance.
+Ils indiquent finalement que le modèle de xG est plus performant si nous prenons la distance et l'angle en compte plutôt que de prendre uniquement la distance.
 \newline\newline
 Un travail qui fournit également du code est celui de David Sumpter \cite{sumpterFittingXGModel}. 
-Le travail de ce dernier est de créer un modèle de xG en utilisant une régression logistique. 
+Son objectif est de créer un modèle de xG en utilisant une régression logistique. 
 Il utilise les données de Wyscout du championnat anglais de la saison 2017-18. 
-Ce dernier explique étape par étape ce qui est effectué pour créer et améliorer son modèle.
+David Sumpter explique étape par étape ce qui est effectué pour créer et améliorer son modèle.
 Il y a également des pistes pour convertir les positions X et Y en distance et en angle.
 Il commence par créer un modèle de xG en utilisant uniquement la distance. 
 Par la suite, il le fait uniquement avec l'angle.
-Ensuite, il utilise de multiples facteurs, comme la distance au carré ou encore l'angle multiplié par la position X du tir, pour créer son modèle et il produit un résumé de la régression logistique.
+Finalement, il utilise de multiples facteurs, comme la distance au carré ou encore l'angle multiplié par la position X du tir, pour créer son modèle et produit un résumé de la régression logistique.
 
 \begin{table}[htp]
     \centering
@@ -387,7 +398,7 @@ Il n'y a pas moyen de connaître les coefficients uniquement pour la distance et
 Le dernier travail est fait par H.P.H Eggels. 
 Le but est d'expliquer le résultat d'un match en utilisant les xG. 
 Dans ce travail, il utilise un modèle de xG pour prédire le résultat d'un match.
-Les données du travail proviennent de ORTEC, de Immotio et FIFA. En effet, son travail utilise trois datasets pour créer son modèle de xG. \cite{eggelsExpectedGoalsSoccer2016}.
+Les données du travail proviennent de ORTEC, de Immotio et FIFA. En effet, son article scientifique utilise trois datasets pour créer son modèle de xG. \cite{eggelsExpectedGoalsSoccer2016}.
 Il y a eu un travail de "merging" des données pour avoir un dataset qui contient toutes les informations nécessaires pour créer le modèle. 
 Cependant, les datasets peuvent avoir des problèmes entre eux lors du "merging". 
 Par exemple, les noms des joueurs qui sont différents (majuscule, accent, encodage, surnom, etc.) a été un problème mais une solution a été trouvée.
@@ -416,7 +427,7 @@ Parmi les modèles testés, ce travail utilise :
     \item Un arbre de décision
     \item Ada-boost
 \end{itemize}
-Pour chacun de ces modèles, il y a une liste des différents paramètres qui vont être utilisés pour trouver le meilleur modèle.
+Pour chacun de ces modèles, il y a une liste des différents paramètres qui vont être utilisés pour trouver le meilleur d'entre eux.
 Chacun des modèles a suivi une procédure avec un set d'entraînement, un set de validation et un set de test.
 Le set de validation permet de trouver les meilleurs paramètres pour le modèle.
 Le set de test permet de tester le modèle avec les paramètres trouvés et le comparer avec les autres modèles
@@ -440,7 +451,7 @@ Ce travail donne tout de même de bonnes pistes pour l'ajout de nouvelle donnée
 \end{table}
 On observe donc que la majorité des travaux existants utilisent la distance et l'angle pour estimer les xG.
 C'est essentiellement ces deux facteurs qui sont utilisés pour établir la prédiction.
-Concernant les autres facteurs, ils sont utilisés pour améliorer la prédiction mais rien n'indique s'ils ont autant d'influence que la distance et l'angle.
+Concernant les autres facteurs, ils servent à améliorer la prédiction mais rien n'indique s'ils ont autant d'influence que la distance et l'angle.
 
 \newpage
 \section{Dataset}
@@ -450,9 +461,9 @@ Concernant les autres facteurs, ils sont utilisés pour améliorer la prédictio
 
 
 Le dataset qui a été trouvé pour cette thèse est un dataset provenant de Wyscout. 
-Wyscout est un site web qui fournit des données sur le football. 
-On peut par exemple trouver des données sur les joueurs, les équipes, les matchs, les événements d'un match comme les passes, les tirs, etc.
-Ces données sont collectées grâce à une équipe d'experts nommés "opérateur" qui utilisent un logiciel propriétaire nommé "marqueur" pour décrire les événements.
+Ce dernier est un site web qui fournit des données sur le football. 
+Nous pouvons, par exemple, trouver des données sur les joueurs, les équipes, les matchs, les événements d'un match comme les passes, les tirs, etc.
+Ces données sont collectées grâce à une équipe d'experts nommés "opérateur" qui utilisent un logiciel propriétaire nommé "marqueur" afin de décrire les événements.
 Pour garantir la précision des données, la description des événements d'un match est faite par une équipe de trois opérateurs. 
 Deux d'entre eux sont attribués aux deux équipes et le troisième a le rôle de superviseur et de responsable des données sortantes du match. \cite{pappalardoPublicDataSet2019} 
 Il peut y avoir parfois un quatrième opérateur qui a le rôle d'accélérer le processus de description d'événements d'un match. 
@@ -480,7 +491,7 @@ Il se peut que certains matchs n'aient pas subi de contrôle qualité car ils ut
     \caption{Aperçu du logiciel propriétaire de Wyscout}
     \label{fig:logiciel_proprietaire}
 \end{figure}
-Sur la figure \ref{fig:logiciel_proprietaire}, on peut voir un aperçu du logiciel propriétaire de Wyscout.
+Sur la figure \ref{fig:logiciel_proprietaire}, nous pouvons apercevoir le logiciel propriétaire de Wyscout.
 La partie (a) montre la timeline du match avec les événements qui ont été ajoutés.
 La partie (b) montre les informations d'un événement ainsi que l'indication de la position de l'événement sur le terrain.
 \newline\newline
@@ -534,7 +545,7 @@ Parmi les types d'événements\footnote{Le nom des événements est en anglais m
 \end{itemize}
 
 L'attribut "tags" est également important.
-Cette attribut est une liste de tags qui permettent d'apporter des informations supplémentaires sur l'événement.
+Il représente une liste de tags qui permettent d'apporter des informations supplémentaires sur l'événement.
 La documentation des tags peut être trouvée sur le glossaire de Wyscout. \cite{WyscoutGlossary}
 Par exemple, le tag 101 indique que l'événement est un but. 
 Le tag 401 indique que le tir a été fait du pied gauche, le tag 402 indique que le tir a été fait du pied droit.
@@ -542,24 +553,25 @@ Finalement, le tag 403 indique que le tir a été fait de la tête.
 \newline\newline
 Le dernier point important est la localisation de l'événement.
 En effet, comme indiqué dans la section "Pitch coordinates" du glossaire de Wyscout, \cite{WyscoutGlossary} les coordonnées X et Y sont relatives à la taille du terrain.
-Il y a un aperçu de la taille du terrain sur la figure avec ses coordonnées sur la figure \ref{fig:terrain}.
+Il y a un aperçu de la taille du terrain avec ses coordonnées sur la figure \ref{fig:terrain}.
 Cela donne une idée de la taille du terrain.
 Le choix de la taille du terrain en 100 par 100 a été fait car les terrains n'ont pas tous la même taille malgré les règles de l'IFAB.
 \newline\newline
-L'IFAB est l'International Football Association Board qui est l'organisme qui définit les règles du football. 
-C'est cet organisme qui définit donc la taille des terrains de football.
-En effet, les terrains de football ont une taille qui peut varier entre 90 et 120 mètres de longueur et entre 45 et 90 mètres de largeur. \cite{TerrainIFAB}
+L'IFAB est l'International Football Association Board.
+C'est un organisme qui définit les règles du football comme la taille des terrains.
+Celle-ci pouvant varier entre 90 et 120 mètres de longueur et entre 45 et 90 mètres de largeur. \cite{TerrainIFAB}
 \newline\newline 
-Une autre information importante qui est indiqué dans la documentation de l'API de Wyscout \cite{WyscoutAPI} est que les positions des événements ont été normalisées par rapport à l'emplacement du but de l'équipe qui a généré l'événement.
+Une autre information importante indiquée dans la documentation de l'API de Wyscout \cite{WyscoutAPI} est que les positions des événements ont été normalisées par rapport à l'emplacement du but de l'équipe qui a généré l'événement.
 Cela veut dire que dans les données fournies par le dataset, les équipes jouent toujours dans le même sens du terrain.
-On peut d'ailleurs constater cela lorsqu'on regarde les positions des événements de tirs \ref{fig:events_tirs_emplacements}, en effet sur la figure \ref{fig:events_tirs_emplacements}, on peut voir que les tirs sont toujours effectués du même côté du terrain\footnote{Certains sont effectuées dans l'autre partie du terrain mais jamais dans la surface de réparation opposée.}.
+Nous pouvons d'ailleurs constater cela lorsque nous regardons les positions des événements de tirs \ref{fig:events_tirs_emplacements}, en effet sur la figure \ref{fig:events_tirs_emplacements}, nous pouvons voir que les tirs sont toujours effectués du même côté du terrain\footnote{Certains sont effectuées dans l'autre partie du terrain mais jamais dans la surface de réparation opposée.}.
 Il est également possible de visualiser la distribution des positions X des tirs sur la figure \ref{fig:histogramme_position_x_tirs}.
-On voit bien que les tirs sont toujours effectués dans la même partie du terrain.
-Le fait que les tirs sont relatives à la position du but de l'équipe qui a généré l'événement règle déjà un problème qui aurait pu se poser.
-En effet, il aurait fallu déterminer quelle équipe joue dans quel sens du terrain et donc savoir dans quelle direction les tirs sont effectuées.
+Nous pouvons apercevoir que les tirs sont toujours effectués dans la même partie du terrain.
+Les tirs sont relatifs à la position du but de l'équipe qui a généré l'événement.
+Cela règle déjà un problème qui aurait pu se poser.
+En effet, il aurait fallu déterminer quelle équipe joue dans quel sens du terrain et donc savoir dans quelle direction les tirs sont effectués.
 Ce travail aurait été nécessaire et extrêmement important car cela aurait pu fausser les données sur la distance et l'angle de tir.
 \newline\newline
-On sait donc que, dans le dataset, les équipes jouent toutes dans le même sens du terrain, Cela nous simplifie la tâche pour la suite de la thèse.
+Nous savons donc que, dans le dataset, les équipes jouent toutes dans le même sens du terrain, Cela nous simplifie la tâche pour la suite de la thèse.
 
 \begin{figure}[htp]
     \centering
@@ -590,17 +602,17 @@ On sait donc que, dans le dataset, les équipes jouent toutes dans le même sens
 Le dataset contient également des informations sur les joueurs.
 Le tableau \ref{tab:players} décrit les attributs du dataset "Players".
 \newline\newline
-On peut voir que le dataset contient des informations sur les joueurs comme leur taille, leur poids, leur date de naissance, leur nationalité, leur poste, etc.
-L'une des informations qui est intéressante dans la suite de la thèse et le pied fort du joueur.
-En effet, le pied fort du joueur peut être un facteur qui influence le résultat de la prédiction des xG.
-C'est pour cela qu'il est important de garder cet attribut dans le dataset final qui va être utilisé pour entraîner le modèle.
+Nous pouvons voir que le dataset contient des informations sur les joueurs comme leur taille, leur poids, leur date de naissance, leur nationalité, leur poste, etc.
+L'une des informations intéressante dans la suite de la thèse est le pied fort du joueur.
+En effet, celui-ci peut être un facteur qui influence le résultat de la prédiction des xG.
+C'est pour cela qu'il est important de garder cet attribut dans le dataset final qui sera utilisé pour entraîner le modèle.
 \begin{table}[h]
     \centering
     \begin{tabular}{|l|l|}
     \hline
     \textbf{Nom de l'attribut} & \textbf{Description}                                                                                              \\ \hline
     birthArea                  & Pays de naissance du joueur                                                                                       \\ \hline
-    birthDate                  & Date de naissancxwe du joueur                                                                                       \\ \hline
+    birthDate                  & Date de naissance du joueur                                                                                       \\ \hline
     currentNationalTeamId      & Equipe nationale du joueur                                                                                        \\ \hline
     currentTeamId              & \begin{tabular}[c]{@{}l@{}}Equipe actuelle du joueur. \\ Est lié à l'attribut "wyId" de l'équipe\end{tabular}     \\ \hline
     firstName                  & Prénom du joueur                                                                                                  \\ \hline
@@ -624,12 +636,12 @@ C'est pour cela qu'il est important de garder cet attribut dans le dataset final
 % Transformation des positions des événements en angle et distance
 Comme discuté dans la section \ref{subsec:events}, les coordonnées X et Y sont relatives à la taille du terrain.
 Un présupposé qui est fait est que la taille du terrain est de 105 par 68.
-Cette taille de terrain est la plus commune dans le football professionnel.
-On peut notamment le voir sur le site officiel de la Premier League \cite{PremierLeagueClubs}.
-Je démarre donc par un présupposé que tous les terrains qui ont accueilli les matchs dans le dataset ont comme dimension 105 mètres par 68.
+Celle-ci est la plus commune dans le football professionnel.
+Nous pouvons notamment le voir sur le site officiel de la Premier League \cite{PremierLeagueClubs}.
+Nous démarrons donc par un présupposé que tous les terrains qui ont accueilli les matchs dans le dataset ont comme dimension 105 mètres par 68.
 Ce présupposé nous permettra ainsi de pouvoir calculer la distance en mètre par rapport au but adverse ainsi que l'angle de tir.
 \newpage
-Nous elaborerons notre travail sur la transformation des données en quatre parties distinctes.
+Nous élaborerons notre travail sur la transformation des données en quatre parties distinctes.
 Pour commencer, nous transformons les coordonnées X et Y qui sont à l'échelle 100 par 100 en coordonnées X et Y à l'échelle 105 par 68.
 Pour cela, il suffit de multiplier les coordonnées X par 1.05 et les coordonnées Y par 0.68.
 \begin{equation}
@@ -638,9 +650,9 @@ Pour cela, il suffit de multiplier les coordonnées X par 1.05 et les coordonné
         y_{68} = y_{100} * 0.68
     \end{split}
 \end{equation}
-On passe également les coordonnées X de l'autre côté du terrain. 
+Nous passons également les coordonnées X de l'autre côté du terrain. 
 Cela permettra de calculer la distance par rapport au centre du terrain.
-Il suffit de soustraire les coordonnées X à 105\footnote{Dans mon cas, j'ai soustrait les coordonnées avant de passer à l'échelle 105x68, donc j'ai soustrait les coordonnées de X à 100.}.
+Il suffit de soustraire les coordonnées X à 105\footnote{Dans notre cas, nous soustrayons les coordonnées avant de passer à l'échelle 105x68, donc nous avons soustrait les coordonnées de X à 100.}.
 \newline\newline
 Par la suite, nous allons créer un attribut qui contient la distance par rapport au centre du terrain sur l'axe Y.
 Cet attribut permettra de calculer la distance du tir ainsi que son angle.
@@ -651,7 +663,7 @@ Pour cela, il suffit de calculer la distance entre le centre du terrain et la po
     \end{split}
 \end{equation}
 34 étant la moitié de la largeur du terrain. 
-Cela nous permet d'avoir la distance par rapport au centre du terrain sur l'axe Y \footnote{Pareil que pour la coordonnée X, la soustraction a été faite sur l'échelle 100x100 avant de passer à l'échelle 105x68}.
+Cela nous permet d'avoir la distance par rapport au centre du terrain sur l'axe Y \footnote{Tout comme pour la coordonnée X, la soustraction a été faite sur l'échelle 100x100 avant de passer à l'échelle 105x68}.
 \newline\newline
 Ensuite, nous calculons la distance du tir par rapport au but adverse.
 
@@ -659,8 +671,8 @@ Sur la figure \ref{fig:distance_tir}, [C] représente le centre du terrain, [E] 
 [DG] représente l'attribut que l'on a calculer précédemment qui contient la distance par rapport au centre du terrain sur l'axe Y.
 [DF] représente la position en X par rapport au but adverse.
 Ce qui est effectué pour calculer la distance du tir par rapport au but adverse est d'utiliser le théorème de Pythagore.
-On peut voir sur la figure \ref{fig:distance_tir} que l'on a un triangle rectangle [GDF].
-Avec le théorème de Pythagore, on peut savoir que :
+Nous pouvons voir sur la figure \ref{fig:distance_tir} que nous avons un triangle rectangle [GDF].
+Avec le théorème de Pythagore, nous pouvons savoir que :
 \begin{equation}
     DE^2 = GF^2 = DG^2 + DF^2
 \end{equation}
@@ -670,33 +682,33 @@ Pour finir, nous allons calculer l'angle du tir par rapport au but adverse.
 Il est d'abord important d'amener une autre information qui, cette fois-ci, n'est pas un présupposé.
 En effet, la largeur des buts de football est de 7.32 mètres \cite{TerrainIFAB}.
 Pour cette partie, le choix a été d'utiliser l'inverse de la tangente et la règle qui dit que la somme des angles d'un triangle est égale à 180 degrés.
-Grâce à cela, on peut calculer l'angle du tir par rapport au but adverse.
-On peut voir sur la figure \ref{fig:angle_tir} que l'on a un triangle JGF.
+Grâce à cela, nous pouvons calculer l'angle du tir par rapport au but adverse.
+Nous pouvons voir sur la figure \ref{fig:angle_tir} que l'on a un triangle JGF.
 L'objectif est de calculer l'angle situé au sommet G.
 On sait que GI représente $y_{Centre}$ et que HF représente la valeur de $x$.
 FJ représente la largeur du but qui est, comme indiqué précédemment, de 7.32 mètres.
-On peut donc avoir la valeur de GH et GK en additionnant ou soustrayant la moitié de la largeur du but à $y_{Centre}$.
+Nous pouvons donc avoir la valeur de GH et GK en additionnant ou soustrayant la moitié de la largeur du but à $y_{Centre}$.
 \begin{equation}
     \begin{split}
         GH = y_{Centre} - \frac{7.32}{2} \\
         GK = y_{Centre} + \frac{7.32}{2}
     \end{split}
 \end{equation}
-En utilisant la tangente inverse, on peut calculer l'angle GJK ainsi que l'angle GFH.
-Avec ces deux angles, on peut calculer l'angle à l'intérieur du triangle JGF pour finalement récupérer l'angle du tir par rapport au but adverse en faisant\footnote{En degrés} :
+En utilisant la tangente inverse, il est possible de calculer l'angle GJK ainsi que l'angle GFH.
+Avec ces deux angles, nous pouvons calculer l'angle à l'intérieur du triangle JGF pour finalement récupérer l'angle du tir par rapport au but adverse en faisant\footnote{En degrés} :
 \begin{equation}
     \begin{split}
         \alpha = 180 - (Angle_{GJK} + Angle_{GFH})
     \end{split}
 \end{equation}
-Finalement l'équation totale ressemble à cela, une fois que l'on a toutes les valeurs :
+Finalement l'équation totale ressemble à cela, une fois toutes les valeurs réunies :
 \begin{equation}
     \begin{split}
         \alpha = 180 - (tan^{-1}(\frac{GH}{HF}) + 90) - (90 -tan^{-1}(\frac{GK}{HF}))
     \end{split}
 \end{equation}
 
-Il est d'ailleurs possible d'accéder au schémas géométrique sur Geogebra.
+Il est d'ailleurs possible d'accéder aux schémas géométriques sur Geogebra.
 Cela permet de manipuler les différents points et de voir les valeurs se mettre à jour automatiquement.
 Ils sont disponibles en bas de page\footnote{Angle : \url{https://www.geogebra.org/geometry/d7tqw4fe}}\footnote{Distance : \url{https://www.geogebra.org/geometry/fnx3swex}}.
 
@@ -719,8 +731,8 @@ Ils sont disponibles en bas de page\footnote{Angle : \url{https://www.geogebra.o
 Cette section vise à expliquer comment les datasets ont été fusionnés.
 On a pu voir que le dataset events contient l'identifiant du joueur qui a effectué l'action sous le nom d'attribut "playerId" (voir table \ref{tab:events}).
 Cet identifiant correspond à l'identifiant nommé "wyId" dans le dataset players (voir table \ref{tab:players}).
-L'objectif est donc de fusionner les deux datasets en utilisant ce deux attributs pour permettre d'avoir les informations des joueurs dans le dataset events.
-Dans notre cas, nous allons faire une jointure pour permettre de récupérer quel est le pied fort du joueur ayant généré l'événement.
+L'objectif est donc de fusionner les deux datasets en utilisant ces deux attributs pour permettre d'avoir les informations des joueurs dans le dataset events.
+Dans notre cas, nous allons faire une jointure pour permettre d'identifier le pied fort du joueur ayant généré l'événement.
 Grâce à cela, il nous est possible de savoir si le joueur a tiré avec son pied fort ou non.
 \newline\newline
 
@@ -744,7 +756,7 @@ Grâce à cela, il nous est possible de savoir si le joueur a tiré avec son pie
 
 \subsection{Visualisation des données}
 % Visualisation des données
-Cette section vise à visualiser les données du dataset final.
+Cette section sert à visualiser les données du dataset final.
 Tout d'abord, nous allons effectuer une description simple du dataset.
 Le dataset contient 43075 tirs sur une saison de football (2017/2018) dans 7 compétitions différentes :
 \begin{itemize}
@@ -757,9 +769,9 @@ Le dataset contient 43075 tirs sur une saison de football (2017/2018) dans 7 com
     \item Euro 2016
 \end{itemize}
 La description du dataset est disponible sur le tableau \ref{tab:describe_dataset}.
-On peut voir que la distance maximale d'un tir a été de 103.95 mètres et la distance minimale de 0.68 mètre.
-On constate donc que certains tirs n'ont pas été normalisés par rapport au sens du jeu de l'équipe comme indiqué dans la section \ref{subsec:events}. 
-C'est pour cela que notre but va être de retirer certains tirs considérés comme des "outliers".
+Nous pouvons voir que la distance maximale d'un tir a été de 103.95 mètres et la distance minimale de 0.68 mètre.
+Nous constatons que certains tirs n'ont pas été normalisés par rapport au sens du jeu de l'équipe comme indiqué dans la section \ref{subsec:events}. 
+Notre but va être de retirer certains tirs considérés comme des "outliers".
 \begin{table}[htp]
     \centering
     \begin{tabular}{r|r|r|r|r|r|}
@@ -779,16 +791,16 @@ C'est pour cela que notre but va être de retirer certains tirs considérés com
 \end{table}
 
 Tout d'abord, nous allons visualiser la fréquence des tirs en fonction de leur position à l'aide d'une heatmap sur un pitch chart.
-Un pitch chart est un graphique qui affiche un terrain de football.
-Grâce à cela on peut visualiser plus simplement d'où ont été effectuées les tirs.
+Ce dernier est un graphique qui affiche un terrain de football.
+Grâce à cela, nous pouvons apercevoir plus simplement d'où ont été effectués les tirs.
 Le but de notre pitch chart est de visualiser les tirs qui ont été effectués à leurs positions respectives.
-Dans mon cas, j'ai décidé d'utiliser une heatmap pour visualiser la fréquence des tirs à chacune des positions sur le terrain.
+Dans notre cas, nous avons décidé d'utiliser une heatmap pour visualiser la fréquence des tirs à chacune des positions sur le terrain.
 Le pitch chart peut être vu sur la figure \ref{fig:pitch_chart}.
-On peut voir qu'une grande majorité des tirs ont été effectués dans la surface de réparation.
-On peut également remarquer qu'il y a très peu de tirs à l'entrée de la surface de réparation.
-Il y a plusieurs hypothèses qui peuvent être faites pour expliquer cela.
+Nous pouvons voir qu'une grande majorité des tirs ont été effectués dans la surface de réparation.
+Nous sommes amenés à remarquer qu'il y a très peu de tirs à l'entrée de la surface de réparation.
+Plusieurs hypothèses peuvent être faites pour expliquer cela.
 La première est que les joueurs préfèrent tirer dans la surface de réparation car ils ont plus de chances de marquer. 
-Cependant, on remarque qu'il y a également des tirs plus lointain.
+Cependant, nous remarquons qu'il y a également des tirs plus lointains.
 La deuxième hypothèse est que ce phénomène est dû à comment les données sont récoltées.
 Il est effectivement possible que les opérateurs ou que le logiciel propriétaire de Wyscout détermine qu'un tir ait été fait dans la surface de réparation ou en dehors de celle-ci, plutôt que sur la ligne de la surface de réparation.
 Cela nous montre déjà une des limitations des données que nous utilisons.
@@ -804,11 +816,11 @@ En effet, nous avons pu voir que la distance maximale d'un tir a été de 103.95
 Il faut donc vérifier si ce tir est un "outlier" ou non. 
 Nous allons également nous focaliser sur d'autres tirs considérés comme "outliers".
 Tout d'abord, visualisons les graphiques de la distance, l'angle de tir et l'angle de tir absolu (voir fig. \ref{fig:analyse_quantitative}).
-Lorsque l'on observe les histogrammes, on remarque que pour la distance et l'angle de tir, il y a une majorité de tirs qui ont été effectués à une distance inférieure à 50 mètres et un angle de tir inférieur à 1.5 radian.
-On peut également voir qu'il n'y a pas de séparation distincte entre les distributions des tirs selon leur valeur cible via les graphiques de la deuxième colonne.
-Cela aurait été très pertinent puisque l'on aurait pu voir quel attribut aurait été le plus influent directement en observant les données.
-Cependant, on peut remarquer que des outliers ont été trouvés pour la distribution des différentes variables via les boxplots. 
-Les outliers sont déterminées en se basant sur la règle suivante \cite{galarnykUnderstandingBoxplotsHow2022} :
+Lorsque nous observons les histogrammes, nous nous apercevons que pour la distance et l'angle de tir, il y a une majorité de tirs qui ont été effectués à une distance inférieure à 50 mètres et un angle de tir inférieur à 1.5 radian.
+Nous pouvons également voir qu'il n'y a pas de séparation distincte entre les distributions des tirs selon leur valeur cible via les graphiques de la deuxième colonne.
+Cela aurait été très pertinent puisque nous aurions pu voir quel attribut aurait été le plus influent directement en observant les données.
+Cependant, nous pouvons remarquer que des outliers ont été trouvés pour la distribution des différentes variables via les boxplots. 
+Les outliers sont déterminés en se basant sur la règle suivante \cite{galarnykUnderstandingBoxplotsHow2022} :
 \begin{equation}
     \begin{split}
         x < Q_1 - 1.5 * IQR \\
@@ -818,9 +830,9 @@ Les outliers sont déterminées en se basant sur la règle suivante \cite{galarn
 Comme indiqué sur la documentation de Matplotlib concernant les boxplots \cite{MatplotlibPyplotBoxplot}, la valeur de 1.5 est une valeur basée sur la définition initiale des boxplots de John Tukey.
 Ils permettent de définir les "maximum non-outlier" et "minimum non-outlier".
 \newline
-Via cette formule, on peut récupérer tous les outliers pour chaque variable, on obtient donc un tableau comme celui-ci (voir tab. \ref{tab:outliers}):
+Via cette formule, nous sommes capables de récupérer tous les outliers pour chaque variable, nous obtenons un tableau comme celui-ci (voir tab. \ref{tab:outliers}):
 L'objectif est maintenant de visualiser la probabilité de chacun des sets d'outliers. 
-Si l'on observe des anomalies ou des données aberrantes, il faudra les supprimer.
+Si nous observons des anomalies ou des données aberrantes, il sera nécessaire de les supprimer.
 \begin{table}[htp]
     \centering
     \begin{tabular}{l|l|l|l|}
@@ -828,7 +840,7 @@ Si l'on observe des anomalies ou des données aberrantes, il faudra les supprime
         \multicolumn{1}{r|}{}                                                             & \textbf{Distance} & \textbf{Angle} & \textbf{Angle absolu} \\ \hline
         \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Nombre\\ d'outliers\end{tabular}} & 197               & 2163           & 70                    \\ \hline
     \end{tabular}
-    \caption{Nombre d'outliers pour chaque variable quantitatives}
+    \caption{Outliers pour chaque variable quantitatives}
     \label{tab:outliers}
 \end{table}
 
@@ -836,7 +848,7 @@ Grâce à la figure \ref{fig:analyse_outlier2}, plusieurs observations peuvent �
 Tout d'abord, il est remarquable que les outliers pour les angles ne sont pas aberrants. 
 En effet, théoriquement, plus l'angle est grand, plus le but est facile à réaliser. 
 Cependant, en ce qui concerne les distances, il existe un nombre très limité d'outliers. 
-En examinant les valeurs situées entre 90 et 105, on constate que trois buts ont été marqués à cette distance. 
+En examinant les valeurs situées entre 90 et 105, nous pouvons constater que trois buts ont été marqués à cette distance. 
 En revanche, le nombre de tirs manqués dans la même plage est plus élevé.
 Théoriquement, marquer un but à 90 mètres du but est considéré comme irréalisable. 
 Par conséquent, ces données peuvent être considérées comme aberrantes et il serait envisageable de les supprimer. 
@@ -852,7 +864,7 @@ Ensuite, nous allons analyser les attributs qualitatifs en utilisant des diagram
 Ces graphiques permettent de visualiser la distribution des données pour chaque attribut qualitatif. 
 Ils sont présentés dans la figure \ref{fig:analyse_qualitative}. 
 À travers ces bar charts, il est possible d'observer que 10\% des tirs sont des buts. 
-On remarque également qu'il y a une majorité de tirs effectués avec le pied fort du tireur. 
+Nous constatons également qu'il y a une majorité de tirs effectués avec le pied fort du tireur. 
 Cependant, les tirs qui ne sont pas effectués avec le pied fort incluent également les tirs de la tête.
 Environ 15\% des tirs sont réalisés de cette manière, ce qui indique que la majorité des tirs sont effectués avec le pied (faible ou fort).
 \newline\newline
@@ -919,14 +931,14 @@ Cependant, il convient de noter que des analyses supplémentaires et des modéli
 % Liste des méthodes qui vont être utilisées
 Dans cette section, nous allons discuter de la méthodologie utilisée pour résoudre le problème de prédiction de la réussite d'un tir au but.
 Tout d'abord, nous allons faire une séparation sur le dataset pour avoir un jeu de données d'entraînement et un jeu de données de test.
-Le jeu de tests sera utilisé pour évaluer la performance des modèles finaux. 
-Tandis que le jeu d'entraînements, nous permettra d'entraîner notre modèle et de choisir le meilleur set d'hyper paramètres pour chaque modèle.
+Le jeu de test sera utilisé pour évaluer la performance des modèles finaux. 
+Tandis que le jeu d'entraînement, nous permettra d'entraîner notre modèle et de choisir le meilleur set d'hyper paramètres pour chaque modèle.
 Le partitionnement choisi pour les jeux de données est le suivant : 90\% des données pour le jeu d'entraînement et 10\% des données pour le jeu de test.
 
 \subsection{Choix des modèles}
 Plusieurs modèles vont être utlisés pour résoudre ce problème.
 Nous allons utiliser des modèles de classification binaire, car nous cherchons à prédire si un tir au but est réussi ou non.
-Je rappelle également que le but de la thèse est de répondre à la question suivante : "Quels sont les paramètres qui influencent le plus l'expected goal ?".
+Il est important de rappeler que le but de la thèse est de répondre à la question suivante : "Quels sont les paramètres qui influencent le plus l'expected goal ?".
 Certains de ces modèles ne seront pas les plus performants et les plus cohérents pour avoir la meilleure prédiction possible mais ils permettront de comprendre les paramètres qui influencent le plus l'expected goal.
 Nous allons tester les modèles suivants :
 \begin{itemize}
@@ -941,61 +953,61 @@ Nous allons tester les modèles suivants :
 \subsection{Cross Validation}
 \label{sec:cross_validation}
 Pour chaque modèle, nous allons utiliser la cross validation pour choisir le meilleur set d'hyper paramètres.
-La cross validation est une méthode qui permet de tester la performance d'un modèle sur un jeu de données.
+Elle représente une méthode qui permet de tester la performance d'un modèle sur un jeu de données.
 Elle consiste à séparer le jeu de données en plusieurs sous-ensembles.
-Comme on peut le voir sur la figure \ref{fig:cross_validation}, le jeu de données est séparé en 5 sous-ensembles.
-Chaque itération consiste à entraîner le modèle sur 4 sous-ensembles et à tester le modèle sur le dernier sous-ensemble.
+Comme nous pouvons le voir sur la figure \ref{fig:cross_validation}, le jeu de données est séparé en 5 sous-ensembles.
+Chaque itération consiste à entraîner le modèle sur 4 sous-ensembles et à tester le modèle sur le dernier sous-ensemble (celui de "Validation").
 Cette opération est répétée 5 fois pour que chaque sous-ensemble soit utilisé comme jeu de test.
 La performance du modèle est calculée en faisant la moyenne des performances obtenues sur chaque sous-ensemble.
 Dans notre cas, cette performance est effectuée en utilisant la "log loss" comme métrique.
-Cette métrique est utilisée pour évaluer la performance d'un modèle de classification probabiliste\footnote{Pour rappel, le xG est une métrique probabiliste puisqu'elle indique la chance qu'un tir soit transformé en but sous forme de pourcentage.}.
+Celle-ci est utilisée pour évaluer la performance d'un modèle de classification probabiliste\footnote{Pour rappel, le xG est une métrique probabiliste puisqu'elle indique la chance qu'un tir soit transformé en but sous forme de pourcentage.}.
 C'est ainsi que nous pouvons choisir le meilleur set d'hyper paramètres pour chaque modèle.
 \newline\newline
-Après avoir choisi nos modèles et leurs hyper paramètres, nous allons les entraîner sur le jeu de données d'entraînement entier et les tester sur le jeu de données de test.
+Après avoir choisi nos modèles et leurs hyper paramètres, nous allons les entraîner sur le jeu de données d'entraînement entier et les tester sur le jeu de données de test final.
 Cela nous permettra ensuite de comparer les résultats entre les différents modèles.
 Le but est d'avoir la meilleure version d'un modèle et de la comparer avec la meilleure version des autres modèles. 
-C'est ainsi que l'on pourra déterminer quel modèle est le plus performant pour résoudre notre problème.
+C'est ainsi que nous pourrons déterminer quel modèle est le plus performant pour résoudre notre problème.
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.6\textwidth]{img/cross_validation_schema.png}
-    \caption{Cross Validation - Source : Dataspirant}
+    \includegraphics[width=0.7\textwidth]{img/cross_validation_schema.png}
+    \caption{Cross Validation avec 5 sous-ensembles}
     \label{fig:cross_validation}
 \end{figure}
 
 \subsection{Sélection des meilleurs attributs}
 Pour la sélection des meilleurs attributs, nous allons utiliser la méthode de forward elimination.
-Cette méthode consiste à tester tous les attributs un par un en les ajoutant au fur et à mesure au modèle et observer la performance du modèle.
+Elle consiste à tester tous les attributs un par un en les ajoutant au fur et à mesure au modèle et observer la performance du modèle.
 La p-value est utilisée pour déterminer si un attribut est significatif ou non et s'il apporte une amélioration à la performance du modèle.
 Plus la p-value est faible, plus l'attribut est significatif.
 \newline\newline
-Par exemple, dans le tableau \ref{tab:logistic_regression_result_1}, on peut voir que l'attribut "X" a une p-value de 0.000.
+Par exemple, dans le tableau \ref{tab:logistic_regression_result_1}, nous sommes amenés à voir que l'attribut "X" a une p-value de 0.000.
 Cela indique que cet attribut est significatif et qu'il apporte une amélioration à la performance du modèle en plus de la constante.
 \newline\newline
-Sur le tableau \ref{tab:logistic_regression_result_2}, on peut voir que l'attribut "Y" a une p-value de 0.960.
+Sur le tableau \ref{tab:logistic_regression_result_2}, nous pouvons voir que l'attribut "Y" a une p-value de 0.960.
 Cela indique que cet attribut n'est pas du tout significatif et qu'il n'apporte aucune amélioration à la performance du modèle.
-On le remarque d'ailleurs lorsque l'on observe la valeur du coefficient qui est très proche de 0.
+Nous pouvons le remarquer d'ailleurs lorsque nous observons la valeur du coefficient qui est très proche de 0.
 Il faut donc supprimer cet attribut du modèle.
 \newline\newline
-Pour la troisième itération sur le tableau \ref{tab:logistic_regression_result_3}, on ajoute l'attribut "distance" au modèle.
-Cependant, on a supprimé l'attribut "Y" qui n'était pas significatif.
-On remarque donc que les p-values des attributs "X" et "distance" sont très faibles.
+Pour la troisième itération sur le tableau \ref{tab:logistic_regression_result_3}, nous ajoutons l'attribut "distance" au modèle.
+Cependant, nous avons supprimé l'attribut "Y" qui n'était pas significatif.
+Nous constatons que les p-values des attributs "X" et "distance" sont très faibles.
 Cela indique que ces deux attributs sont significatifs et qu'ils apportent une amélioration à la performance du modèle.
 La valeur du coefficient de l'attribut "distance" est négative. 
 Cela veut dire que plus la distance est grande, plus la probabilité d'avoir un but est faible.
 \newline\newline
-Pour la quatrième itération sur le tableau \ref{tab:logistic_regression_result_4}, on ajoute l'attribut "angle" au modèle.
-Cependant, dans ce cas-ci, on observe que la p-value de l'attribut "X" est très élevée. 
-Cela est dû à la corrélation entre les attributs "X" et "angle" qui est répétitive dû à la corrélation avec l'attribut "distance".
+Pour la quatrième itération sur le tableau \ref{tab:logistic_regression_result_4}, nous ajoutons l'attribut "angle" au modèle.
+Cependant, dans ce cas-ci, nous observons que la p-value de l'attribut "X" est très élevée. 
+Cela est dû à la corrélation entre les attributs "X" et "angle" qui est répétitive dû à leur lien avec l'attribut "distance".
 C'est pour cela que l'attribut "X" n'est plus significatif et qu'il n'apporte plus d'amélioration à la performance du modèle.
-C'est justement dû au fait que l'attribut "distance" et l'attribut "angle" sont des attributs dérivés de l'attribut "X" et de l'attribut "Y".
+Cela est dû au fait que l'attribut "distance" et l'attribut "angle" sont des attributs dérivés de l'attribut "X" et de l'attribut "Y".
 \newline\newline
-Lors de la cinquième itération, on ajoute l'attribut "angle\_abs" au modèle.
-Ici, on observe que la p-value de l'attribut "angle\_abs" est très élevée.
+Lors de la cinquième itération, nous ajoutons l'attribut "angle\_abs" au modèle.
+Ici, nous pouvons apercevoir que la p-value de l'attribut "angle\_abs" est très élevée.
 Cela est dû à la corrélation entre les attributs "angle" et "angle\_abs" qui est répétitive.
 C'est pour cela que l'attribut "angle\_abs" n'est pas significatif et qu'il doit être retiré.
 \newline\newline
-Pour finir, on peut voir sur le tableau \ref{tab:logistic_regression_result_6} que l'ajout de l'attribut "header" et "good\_foot\_used" apporte une amélioration significative au modèle.
-Cela se voit grâce aux p-values très faibles de ces deux attributs lorsqu'on les ajoute aux autres attributs du modèle.
+Pour finir, nous pouvons voir sur le tableau \ref{tab:logistic_regression_result_6} que l'ajout de l'attribut "header" et "good\_foot\_used" apporte une amélioration significative au modèle.
+Cela se voit grâce aux p-values très faibles de ces deux attributs lorsque nous les additionnons aux autres attributs du modèle.
 
 
 \begin{table}[htp]
@@ -1006,7 +1018,7 @@ Cela se voit grâce aux p-values très faibles de ces deux attributs lorsqu'on l
         const & -0.4809 & 0.037   & -13.120 & 0.000              & -0.553   & -0.409   \\
         X     & -0.1280 & 0.003   & -42.743 & 0.000              & -0.134   & -0.122   \\ \hline
         \end{tabular}
-    \caption{Résultat de la régression logistique - 1ère itération}
+    \caption{Résultats de la régression logistique - 1ère itération}
     \label{tab:logistic_regression_result_1}
 \end{table}
 \begin{table}[htp]
@@ -1018,7 +1030,7 @@ Cela se voit grâce aux p-values très faibles de ces deux attributs lorsqu'on l
     X     & -0.1280   & 0.003   & -42.729 & 0.000              & -0.134   & -0.122   \\
     Y     & 9.939e-05 & 0.002   & 0.050   & 0.960              & -0.004   & 0.004   \\ \hline
     \end{tabular}
-    \caption{Résultat de la régression logistique - 2ème itération}
+    \caption{Résultats de la régression logistique - 2ème itération}
     \label{tab:logistic_regression_result_2}
 \end{table}
 \begin{table}[htp]
@@ -1030,7 +1042,7 @@ Cela se voit grâce aux p-values très faibles de ces deux attributs lorsqu'on l
     X        & 0.0692  & 0.008   & 8.579   & 0.000              & 0.053    & 0.085    \\
     distance & -0.2118 & 0.008   & -26.825 & 0.000              & -0.227   & -0.196   \\ \hline
     \end{tabular}
-    \caption{Résultat de la régression logistique - 3ème itération}
+    \caption{Résultats de la régression logistique - 3ème itération}
     \label{tab:logistic_regression_result_3}
 \end{table}
 
@@ -1044,7 +1056,7 @@ Cela se voit grâce aux p-values très faibles de ces deux attributs lorsqu'on l
     distance & -0.0984 & 0.011   & -8.799  & 0.000              & -0.120   & -0.076   \\
     angle    & 1.3701  & 0.102   & 13.395  & 0.000              & 1.170    & 1.571    \\ \hline
     \end{tabular}
-    \caption{Résultat de la régression logistique - 4ème itération}
+    \caption{Résultats de la régression logistique - 4ème itération}
     \label{tab:logistic_regression_result_4}
 \end{table}
 
@@ -1058,7 +1070,7 @@ Cela se voit grâce aux p-values très faibles de ces deux attributs lorsqu'on l
     angle      & 1.4499  & 0.102   & 14.243  & 0.000              & 1.250    & 1.649    \\
     angle\_abs & -0.0592 & 0.064   & -0.932  & 0.352              & -0.184   & 0.065    \\ \hline
     \end{tabular}
-    \caption{Résultat de la régression logistique - 5ème itération}
+    \caption{Résultats de la régression logistique - 5ème itération}
     \label{tab:logistic_regression_result_5}
 \end{table}
 
@@ -1073,34 +1085,34 @@ Cela se voit grâce aux p-values très faibles de ces deux attributs lorsqu'on l
     header           & -0.9067 & 0.059   & -15.468 & 0.000              & -1.022   & -0.792   \\
     good\_foot\_used & 0.1224  & 0.046   & 2.634   & 0.008              & 0.031    & 0.214    \\ \hline
     \end{tabular}
-    \caption{Résultat de la régression logistique - Dernière itération}
+    \caption{Résultats de la régression logistique - Dernière itération}
     \label{tab:logistic_regression_result_6}
 \end{table}
 \newpage
-Pour conclure cette partie de sélection d'attributs, on voit donc que les attributs les plus significatifs parmi ceux que l'on a sélectionné pour le dataset final sont :
+Pour conclure cette partie de sélection d'attributs, nous constatons que les attributs les plus significatifs parmi ceux que nous avons sélectionné pour le dataset final sont :
 \begin{itemize}
     \item La distance entre la position du tir et le but
     \item L'angle entre les deux poteaux et la position du tir
     \item Le tir a été effectué avec le pied fort du joueur
     \item Le tir a été fait de la tête
 \end{itemize}
-On peut donc en conclure que les attributs que l'on a sélectionné sont pertinents pour la prédiction de la réussite d'un tir. 
-On peut également voir que les attributs que l'on a sélectionné sont cohérents avec les résultats de la littérature. 
-En effet, on retrouve les attributs suivants :
+Nous pouvons donc en conclure que les attributs que nous avons sélectionné sont pertinents pour la prédiction de la réussite d'un tir. 
+Il est également possible de voir que les attributs que nous avons sélectionné sont cohérents avec les résultats de la littérature. 
+En effet, nous retrouvons les attributs suivants :
 \begin{itemize}
     \item La distance entre la position du tir et le but
     \item L'angle entre les deux poteaux et la position du tir
 \end{itemize}
 
-Avec cette conclusion, on a pu répondre à la première question de la thèse : \newline\textbf{Quels sont les paramètres qui influencent le plus l’expected goal ?}
+Avec cette conclusion, nous avons pu répondre à la première question de la thèse : \newline\textbf{Quels sont les paramètres qui influencent le plus l’expected goal ?}
 
 
 \subsection{Jeu d'hyper paramètres et séléction}
 Pour le choix des hyper paramètres pour chacun des nos modèles, le but est d'utiliser une méthode de validation croisée.
 Chacun des modèles sera créé avec un jeu d'hyper paramètres différent et passera par une validation croisée.
 Chaque résultat de validation croisée sera ensuite comparé pour trouver le meilleur jeu d'hyper paramètres pour chaque modèle.
-Comme indiqué dans la partie \ref{sec:cross_validation}, on utilisera une validation croisée à 5 folds pour chacun des modèles en utilisant la métrique du log loss.
-On utilisera la méthode en grille pour trouver les meilleurs hyper paramètres pour chacun des modèles.
+Comme indiqué dans la partie \ref{sec:cross_validation}, nous utiliserons une validation croisée à 5 folds pour chacun des modèles en utilisant la métrique du log loss.
+Nous mettrons la méthode en grille pour trouver les meilleurs hyper paramètres pour chacun des modèles.
 Il est possible de trouver les hyper paramètres les plus optimaux pour chacun des modèles relatifs à notre cas dans les tableaux \ref{tab:logistic_regression_hyperparameters}, \ref{tab:decision_tree_hyperparameters}, \ref{tab:random_forest_hyperparameters}, \ref{tab:knn_hyperparameters} et \ref{tab:mlp_hyperparameters} .
 \begin{table}[htp]
     \centering
@@ -1110,7 +1122,7 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
         \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                   \\ \hline
         \multicolumn{1}{|l|}{penalty}                  & \multicolumn{1}{l|}{l2}              & \begin{tabular}[c]{@{}l@{}}Indique la méthode \\ de régularisation du modèle\end{tabular}              \\ \hline
         \multicolumn{1}{|l|}{C}                        & \multicolumn{1}{l|}{100}             & \begin{tabular}[c]{@{}l@{}}Indique la force de la \\ régularisation du modèle\end{tabular}             \\ \hline
-        \multicolumn{1}{|l|}{max\_iter}                & \multicolumn{1}{l|}{100.0}           & \begin{tabular}[c]{@{}l@{}}Nombre d'itérations maximale \\ pour arriver à une convergence\end{tabular} \\ \hline
+        \multicolumn{1}{|l|}{max\_iter}                & \multicolumn{1}{l|}{100.0}           & \begin{tabular}[c]{@{}l@{}}Nombre d'itérations maximales \\ pour arriver à une convergence\end{tabular} \\ \hline
         \multicolumn{1}{|l|}{solver}                   & \multicolumn{1}{l|}{liblinear}       & \begin{tabular}[c]{@{}l@{}}L'algorithme utilisé pour résoudre \\ le modèle\end{tabular}                \\ \hline
         \end{tabular}
     \caption{Jeu d'hyper paramètres choisi pour la régression logistique}
@@ -1182,7 +1194,7 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
 \label{sec:results}
 \subsection{Comparaison des performances sur la log loss}
 Cette section vise à discuter des résultats.
-En effet, après avoir effectuée la validation croisée sur tous les modèles pour trouver leurs meilleurs hyper paramètres, il a fallu tester les meilleurs versions des modèles sur les données de test qui étaient, jusque là, jamais utilisées.
+En effet, après avoir effectué la validation croisée sur tous les modèles pour trouver leurs meilleurs hyper paramètres, il a fallu tester les meilleurs versions des modèles sur les données de test qui étaient, jusque là, jamais utilisées.
 Les résultats sont présentés dans le tableau \ref{tab:results}.
 Chacun des modèles a été évalué en utilisant la métrique de perte logarithmique (log loss), qui mesure la performance des prédictions probabilistes. 
 Une valeur plus faible de log loss indique de meilleures performances du modèle.
@@ -1191,13 +1203,13 @@ Une valeur plus faible de log loss indique de meilleures performances du modèle
     \centering
     \begin{tabular}{|l|l|}
     \hline
-    \textbf{Modèle}          & \textbf{Valeur de log loss} \\ \hline
-    Régression logistique    & 0.2882034140214798          \\ \hline
-    Random Forest            & 0.2884725624041776          \\ \hline
-    Perceptron multi-couches & 0.2888731795934776          \\ \hline
-    Arbre de décision        & 0.29005568551254723         \\ \hline
-    KNN                      & 0.43044530384474966         \\ \hline
-    Classificateur naïf      & 3.8152056512157433          \\ \hline
+    \textbf{Modèle}          & \textbf{Log loss} \\ \hline
+    Régression logistique    & 0.2882          \\ \hline
+    Random Forest            & 0.2884          \\ \hline
+    Perceptron multi-couches & 0.2888          \\ \hline
+    Arbre de décision        & 0.2900         \\ \hline
+    KNN                      & 0.4304         \\ \hline
+    Classificateur naïf      & 3.8152          \\ \hline
     \end{tabular}
     \caption{Résultats des modèles sur les données de test}
     \label{tab:results}
@@ -1207,26 +1219,27 @@ Le classificateur naïf part du principe que toutes les futures instances sont d
 Il est important de noter que ce classifieur ne sera jamais utilisé dans un contexte réel.
 Il est utilisé ici pour avoir une référence de base et donc, pouvoir comparer les autres modèles sur cette base.
 Cela explique pourquoi il obtient une log loss aussi élevée.
-En effet, le décalage entre la prédiction de ce classifieur et la valeur réelle est très grand et cela a une influence direct sur la valeur finale du log loss.
+En effet, le décalage entre la prédiction de ce classifieur et la valeur réelle est très grand et cela représente une influence direct sur la valeur finale du log loss.
 \newline\newline 
 En examinant les résultats, nous constatons que la régression logistique est le modèle le plus performant. 
-Cependant, le modèle de Random Forest suit de près. 
+Cependant, le modèle de Random Forest le suit de près. 
 La différence entre ces deux modèles est très faible, ce qui indique qu'ils ont des performances similaires.
 \newline\newline
 Le perceptron multi-couches et l'arbre de décision affichent également des performances comparables. 
 Encore une fois, la différence entre ces deux modèles est minime.
 \newline\newline
 En revanche, le modèle KNN se classe comme le modèle le moins performant parmi ceux testés (hormis le classificateur naïf). 
-De ce fait, on peut déjà savoir que ce modèle n'est pas le plus approprié pour ce problème.
+De ce fait, nous pouvons déduire que ce modèle n'est pas le plus approprié pour ce problème.
+
 \subsection{Visualisation de la distribution des prédictions}
-Par la suite, il a été intéressant d'observer la distribution des résultats prédits sur les données de tests.
+Par la suite, il a été intéressant d'observer la distribution des résultats prédits sur les données de test.
 Cela nous permet de constater les différences parmi les modèles qui sont similaires en termes de log loss.
 Par exemple, les modèles de régression logistique et de Random Forest ont des performances similaires, mais leurs distributions de résultats prédits diffèrent légèrement.
-Cependant, cela n'indique toujours pas si le modèle est significativement plus performant qu'un autre puisque c'est basée sur les données de tests seulement.
-Autrement, on peut observer que la distribution des résultats prédits par le modèle KNN est très différente des autres modèles.
-Il en va de même pour l'arbre de décision qui était très similaire au perceptron multi-couches en termes de log loss mais qui a une distribution de résultats prédits très différente.
+Cependant, cela n'indique toujours pas si le modèle est significativement plus performant qu'un autre puisque cela est basé sur les données de test seulement.
+Autrement, nous pouvons observer que la distribution des résultats prédits par le modèle KNN est très différente des autres modèles.
+Il en va de même pour l'arbre de décision qui était très similaire au perceptron multi-couches en termes de log loss mais qui possède une distribution de résultats prédits très différente.
 \newline\newline
-Finalement, on observe que le classificateur naïf prédit systématiquement la classe majoritaire (qui est un tir manqué), ce qui était prévisible puisque c'est le principe de ce modèle.
+Finalement, nous observons que le classificateur naïf prédit systématiquement la classe majoritaire (qui est un tir manqué), ce qui était prévisible puisque cela représente le principe de ce modèle.
 \begin{figure}[htp]
     \centering
     \includegraphics[width=\textwidth]{img/distributions_result_from_models.png}
@@ -1237,10 +1250,10 @@ Finalement, on observe que le classificateur naïf prédit systématiquement la 
 \newpage
 
 \subsection{Visualisation des résultats sur un terrain}
-Pour ajouter une nouvelle manière d'analyser et visualiser les résultats, j'ai décidé de créer une heatmap pour chacune des positions du terrains de football.
-À partir de cela, on calculera la distance et l'angle. 
-J'ai également indiqué que tous les tirs effectués à chacune des positions n'ont pas été effectuées de la tête et qu'ils ont été effectuées avec le pied fort du joueur.
-On peut voir justement que la majorité des tirs ont été effectués avec le pied fort du joueur et qu'ils n'ont pas été effectuées de la tête (voir figure \ref{fig:analyse_qualitative}).
+Pour ajouter une nouvelle manière d'analyser et visualiser les résultats, nous avons décidé de créer une heatmap pour chacune des positions du terrains de football.
+À partir de cela, nous calculerons la distance et l'angle. 
+Nous avons également indiqué que tous les tirs effectués à chacune des positions n'ont pas été effectués de la tête et qu'ils ont été effectués avec le pied fort du joueur.
+Nous sommes amenés à voir que la majorité des tirs ont été effectués avec le pied fort du joueur et qu'ils n'ont pas été effectués de la tête (voir figure \ref{fig:analyse_qualitative}).
 Il est donc plus pertinent, pour cette visualisation, de se concentrer sur la position du tir pour éviter d'ajouter un éventuel biais à notre visualisation en prenant uniquement en compte les tirs du pied faible ou de la tête.
 
 \begin{figure}[htp]
@@ -1278,22 +1291,22 @@ Il est donc plus pertinent, pour cette visualisation, de se concentrer sur la po
     \label{fig:result_knn}
 \end{figure}
 \newpage
-Lorsque l'on observe les figures \ref{fig:result_log_reg}, \ref{fig:result_random_forest}, \ref{fig:result_mlp}, \ref{fig:result_tree}, on constate que la tendance générale des modèles est la même.
-C'est-à-dire qu'ils prédisent que les tirs effectués dans la surface de réparation ont une plus grande chance d'être transformée en but que ceux effectués à l'extérieur de la surface.
-Cependant, on peut constater plusieurs choses.
-Tout d'abord, on peut voir que le modèle Random Forest prédit que les tirs effectués à l'extérieur de notre côté du terrain ont une plus grande chance d'être marqué que ceux qui sont effectuées à l'extérieur de la surface mais dans le camp adverse.
+Lorsque nous nous penchons sur les figures \ref{fig:result_log_reg}, \ref{fig:result_random_forest}, \ref{fig:result_mlp}, \ref{fig:result_tree}, nous constatons que la tendance générale des modèles est la même.
+C'est-à-dire qu'ils prédisent que les tirs effectués dans la surface de réparation ont une plus grande chance d'être transformés en but que ceux effectués à l'extérieur de la surface.
+Cependant, nous pouvons constater plusieurs phénomènes.
+Tout d'abord, nous nous apercevons que le modèle Random Forest prédit que les tirs effectués à l'extérieur de notre côté du terrain ont une plus grande chance d'être marqués que ceux qui sont effectués à l'extérieur de la surface mais dans le camp adverse.
 C'est également visible pour l'arbre de décision qui prédit une plus forte chance de marquer pour les tirs effectués dans le propre camp que ceux effectués dans la surface adverse dans un angle relativement faible.
 \newline\newline
-Ensuite, on peut voir que le modèle KNN prédit de manière incorrecte les probabilités.
-On a pu le voir notamment via sa log loss qui était relativement élevée par rapport aux autres modèles.
-On peut également le voir sur la figure \ref{fig:result_knn} où l'on constate que les probabilités prédites sont très similaires pour toutes les positions du terrain, sauf pour les tirs effectués à 1 mètre du but adverse.
+Ensuite, nous pouvons voir que le modèle KNN prédit de manière incorrecte les probabilités.
+Nous avons été en mesure de le voir via sa log loss qui était relativement élevée par rapport aux autres modèles.
+Nous pouvons également le voir sur la figure \ref{fig:result_knn} où nous constatons que les probabilités prédites sont très similaires pour toutes les positions du terrain, sauf pour les tirs effectués à 1 mètre du but adverse.
 \newline\newline
-C'est alors via ces visualisations que l'on peut constater et comparer les différences entre les modèles.
-On constate donc que les deux modèles les plus performants sont la régression logistique et le perceptron multi-couches.
+C'est alors via ces visualisations que nous pouvons constater et comparer les différences entre les modèles.
+Nous nous apercevons que les deux modèles les plus performants sont la régression logistique et le perceptron multi-couches.
 La régression logistique a une meilleure log loss que le perceptron multi-couches.
-On voit notamment que malgré le fait que la log loss du perceptron multi-couches soit plus élevée que le modèle Random Forest, sa visualisation en heatmap est plus proche de la réalité que le modèle Random Forest qui lui fournit quelques résultats incohérents.
+Nous voyons notamment que malgré le fait que la log loss du perceptron multi-couches soit plus élevée que le modèle Random Forest, sa visualisation en heatmap est plus proche de la réalité que le modèle Random Forest qui lui fournit quelques résultats incohérents.
 \newline\newline
-Pour conclure cette section sur l'analyse des résultats, on peut dire que la régression logistique est le modèle le plus performant pour résoudre ce problème. 
+Pour conclure cette section sur l'analyse des résultats, nous pouvons dire que la régression logistique est le modèle le plus performant pour résoudre ce problème. 
 Il est important de rappeler qu'uniquement 5 modèles de classifications ont été testés.
 Dû à un manque de puissance de calcul, il n'a pas été possible de tester plus de modèles ni de fournir davantage d'hyper paramètres.
 Il est donc possible qu'un autre modèle soit plus performant que la régression logistique pour la résolution de ce cas.
