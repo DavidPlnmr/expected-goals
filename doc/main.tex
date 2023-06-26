@@ -222,11 +222,12 @@ Après cette réussite, les autres franchises de la MLB\footnote{Ligue majeure d
 Les franchises de la NBA\footnote{Ligue nationale de basketball} ont par la suite également adopté une approche managériale statistique.
 Nous constatons alors que cette culture de la statistique dans le sport provient des États-Unis.
 \newline
-Il est désormais important d'amener l'arrivée des expected goals. L'une des premières études sur un modèle d'expected goals vient d'Alan Ryder qui a publié une étude sur la qualité des tirs effectuées dans des matchs de hockey. \cite{ryderIsolatingShotQuality2004}
+Il est désormais important d'amener l'arrivée des expected goals. 
+L'une des premières études sur un modèle d'expected goals vient d'Alan Ryder qui a publié une étude sur la qualité des tirs effectuées dans des matchs de hockey. \cite{ryderIsolatingShotQuality2004}
 Ce dernier a pu analyser les différentes circonstances lors d'un tir et développer un modèle qui prédit la probabilité d'un tir selon les circonstances de celui-ci.
 Dans le football, l'une des premieres études sur l'expected goal vient de Richard Pollard, Jake Ensum et Samuel Taylor ayant analysé les facteurs qui influent la chance de marquer un but. \cite{pollardEstimatingProbabilityShot2004} La problématique de ce travail est donc de pouvoir analyser et optimiser l'expected goal.
 \newline\newline
-Il semble maintenant important de savoir ce qu'est l'expected goal\footnote{Très souvent réduit par xG}. 
+Il semble maintenant important de savoir ce qu'est l'expected goal, qui est très souvent réduit par le terme "xG". 
 Il est une métrique qui permet de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir \cite{XGExplainedFBrefa}.
 Ce dernier ayant un xG de 0.4 a une probabilité de 40\% d'être transformé en but. Un autre avec un xG à 1, qui est la plus grande valeur possible, aurait donc 100\% de chance d'être transformé en but.
 \footnote{Il est important d'indiquer qu'il est très rare qu'un xG d'un tir soit égal à 1 mais il va généralement s'en rapprocher fortement selon ses paramètres.} \cite{pettyWhatExpectedGoals2018a}
@@ -240,7 +241,7 @@ C'est une métrique qui permet de déterminer la probabilité qu'une passe soit 
 Il existe également les xGA, qui sont les expected goals against. 
 Ceux-ci permettent de déterminer la probabilité qu'un tir soit transformé en but selon les données de ce tir mais pour l'équipe adverse. \cite{pettyWhatExpectedGoals2018a}
 
-Il y en a également d'autres comme les expected points qui sont les points qu'une équipe devrait avoir gagnés, ceci basé sur les données relatives aux xG. D'autres dérivées sont indiquées sur l'article de Pinnacle écrit par Luke Petty. \cite{pettyWhatExpectedGoals2018a}
+Il y en a également d'autres comme les expected points qui sont les points qu'une équipe devrait avoir gagnés, ceci basé sur les données relatives aux xG. D'autres dérivés sont indiquées sur l'article de Pinnacle écrit par Luke Petty. \cite{pettyWhatExpectedGoals2018a}
 \newline\newline
 Maintenant que nous avons vu ce qu'est un xG et ces dérivés actuels, il semble pertinent de décrire l'utilisation de cette métrique dans le football actuel.
 
@@ -258,7 +259,8 @@ Les tirs cadrés, s'ils sont tous effectués à l'extérieur de la surface de r�
 L'expected goal permet de donner une valeur à chaque tir et de déterminer si celui-ci a une chance d'être transformé en but.
 \newline \newline
 Certaines personnes utilisent cette métrique pour leurs paris sportifs. 
-Ils observent la métrique lors des derniers matchs et la compare avec le score réel du match. Si la différence est grande, cela peut permettre de constater un manque de réalisme ou un sur-régime d'une des deux équipes. \cite{tennerelBienUtiliserExpected2022a}
+Ils observent la métrique lors des derniers matchs et la compare avec le score réel du match. 
+Si la différence est grande, cela peut permettre de constater un manque de réalisme ou un sur-régime d'une des deux équipes. \cite{tennerelBienUtiliserExpected2022a}
 \newline \newline
 Les analystes utilisent cette donnée pour analyser les performances de leurs joueurs et de leurs équipes. Par exemple, la comparaison des xG et du nombre de buts marqués d'un joueur sur une période donnée peut permettre de déterminer la dangerosité et la capacité d'un buteur à terminer des actions. \cite{pettyWhatExpectedGoals2018a}
 Les xG peuvent aussi être utilisés pour analyser les performances d'une équipe dans des situations bien précises. Une équipe qui possède un haut xG sur des contre-attaques montre qu'elle est très dangereuse sur ce type de situation. \cite{XGExplainedFBrefa}
@@ -295,7 +297,7 @@ Parmi ceux-ci, nous chercherons à savoir quels datasets ont été utilisés ain
 Cela nous permettra de comparer nos résultats avec ceux obtenus dans les autres travaux et ainsi savoir si les résultats sont cohérents par rapport à l'état de l'art actuel des recherches scientifiques.
 \newline \newline
 La suite sera de trouver un dataset avec les informations nécessaires pour implémenter le modèle.
-Cette étape de la thèse est très importante puisque c'est la base de la thèse.
+Cette étape de la thèse est très importante puisque c'est la base de notre recherche.
 Une fois ce dataset trouvé, il va falloir le documenter. En effet, il est important de comprendre ce que chaque attribut représente.
 L'étape suivante est importante pour visualiser les données.
 Cela permettra de voir si les données sont exploitables et cohérentes.
@@ -305,7 +307,7 @@ Cette section d'analyse du dataset est trouvable dans la section \ref{sec:datase
 Une fois les données documentées et visualisées, il va falloir les préparer.
 En effet, il pourrait y avoir des données manquantes mais qui sont disponibles après un traitement.
 Il pourrait également y avoir des données qui ne sont pas exploitables et qui doivent être supprimées.
-Par exemple, l'identifiant de la base de données d'un tir pourrait être supprimé car il n'appporte rien pour la prédiction de l'expected goal.
+Par exemple, l'identifiant de la base de données d'un tir pourrait être supprimé car il n'apporte rien pour la prédiction de l'expected goal.
 Cette section de transformation du dataset est également trouvable dans la section \ref{sec:dataset} qui fait suite à la section d'analyse du dataset initial.
 \newline \newline
 Ensuite, nous pourrons commencer à implémenter le modèle et observer les facteurs qui influencent la prédiction du xG.
@@ -365,7 +367,7 @@ De l'autre côté, la spécificité permet de voir la capacité du modèle à pr
 Comme indiqué dans le travail de Umami, Gutama et Hatta, la spécificité est plus importante que la sensibilité selon le contexte.
 Dans le cas où le modèle est utilisé pour prédire un cancer, nous allons chercher à avoir une meilleur sensibilité pour éviter de passer à côté d'un cancer. \cite{umamiImplementingExpectedGoal2021}
 Cela leur permet de savoir comment choisir le seuil pour la classification.
-En conclusion de leur travail, ils ont obtenu une sensibilité de 0.9671945701357466 et une spécificité de 0.19034406215316316 pour un seuil 0.02.
+En conclusion de leur travail, ils ont obtenu une sensibilité de 0.9672 et une spécificité de 0.1903 pour un seuil 0.02.
 Ils indiquent finalement que le modèle de xG est plus performant si nous prenons la distance et l'angle en compte plutôt que de prendre uniquement la distance.
 \newline\newline
 Un travail qui fournit également du code est celui de David Sumpter \cite{sumpterFittingXGModel}. 
@@ -443,7 +445,7 @@ Ce travail donne tout de même de bonnes pistes pour l'ajout de nouvelle donnée
     \hline
     \textbf{Auteur(s)}                                                                                   & \textbf{Source de données}                                                                               & \textbf{Conclusion}                                                                                                                                          \\ \hline
     \begin{tabular}[c]{@{}l@{}}Richard Pollard\\ Jake Ensum\\ Samuel Taylor\end{tabular}                 & \begin{tabular}[c]{@{}l@{}}Coupe du monde \\ 1986 et 2002\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}La distance, l'angle \\ et l'espace avec le \\ joueur le plus proche \\sont les variables \\qui ont le plus d'influences \\sur l'estimation de but\end{tabular}                                                 \\ \hline
-    \begin{tabular}[c]{@{}l@{}}Izzatul Umami\\ Deden Hardan Gautama\\ Heliza Rahmania Hatta\end{tabular} & \begin{tabular}[c]{@{}l@{}}Wyscout, \\ 5 championnats \\ majeuren Europe. \\ Saison 2019-20\end{tabular} & \begin{tabular}[c]{@{}l@{}}La distance et l'angle\\ apporte plus \\ d'informations \\ qu'uniquement\\  la distance\end{tabular}                              \\ \hline
+    \begin{tabular}[c]{@{}l@{}}Izzatul Umami\\ Deden Hardan Gautama\\ Heliza Rahmania Hatta\end{tabular} & \begin{tabular}[c]{@{}l@{}}Wyscout, \\ 5 championnats \\ majeur en Europe. \\ Saison 2019-20\end{tabular} & \begin{tabular}[c]{@{}l@{}}La distance et l'angle\\ apporte plus \\ d'informations \\ qu'uniquement\\  la distance\end{tabular}                              \\ \hline
     David Sumpter                                                                                        & \begin{tabular}[c]{@{}l@{}}Wyscout, \\ Premier League.\\ Saison 2017-18\end{tabular}                     & \begin{tabular}[c]{@{}l@{}}La distance et l'angle \\ sont les facteurs avec\\  le plus d'influence\end{tabular}                                              \\ \hline
     H. P. H Eggels                                                                                       & \begin{tabular}[c]{@{}l@{}}ORTEC, \\ Immotio, \\ FIFA\end{tabular}                                       & \begin{tabular}[c]{@{}l@{}}Le but du travail \\ est de prédire les \\ résultats des matchs. \\ Rien n'indique les\\ facteurs les plus influents\end{tabular} \\ \hline
     \end{tabular}
@@ -485,15 +487,15 @@ Par exemple, un événement de type tir qui aurait un sous-événement duel aér
 La deuxième phase de contrôle qualité est manuelle est gérée par des contrôleurs qualités qui vont vérifier de manière approfondie les événements de certains matchs et les corriger si besoin." \cite{pappalardoPublicDataSet2019}
 
 Il se peut que certains matchs n'aient pas subi de contrôle qualité car ils utilisent un algorithme de sélection de matchs pour le contrôle qualité.
-\begin{figure}[t]
+Sur la figure \ref{fig:logiciel_proprietaire}, nous pouvons apercevoir le logiciel propriétaire de Wyscout.
+La partie (a) montre la timeline du match avec les événements qui ont été ajoutés.
+La partie (b) montre les informations d'un événement ainsi que l'indication de la position de l'événement sur le terrain.
+\begin{figure}[htp]
     \centering
     \includegraphics[width=0.7\textwidth]{img/logiciel_proprietaire.png}
     \caption{Aperçu du logiciel propriétaire de Wyscout}
     \label{fig:logiciel_proprietaire}
 \end{figure}
-Sur la figure \ref{fig:logiciel_proprietaire}, nous pouvons apercevoir le logiciel propriétaire de Wyscout.
-La partie (a) montre la timeline du match avec les événements qui ont été ajoutés.
-La partie (b) montre les informations d'un événement ainsi que l'indication de la position de l'événement sur le terrain.
 \newline\newline
 Le dataset utilisé est un sample du dataset de Wyscout. 
 Il a été mis à disposition par Luca Pappalardo et Emanuele Massuco dans leur article "A public data set of spatio-temporal match events in soccer competitions" \cite{pappalardoPublicDataSet2019}.
@@ -975,6 +977,7 @@ C'est ainsi que nous pourrons déterminer quel modèle est le plus performant po
 \end{figure}
 
 \subsection{Sélection des meilleurs attributs}
+\label{sec:selection_attributs}
 Pour la sélection des meilleurs attributs, nous allons utiliser la méthode de forward elimination.
 Elle consiste à tester tous les attributs un par un en les ajoutant au fur et à mesure au modèle et observer la performance du modèle.
 La p-value est utilisée pour déterminer si un attribut est significatif ou non et s'il apporte une amélioration à la performance du modèle.
@@ -1120,8 +1123,8 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
         \hline
         \multicolumn{3}{|c|}{\textbf{Régression logistique}}                                                                                                                                           \\ \hline
         \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                   \\ \hline
-        \multicolumn{1}{|l|}{penalty}                  & \multicolumn{1}{l|}{l2}              & \begin{tabular}[c]{@{}l@{}}Indique la méthode \\ de régularisation du modèle\end{tabular}              \\ \hline
-        \multicolumn{1}{|l|}{C}                        & \multicolumn{1}{l|}{100}             & \begin{tabular}[c]{@{}l@{}}Indique la force de la \\ régularisation du modèle\end{tabular}             \\ \hline
+        \multicolumn{1}{|l|}{penalty}                  & \multicolumn{1}{l|}{l1}              & \begin{tabular}[c]{@{}l@{}}Indique la méthode \\ de régularisation du modèle\end{tabular}              \\ \hline
+        \multicolumn{1}{|l|}{C}                        & \multicolumn{1}{l|}{10}             & \begin{tabular}[c]{@{}l@{}}Indique la force de la \\ régularisation du modèle\end{tabular}             \\ \hline
         \multicolumn{1}{|l|}{max\_iter}                & \multicolumn{1}{l|}{100.0}           & \begin{tabular}[c]{@{}l@{}}Nombre d'itérations maximales \\ pour arriver à une convergence\end{tabular} \\ \hline
         \multicolumn{1}{|l|}{solver}                   & \multicolumn{1}{l|}{liblinear}       & \begin{tabular}[c]{@{}l@{}}L'algorithme utilisé pour résoudre \\ le modèle\end{tabular}                \\ \hline
         \end{tabular}
@@ -1137,8 +1140,8 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
     \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                           \\ \hline
     \multicolumn{1}{|l|}{criterion}                & \multicolumn{1}{l|}{gini}            & \begin{tabular}[c]{@{}l@{}}Critère qui détermine \\ la séparation de l'arbre\end{tabular}                      \\ \hline
     \multicolumn{1}{|l|}{max\_depth}               & \multicolumn{1}{l|}{5}               & Profondeur maximale acceptée.                                                                                  \\ \hline
-    \multicolumn{1}{|l|}{min\_samples\_leaf}       & \multicolumn{1}{l|}{100}             & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ acceptée en tant que feuille.\end{tabular}          \\ \hline
-    \multicolumn{1}{|l|}{min\_samples\_split}      & \multicolumn{1}{l|}{5}               & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ pour créer une séparation sur un noeud\end{tabular} \\ \hline
+    \multicolumn{1}{|l|}{min\_samples\_leaf}       & \multicolumn{1}{l|}{25}             & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ acceptée en tant que feuille.\end{tabular}          \\ \hline
+    \multicolumn{1}{|l|}{min\_samples\_split}      & \multicolumn{1}{l|}{25}               & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ pour créer une séparation sur un noeud\end{tabular} \\ \hline
     \end{tabular}
     \caption{Jeu d'hyper paramètres choisi pour l'arbre de décision}
     \label{tab:decision_tree_hyperparameters}
@@ -1153,8 +1156,8 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
     \multicolumn{1}{|l|}{criterion}                & \multicolumn{1}{l|}{entropy}         & \begin{tabular}[c]{@{}l@{}}Critère qui détermine la\\ séparation de chaque arbre \\ dans la forêt\end{tabular} \\ \hline
     \multicolumn{1}{|l|}{max\_depth}               & \multicolumn{1}{l|}{5}               & Profondeur maximale acceptée.                                                                                  \\ \hline
     \multicolumn{1}{|l|}{min\_samples\_leaf}       & \multicolumn{1}{l|}{10}              & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ acceptée en tant que feuille.\end{tabular}          \\ \hline
-    \multicolumn{1}{|l|}{min\_samples\_split}      & \multicolumn{1}{l|}{100}             & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ pour créer une séparation sur un noeud\end{tabular} \\ \hline
-    \multicolumn{1}{|l|}{n\_estimators}            & \multicolumn{1}{l|}{25}              & Nombre d'arbres dans la forêt                                                                                  \\ \hline
+    \multicolumn{1}{|l|}{min\_samples\_split}      & \multicolumn{1}{l|}{10}             & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ pour créer une séparation sur un noeud\end{tabular} \\ \hline
+    \multicolumn{1}{|l|}{n\_estimators}            & \multicolumn{1}{l|}{200}              & Nombre d'arbres dans la forêt                                                                                  \\ \hline
     \end{tabular}
     \caption{Jeu d'hyper paramètres choisi pour la forêt aléatoire}
     \label{tab:random_forest_hyperparameters}
@@ -1180,7 +1183,7 @@ Il est possible de trouver les hyper paramètres les plus optimaux pour chacun d
         \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                                              \\ \hline
         \multicolumn{1}{|l|}{activation}               & \multicolumn{1}{l|}{logistic}        & Type de fonction d'activation                                                                                                     \\ \hline
         \multicolumn{1}{|l|}{alpha}                    & \multicolumn{1}{l|}{0.001}           & \begin{tabular}[c]{@{}l@{}}La force de la régularisation\\ (pénalité)\end{tabular}                                                \\ \hline
-        \multicolumn{1}{|l|}{hidden\_layer\_sizes}     & \multicolumn{1}{l|}{(50, 50, 50)}    & \begin{tabular}[c]{@{}l@{}}Indique le nombre de couches et\\  le nombre de neurones par couche\end{tabular}                       \\ \hline
+        \multicolumn{1}{|l|}{hidden\_layer\_sizes}     & \multicolumn{1}{l|}{(50, 50, 50 )}    & \begin{tabular}[c]{@{}l@{}}Indique le nombre de couches et\\  le nombre de neurones par couche\end{tabular}                       \\ \hline
         \multicolumn{1}{|l|}{learning\_rate}           & \multicolumn{1}{l|}{constant}        & \begin{tabular}[c]{@{}l@{}}Indique le taux d'apprentissage \\ pour mettre à jour les poids \\ de chacun des neurones\end{tabular} \\ \hline
         \multicolumn{1}{|l|}{solver}                   & \multicolumn{1}{l|}{adam}            & \begin{tabular}[c]{@{}l@{}}L'algorithme utilisé pour \\ apprendre les poids pour \\ chacun des neurones\end{tabular}              \\ \hline
         \end{tabular}
@@ -1206,8 +1209,8 @@ Une valeur plus faible de log loss indique de meilleures performances du modèle
     \textbf{Modèle}          & \textbf{Log loss} \\ \hline
     Régression logistique    & 0.2882          \\ \hline
     Random Forest            & 0.2884          \\ \hline
-    Perceptron multi-couches & 0.2888          \\ \hline
-    Arbre de décision        & 0.2900         \\ \hline
+    Perceptron multi-couches & 0.2892          \\ \hline
+    Arbre de décision        & 0.2901         \\ \hline
     KNN                      & 0.4304         \\ \hline
     Classificateur naïf      & 3.8152          \\ \hline
     \end{tabular}
@@ -1229,7 +1232,7 @@ Le perceptron multi-couches et l'arbre de décision affichent également des per
 Encore une fois, la différence entre ces deux modèles est minime.
 \newline\newline
 En revanche, le modèle KNN se classe comme le modèle le moins performant parmi ceux testés (hormis le classificateur naïf). 
-De ce fait, nous pouvons déduire que ce modèle n'est pas le plus approprié pour ce problème.
+De ce fait, nous pouvons déduire que ce modèle n'est pas approprié pour ce problème.
 
 \subsection{Visualisation de la distribution des prédictions}
 Par la suite, il a été intéressant d'observer la distribution des résultats prédits sur les données de test.
@@ -1237,9 +1240,9 @@ Cela nous permet de constater les différences parmi les modèles qui sont simil
 Par exemple, les modèles de régression logistique et de Random Forest ont des performances similaires, mais leurs distributions de résultats prédits diffèrent légèrement.
 Cependant, cela n'indique toujours pas si le modèle est significativement plus performant qu'un autre puisque cela est basé sur les données de test seulement.
 Autrement, nous pouvons observer que la distribution des résultats prédits par le modèle KNN est très différente des autres modèles.
-Il en va de même pour l'arbre de décision qui était très similaire au perceptron multi-couches en termes de log loss mais qui possède une distribution de résultats prédits très différente.
+Il en va de même pour l'arbre de décision qui était très similaire au perceptron multi-couches en termes de log loss mais qui possède une distribution de résultats prédits différente.
 \newline\newline
-Finalement, nous observons que le classificateur naïf prédit systématiquement la classe majoritaire (qui est un tir manqué), ce qui était prévisible puisque cela représente le principe de ce modèle.
+Finalement, nous observons que le classificateur naïf prédit systématiquement la classe majoritaire\footnote{Dans notre cas, elle prédit que le tir a été manqué et donc une probabilité de marquer à 0\%}, ce qui était prévisible puisque cela représente le principe de ce classificateur.
 \begin{figure}[htp]
     \centering
     \includegraphics[width=\textwidth]{img/distributions_result_from_models.png}
@@ -1296,6 +1299,11 @@ C'est-à-dire qu'ils prédisent que les tirs effectués dans la surface de répa
 Cependant, nous pouvons constater plusieurs phénomènes.
 Tout d'abord, nous nous apercevons que le modèle Random Forest prédit que les tirs effectués à l'extérieur de notre côté du terrain ont une plus grande chance d'être marqués que ceux qui sont effectués à l'extérieur de la surface mais dans le camp adverse.
 C'est également visible pour l'arbre de décision qui prédit une plus forte chance de marquer pour les tirs effectués dans le propre camp que ceux effectués dans la surface adverse dans un angle relativement faible.
+Ce phénomène peut être dû à un manque de tirs faits à très longue distance des modèles.
+En effet, lorsque nous observons la figure \ref{fig:pitch_chart}, nous constatons que les tirs sont majoritairement effectués dans la surface de réparation adverse et dans le camp adverse.
+Cela explique pourquoi ces deux modèles ont une bonne prédiction lorsque le tir est effectué dans ces zones.
+Cependant, nous pouvons voir que les tirs effectués dans le propre camp sont très peu nombreux.
+L'hypothèse est que ces modèles ont bien appris sur la majorité des tirs, mais que le manque de tirs effectués dans le propre camp a fait que ces deux modèles ont eu plus de difficultés à effectuer des prédictions correctes pour ces tirs.
 \newline\newline
 Ensuite, nous pouvons voir que le modèle KNN prédit de manière incorrecte les probabilités.
 Nous avons été en mesure de le voir via sa log loss qui était relativement élevée par rapport aux autres modèles.
@@ -1304,18 +1312,80 @@ Nous pouvons également le voir sur la figure \ref{fig:result_knn} où nous cons
 C'est alors via ces visualisations que nous pouvons constater et comparer les différences entre les modèles.
 Nous nous apercevons que les deux modèles les plus performants sont la régression logistique et le perceptron multi-couches.
 La régression logistique a une meilleure log loss que le perceptron multi-couches.
-Nous voyons notamment que malgré le fait que la log loss du perceptron multi-couches soit plus élevée que le modèle Random Forest, sa visualisation en heatmap est plus proche de la réalité que le modèle Random Forest qui lui fournit quelques résultats incohérents.
+Nous voyons notamment que malgré le fait que la log loss du perceptron multi-couches soit plus élevée que le modèle Random Forest, sa visualisation en heatmap est plus proche de la réalité que le modèle Random Forest qui lui fournit des résultats incohérents à très longue distance.
 \newline\newline
 Pour conclure cette section sur l'analyse des résultats, nous pouvons dire que la régression logistique est le modèle le plus performant pour résoudre ce problème. 
 Il est important de rappeler qu'uniquement 5 modèles de classifications ont été testés.
-Dû à un manque de puissance de calcul, il n'a pas été possible de tester plus de modèles ni de fournir davantage d'hyper paramètres.
+Dû à un manque de puissance de calcul, il n'a pas été possible de tester plus de modèles, ni de fournir davantage d'hyper paramètres.
 Il est donc possible qu'un autre modèle soit plus performant que la régression logistique pour la résolution de ce cas.
 \newpage
 \section{Conclusion}
 
 \subsection{Conclusion générale}
-\subsection{Améliorations possibles}
+Nous allons maintenant nous pencher sur la conclusion finale de ce travail.
+Tout d'abord, nous allons nous pencher sur la première question du travail qui était de savoir quels étaient les facteurs qui influençaient le plus la réussite d'un tir.
+Via nos recherches sur le sujet, nous avons pu établir un état de l'art sur le sujet.
+Nous avons pu observer, via cet état de l'art, que les facteurs les plus influents étaient la distance du tir ainsi que l'angle du tir.
+Ils sont d'ailleurs indissociables puisque le cumul des deux apporte une information plus pertinente que chacun des deux facteurs pris séparément.
+L'un des articles scientifiques a également essayé d'introduire un facteur supplémentaire indiquant si le tir a été effectué de la tête.
+Cependant, rien est indiqué si ce facteur a une réelle influence sur la réussite d'un tir.
+\newline\newline
+Dans notre travail, nous avons pu constater et confirmer que la distance et l'angle du tir étaient les facteurs les plus influents.
+En effet, ces deux facteurs sont corrélés (voir fig. \ref{fig:analyse_quantitative}) et ont une réelle influence sur la réussite d'un tir.
+Nous avons fait le travail de sélection des meilleurs attributs pour nos modèles dans la section \ref{sec:selection_attributs}. 
+Cette recherche a consisté à faire une "forward elimination" sur les attributs de notre dataset.
+Le principe de cette méthode est de commencer avec un modèle vide et d'ajouter un attribut à la fois.
+Ensuite, nous observons si l'ajout de cet attribut améliore les performances du modèle.
+Dans notre cas, nous observions si la p-value de l'attribut était inférieure à 0.05.
+Si c'était le cas, nous gardions l'attribut et nous recommencions l'opération avec un autre attribut.
+La p-value est une valeur qui indique si l'attribut est significatif pour le modèle.
+Dans notre cas, ce test a été fait avec une régression logistique.
+Lorsque la "forward elimination" a été faite, nous avons pu constater que les attributs les plus influents étaient :
+\begin{itemize}
+    \item La distance du tir
+    \item L'angle du tir
+    \item Si le tir a été effectué de la tête
+    \item Si le tir a été effectué avec le pied fort du joueur
+\end{itemize}
+Nous pouvons d'ailleurs le voir sur le tableau \ref{tab:logistic_regression_result_6}.
+Ce dernier affiche les résultats de la régression logistique avec les attributs sélectionnés. 
+On peut y observer les p-values de chaque attribut ainsi que leurs coefficients.
+C'est donc ainsi que nous avons pu répondre à la première question de ce travail.
+\newline\newline
+Ensuite, nous avons pu répondre à la deuxième question de ce travail qui était de savoir quel modèle est le plus performant pour résoudre ce problème.
+Pour répondre à cette question, il a fallu établir une bonne méthodologie.
+\newline\newline
+Dans notre cas, nous avons décidé de faire une séparation du dataset en deux parties.
+La première partie était utilisée pour l'entraînement des modèles et la deuxième partie était utilisée pour tester les modèles.
+L'entraînement des modèles consistait à faire une validation croisée avec 5 folds pour trouver les meilleurs hyper paramètres pour chaque modèle.
+Ensuite, nous avons pu tester les modèles avec leurs meilleurs hyper paramètres trouvés sur la deuxième partie du dataset.
+\newline\newline
+Les résultats sur la deuxième partie du dataset nous ont permis de comparer les modèles entre eux.
+Nous les avons comparé via la log loss et via la visualisation des probabilités prédites par les modèles.
+Nous avons pu constater des choses intéressantes sur les résultats.
+Tout d'abord, nous avons pu constater, via le tableau \ref{tab:results}, que les 3 modèles les plus performants selon la log loss étaient la régression logistique, le modèle Random Forest et le perceptron multi-couches.
+Cependant, après avoir visualisé les probabilités prédites par les modèles sur un terrain de football, nous avons pu constater que le modèle Random Forest fournissait des résultats incohérents à longue distance (voir fig. \ref{fig:result_random_forest}).
+Les deux autres modèles précédemment cités fournissaient des résultats plus cohérents par rapport à la réalité (voir fig. \ref{fig:result_log_reg} et \ref{fig:result_mlp}).
+\newline\newline
+Pour finir, nous pouvons dire que la régression logistique est le modèle le plus performant pour résoudre ce problème de prédiction de la réussite d'un tir.
+Ce modèle est utilisé avec la distance, l'angle, l'information du tir effectué de la tête et du pied fort.
+\newpage
 
+\subsection{Améliorations possibles}
+En termes d'améliorations possibles, nous pouvons dire que ce travail peut être amélioré de plusieurs manières.
+Tout d'abord, nous pourrions améliorer ajouter de nouveaux attributs.
+En effet, nous pourrions ajouter davantage de données pour apporter des détails supplémentaires sur le tir.
+Par exemple, il serait intéressant d'ajouter la hauteur du ballon au moment du tir, le type d'attaque effectuée (contre-attaque, attaque placée, etc.), le type de passe effectuée (passe en profondeur, passe en retrait, etc.), ou encore ajouter des informations quant à la qualité du joueur à terminer les actions.
+Effectivement, un défenseur a, en théorie, une moins bonne qualité de finition qu'un attaquant. 
+Cette différenciation pourrait également se faire entre les différents attaquants. 
+Par exemple, Cristiano Ronaldo a la capacité de marquer plus de buts dans des situations difficiles qu'un attaquant de Ligue 2.
+Il serait également envisageable d'ajouter le même type d'informations pour le gardien de but.
+\newline\newline
+Ensuite, nous pourrions tester et comparer d'autres modèles non testés ici.
+Par exemple, nous pourrions tester un modèle de classification basée sur SVM.
+Finalement, nous pourrions également expérimenter d'ajouter de nouveaux hyper paramètres pour les modèles testés.
+En effet, dû à un manque de puissance de calcul et de temps, nous n'avons pas pu tester tous les hyper paramètres possibles pour chaque modèle.
+\newpage
 
 % Bibliography
 \bibliographystyle{plain}
