@@ -319,7 +319,7 @@ La comparaison est trouvable dans la section \ref{sec:results} qui visent à mon
 \section{Synthèse des travaux existants}
 \label{sec:synthese}
 Le premier travail repertorié sur les xG et la qualité d'un tir est celui de Richard Pollard, Jake Ensum et Samuel Taylor \cite{pollardEstimatingProbabilityShot2004}.
-Dans ce travail datant de 2004, la seule information indiquée concernant le dataset est que les données proviennent de la Coupe du monde 1986 et de celle de 2002.
+Dans ce dernier datant de 2004, la seule information indiquée concernant le dataset est que les données proviennent de la Coupe du monde 1986 et de celle de 2002.
 Le modèle a été implémenté en utilisant une régression logistique.
 Le nombre de tirs répertoriés dans ce travail est de 1096.
 La conclusion de ce travail est que les 3 facteurs les plus influents pour la prédiction des xG sont :
@@ -362,6 +362,11 @@ Ce principe de sensibilité et spécificité permet de choisir la meilleure perf
 \begin{equation}
     Specificity = \frac{True Negative}{True Negative + False Positive}
 \end{equation}
+Pour calculer la sensibilité et la spécificité, nous pouvons voir que nous avons besoin des "True Positive", "True Negative", "False Positive" et "False Negative".
+Les "True Positive" sont les tirs qui sont des buts ayant été correctement prédits et les "True Negative" sont les tirs qui sont manqués ayant été également correctement prédits.
+À l'inverse, les "False Positive" sont les tirs qui ont été manqués ayant été prédits comme des buts et de même pour les "False Negative" qui sont des tirs qui sont des buts ayant été prédits comme des tirs manqués.
+La valeur de chacune de ces variables est donc le nombre d'instances correspondant à la description.
+\newline \newline
 La sensibilité permet de voir la capacité du modèle à prédire correctement les tirs qui seront des buts.
 De l'autre côté, la spécificité permet de voir la capacité du modèle à prédire correctement les tirs qui ne seront pas des buts.
 Comme indiqué dans le travail de Umami, Gutama et Hatta, la spécificité est plus importante que la sensibilité selon le contexte.
@@ -405,7 +410,7 @@ Il y a eu un travail de "merging" des données pour avoir un dataset qui contien
 Cependant, les datasets peuvent avoir des problèmes entre eux lors du "merging". 
 Par exemple, les noms des joueurs qui sont différents (majuscule, accent, encodage, surnom, etc.) a été un problème mais une solution a été trouvée.
 \newline
-Le dataset utilisé contient donc trois sources de données différentes.
+Le dataset utilisé contient donc trois sources de données différentes (voir tab. \ref{tab:data_from_eggels}).
 \begin{table}[htp]
     \centering
     \begin{tabular}{lll}
@@ -420,6 +425,7 @@ Le dataset utilisé contient donc trois sources de données différentes.
     High            &                     &                                   \\ \hline
     \end{tabular}
     \caption{Sources de données utilisées par H.P.H Eggels}
+    \label{tab:data_from_eggels}
 \end{table}
 \newpage
 Parmi les modèles testés, ce travail utilise :
@@ -453,7 +459,7 @@ Ce travail donne tout de même de bonnes pistes pour l'ajout de nouvelle donnée
 \end{table}
 On observe donc que la majorité des travaux existants utilisent la distance et l'angle pour estimer les xG.
 C'est essentiellement ces deux facteurs qui sont utilisés pour établir la prédiction.
-Concernant les autres facteurs, ils servent à améliorer la prédiction mais rien n'indique s'ils ont autant d'influence que la distance et l'angle.
+Concernant les autres facteurs, ils servent à améliorer la prédiction mais rien n'indique s'ils ont autant d'importance que la distance et l'angle.
 
 \newpage
 \section{Dataset}
@@ -860,7 +866,7 @@ Il est également intéressant d'examiner la relation entre la distance et l'ang
 La figure \ref{fig:analyse_qualitative} met en évidence le fait que plus la distance est petite, plus l'angle est grand. 
 Cette tendance est observée dans le premier graphique de la figure \ref{fig:analyse_qualitative}, bien que ce ne soit pas toujours le cas. 
 En jouant avec le graphique Geogebra fourni précédemment, il est possible de constater que les tirs effectués depuis le coin de l'équipe attaquante auront un angle plus élevé que les tirs effectués depuis le coin de l'équipe adverse.
-Un tir depuis le coin de l'équipe adverse aura systématiquement un angle de 0 radian puisqu'il est effectué le long de la ligne de but.
+Un tir depuis le corner de l'équipe adverse aura systématiquement un angle de 0 radian puisqu'il est effectué le long de la ligne de but.
 \newline\newline
 Ensuite, nous allons analyser les attributs qualitatifs en utilisant des diagrammes en barres (bar charts). 
 Ces graphiques permettent de visualiser la distribution des données pour chaque attribut qualitatif. 
@@ -874,9 +880,9 @@ Enfin, nous allons analyser la corrélation entre les variables.
 L'objectif de cette analyse est d'évaluer si les variables sont corrélées les unes avec les autres.
 Pour rappel, deux variables sont corrélées si elles ont tendance à varier ensemble. 
 Une corrélation négative indique que lorsque la valeur d'une variable augmente, la valeur de l'autre variable diminue. 
-Une corrélation positive indique que lorsque la valeur d'une variable augmente, la valeur de l'autre variable augmente également. 
-Une corrélation élevée entre une variable et la variable cible peut améliorer la prédiction et faciliter l'interprétation du modèle. 
-Une corrélation élevée suggère une relation claire entre les deux variables, ce qui peut faciliter la compréhension de l'influence de la variable sur la variable cible.
+Une corrélation positive indique que la valeur d'une variable augmente lorsque la variable corrélée augmente également.
+Une corrélation élevée suggère une relation claire entre une variable et la variable cible, ce qui peut faciliter la compréhension de l'influence entre les deux variables.
+Une corrélation élevée peut améliorer la prédiction et faciliter l'interprétation du modèle. 
 \newline\newline
 Dans notre cas, en observant la figure \ref{fig:correlation_matrix}, les variables présentant la corrélation la plus élevée par rapport à l'attribut "goal" sont les attributs "distance" et "angle". 
 Nous remarquons également une forte corrélation entre les attributs "distance" et "X". 
@@ -917,9 +923,9 @@ Cela suggère que ces variables sont des indicateurs significatifs pour prédire
 Par exemple, les variables "distance" et "angle" ont montré une corrélation élevée avec la variable "goal". 
 Cela signifie que plus la distance et l'angle sont favorables, plus la probabilité de marquer un but est élevée. 
 \newline\newline
-Il est également important de souligner la forte corrélation entre les variables "distance" et "X". 
-Cette corrélation s'explique par le fait que l'attribut "distance" est calculé en utilisant les coordonnées horizontales "X" et "C". 
-Ainsi, lorsque la valeur de l'attribut "X" change, cela influence directement la valeur de l'attribut "distance". 
+Il est essentiel de noter que la variable "distance" présente une corrélation significative avec la variable "X". 
+Cette corrélation découle du fait que le calcul de l'attribut "distance" repose sur les coordonnées horizontales "X" et "C". 
+Par conséquent, toute modification de la valeur de l'attribut "X" a un impact direct sur la valeur de l'attribut "distance".
 \newline\newline
 En résumé, cette analyse approfondie des données nous a permis de mieux comprendre les relations entre les variables et d'identifier les facteurs les plus pertinents pour prédire la réussite d'un tir au but. 
 En éliminant les données aberrantes et en tenant compte des corrélations significatives, nous pouvons améliorer la précision des prédictions.
@@ -936,6 +942,8 @@ Tout d'abord, nous allons faire une séparation sur le dataset pour avoir un jeu
 Le jeu de test sera utilisé pour évaluer la performance des modèles finaux. 
 Tandis que le jeu d'entraînement, nous permettra d'entraîner notre modèle et de choisir le meilleur set d'hyper paramètres pour chaque modèle.
 Le partitionnement choisi pour les jeux de données est le suivant : 90\% des données pour le jeu d'entraînement et 10\% des données pour le jeu de test.
+Ayant environ 43'000 tirs enregistrés, cela nous donne approximativement 38'700 tirs pour le jeu d'entraînement et 4'300 tirs pour le jeu de test.
+Ainsi, nous avons un jeu de données d'entraînement suffisamment vaste pour entraîner nos modèles et un jeu de test de taille adéquate pour évaluer leur performance.
 
 \subsection{Choix des modèles}
 Plusieurs modèles vont être utlisés pour résoudre ce problème.
@@ -950,6 +958,9 @@ Nous allons tester les modèles suivants :
     \item KNN
     \item Réseau de neurones (MLP)
 \end{itemize}
+Le choix de ces modèles est basé sur les modèles les plus utilisés pour des problèmes de classification.
+Nous avons choisi ces modèles car ils sont tous différents et permettent de tester différentes approches pour résoudre le problème.
+De plus, pour des questions de puissance de calcul, nous avons choisi des modèles qui ne sont pas trop complexes permettant d'être exécutés sur un ordinateur personnel.
 
 
 \subsection{Cross Validation}
@@ -962,8 +973,8 @@ Chaque itération consiste à entraîner le modèle sur 4 sous-ensembles et à t
 Cette opération est répétée 5 fois pour que chaque sous-ensemble soit utilisé comme jeu de test.
 La performance du modèle est calculée en faisant la moyenne des performances obtenues sur chaque sous-ensemble.
 Dans notre cas, cette performance est effectuée en utilisant la "log loss" comme métrique.
-Celle-ci est utilisée pour évaluer la performance d'un modèle de classification probabiliste\footnote{Pour rappel, le xG est une métrique probabiliste puisqu'elle indique la chance qu'un tir soit transformé en but sous forme de pourcentage.}.
-C'est ainsi que nous pouvons choisir le meilleur set d'hyper paramètres pour chaque modèle.
+Celle-ci est utilisée dans des contextes de classification probabiliste\footnote{Pour rappel, le xG est une métrique probabiliste puisqu'elle indique la chance qu'un tir soit transformé en but sous forme de pourcentage.} permettant d'évaluer la performance d'un modèle de classification.
+Ainsi, nous pouvons choisir le meilleur set d'hyper paramètres pour chaque modèle.
 \newline\newline
 Après avoir choisi nos modèles et leurs hyper paramètres, nous allons les entraîner sur le jeu de données d'entraînement entier et les tester sur le jeu de données de test final.
 Cela nous permettra ensuite de comparer les résultats entre les différents modèles.
@@ -975,7 +986,7 @@ C'est ainsi que nous pourrons déterminer quel modèle est le plus performant po
     \caption{Cross Validation avec 5 sous-ensembles}
     \label{fig:cross_validation}
 \end{figure}
-
+\newpage
 \subsection{Sélection des meilleurs attributs}
 \label{sec:selection_attributs}
 Pour la sélection des meilleurs attributs, nous allons utiliser la méthode de forward elimination.
@@ -1012,7 +1023,7 @@ C'est pour cela que l'attribut "angle\_abs" n'est pas significatif et qu'il doit
 Pour finir, nous pouvons voir sur le tableau \ref{tab:logistic_regression_result_6} que l'ajout de l'attribut "header" et "good\_foot\_used" apporte une amélioration significative au modèle.
 Cela se voit grâce aux p-values très faibles de ces deux attributs lorsque nous les additionnons aux autres attributs du modèle.
 
-
+\newpage
 \begin{table}[htp]
     \centering
     \begin{tabular}{lllllll}
@@ -1297,7 +1308,7 @@ Il est donc plus pertinent, pour cette visualisation, de se concentrer sur la po
 Lorsque nous nous penchons sur les figures \ref{fig:result_log_reg}, \ref{fig:result_random_forest}, \ref{fig:result_mlp}, \ref{fig:result_tree}, nous constatons que la tendance générale des modèles est la même.
 C'est-à-dire qu'ils prédisent que les tirs effectués dans la surface de réparation ont une plus grande chance d'être transformés en but que ceux effectués à l'extérieur de la surface.
 Cependant, nous pouvons constater plusieurs phénomènes.
-Tout d'abord, nous nous apercevons que le modèle Random Forest prédit que les tirs effectués à l'extérieur de notre côté du terrain ont une plus grande chance d'être marqués que ceux qui sont effectués à l'extérieur de la surface mais dans le camp adverse.
+Tout d'abord, nous nous apercevons que le modèle Random Forest prédit que les tirs effectués du côté du terrain de l'équipe attaquante ont une plus grande chance d'être marqués que ceux qui sont effectués à l'extérieur de la surface mais dans le camp adverse.
 C'est également visible pour l'arbre de décision qui prédit une plus forte chance de marquer pour les tirs effectués dans le propre camp que ceux effectués dans la surface adverse dans un angle relativement faible.
 Ce phénomène peut être dû à un manque de tirs faits à très longue distance des modèles.
 En effet, lorsque nous observons la figure \ref{fig:pitch_chart}, nous constatons que les tirs sont majoritairement effectués dans la surface de réparation adverse et dans le camp adverse.
@@ -1313,6 +1324,8 @@ C'est alors via ces visualisations que nous pouvons constater et comparer les di
 Nous nous apercevons que les deux modèles les plus performants sont la régression logistique et le perceptron multi-couches.
 La régression logistique a une meilleure log loss que le perceptron multi-couches.
 Nous voyons notamment que malgré le fait que la log loss du perceptron multi-couches soit plus élevée que le modèle Random Forest, sa visualisation en heatmap est plus proche de la réalité que le modèle Random Forest qui lui fournit des résultats incohérents à très longue distance.
+Nous avons vu via la tendance des prédictions des modèles que la chance de réussite d'un tir augmente plus le tir est effectué proche du but adverse.
+Sur la figure \ref{fig:pitch_chart}, nous voyons que les joueurs professionnels de football ont déjà connaissance que leurs chances de tirs augmentent plus ils sont proches du but adverse.
 \newline\newline
 Pour conclure cette section sur l'analyse des résultats, nous pouvons dire que la régression logistique est le modèle le plus performant pour résoudre ce problème. 
 Il est important de rappeler qu'uniquement 5 modèles de classifications ont été testés.
