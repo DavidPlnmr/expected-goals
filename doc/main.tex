@@ -1133,8 +1133,8 @@ Il est possible de trouver les hypers paramètres les plus optimaux pour chacun 
         \hline
         \multicolumn{3}{|c|}{\textbf{Régression logistique}}                                                                                                                                           \\ \hline
         \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                   \\ \hline
-        \multicolumn{1}{|l|}{penalty}                  & \multicolumn{1}{l|}{l1}              & \begin{tabular}[c]{@{}l@{}}Indique la méthode \\ de régularisation du modèle\end{tabular}              \\ \hline
-        \multicolumn{1}{|l|}{C}                        & \multicolumn{1}{l|}{10}             & \begin{tabular}[c]{@{}l@{}}Indique la force de la \\ régularisation du modèle\end{tabular}             \\ \hline
+        \multicolumn{1}{|l|}{penalty}                  & \multicolumn{1}{l|}{l2}              & \begin{tabular}[c]{@{}l@{}}Indique la méthode \\ de régularisation du modèle\end{tabular}              \\ \hline
+        \multicolumn{1}{|l|}{C}                        & \multicolumn{1}{l|}{100}             & \begin{tabular}[c]{@{}l@{}}Indique la force de la \\ régularisation du modèle\end{tabular}             \\ \hline
         \multicolumn{1}{|l|}{max\_iter}                & \multicolumn{1}{l|}{100.0}           & \begin{tabular}[c]{@{}l@{}}Nombre d'itérations maximales \\ pour arriver à une convergence\end{tabular} \\ \hline
         \multicolumn{1}{|l|}{solver}                   & \multicolumn{1}{l|}{liblinear}       & \begin{tabular}[c]{@{}l@{}}L'algorithme utilisé pour résoudre \\ le modèle\end{tabular}                \\ \hline
         \end{tabular}
@@ -1150,8 +1150,8 @@ Il est possible de trouver les hypers paramètres les plus optimaux pour chacun 
     \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                           \\ \hline
     \multicolumn{1}{|l|}{criterion}                & \multicolumn{1}{l|}{gini}            & \begin{tabular}[c]{@{}l@{}}Critère qui détermine \\ la séparation de l'arbre\end{tabular}                      \\ \hline
     \multicolumn{1}{|l|}{max\_depth}               & \multicolumn{1}{l|}{5}               & Profondeur maximale acceptée.                                                                                  \\ \hline
-    \multicolumn{1}{|l|}{min\_samples\_leaf}       & \multicolumn{1}{l|}{25}             & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ acceptée en tant que feuille.\end{tabular}          \\ \hline
-    \multicolumn{1}{|l|}{min\_samples\_split}      & \multicolumn{1}{l|}{25}               & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ pour créer une séparation sur un noeud\end{tabular} \\ \hline
+    \multicolumn{1}{|l|}{min\_samples\_leaf}       & \multicolumn{1}{l|}{100}             & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ acceptée en tant que feuille.\end{tabular}          \\ \hline
+    \multicolumn{1}{|l|}{min\_samples\_split}      & \multicolumn{1}{l|}{5}               & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ pour créer une séparation sur un noeud\end{tabular} \\ \hline
     \end{tabular}
     \caption{Jeu d'hypers paramètres choisi pour l'arbre de décision}
     \label{tab:decision_tree_hyperparameters}
@@ -1165,9 +1165,9 @@ Il est possible de trouver les hypers paramètres les plus optimaux pour chacun 
     \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                           \\ \hline
     \multicolumn{1}{|l|}{criterion}                & \multicolumn{1}{l|}{entropy}         & \begin{tabular}[c]{@{}l@{}}Critère qui détermine la\\ séparation de chaque arbre \\ dans la forêt\end{tabular} \\ \hline
     \multicolumn{1}{|l|}{max\_depth}               & \multicolumn{1}{l|}{5}               & Profondeur maximale acceptée.                                                                                  \\ \hline
-    \multicolumn{1}{|l|}{min\_samples\_leaf}       & \multicolumn{1}{l|}{10}              & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ acceptée en tant que feuille.\end{tabular}          \\ \hline
+    \multicolumn{1}{|l|}{min\_samples\_leaf}       & \multicolumn{1}{l|}{50}              & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ acceptée en tant que feuille.\end{tabular}          \\ \hline
     \multicolumn{1}{|l|}{min\_samples\_split}      & \multicolumn{1}{l|}{10}             & \begin{tabular}[c]{@{}l@{}}Nombre d'instances minimales \\ pour créer une séparation sur un noeud\end{tabular} \\ \hline
-    \multicolumn{1}{|l|}{n\_estimators}            & \multicolumn{1}{l|}{200}              & Nombre d'arbres dans la forêt                                                                                  \\ \hline
+    \multicolumn{1}{|l|}{n\_estimators}            & \multicolumn{1}{l|}{50}              & Nombre d'arbres dans la forêt                                                                                  \\ \hline
     \end{tabular}
     \caption{Jeu d'hypers paramètres choisi pour la forêt aléatoire}
     \label{tab:random_forest_hyperparameters}
@@ -1193,7 +1193,7 @@ Il est possible de trouver les hypers paramètres les plus optimaux pour chacun 
         \multicolumn{1}{|l|}{\textbf{Hyper paramètre}} & \multicolumn{1}{l|}{\textbf{Valeur}} & \textbf{Description}                                                                                                              \\ \hline
         \multicolumn{1}{|l|}{activation}               & \multicolumn{1}{l|}{logistic}        & Type de fonction d'activation                                                                                                     \\ \hline
         \multicolumn{1}{|l|}{alpha}                    & \multicolumn{1}{l|}{0.001}           & \begin{tabular}[c]{@{}l@{}}La force de la régularisation\\ (pénalité)\end{tabular}                                                \\ \hline
-        \multicolumn{1}{|l|}{hidden\_layer\_sizes}     & \multicolumn{1}{l|}{(50, 50, 50 )}    & \begin{tabular}[c]{@{}l@{}}Indique le nombre de couches et\\  le nombre de neurones par couche\end{tabular}                       \\ \hline
+        \multicolumn{1}{|l|}{hidden\_layer\_sizes}     & \multicolumn{1}{l|}{(100, 100, 100)}    & \begin{tabular}[c]{@{}l@{}}Indique le nombre de couches et\\  le nombre de neurones par couche\end{tabular}                       \\ \hline
         \multicolumn{1}{|l|}{learning\_rate}           & \multicolumn{1}{l|}{constant}        & \begin{tabular}[c]{@{}l@{}}Indique le taux d'apprentissage \\ pour mettre à jour les poids \\ de chacun des neurones\end{tabular} \\ \hline
         \multicolumn{1}{|l|}{solver}                   & \multicolumn{1}{l|}{adam}            & \begin{tabular}[c]{@{}l@{}}L'algorithme utilisé pour \\ apprendre les poids pour \\ chacun des neurones\end{tabular}              \\ \hline
         \end{tabular}
@@ -1218,9 +1218,9 @@ Une valeur plus faible de log loss indique de meilleures performances du modèle
     \hline
     \textbf{Modèle}          & \textbf{Log loss} \\ \hline
     Régression logistique    & 0.2882          \\ \hline
-    Random Forest            & 0.2884          \\ \hline
-    Perceptron multi-couche & 0.2892          \\ \hline
-    Arbre de décision        & 0.2901         \\ \hline
+    Perceptron multi-couche & 0.2885         \\ \hline
+    Random Forest            & 0.2887          \\ \hline
+    Arbre de décision        & 0.2903         \\ \hline
     KNN                      & 0.4304         \\ \hline
     Classificateur naïf      & 3.8152          \\ \hline
     \end{tabular}
@@ -1235,10 +1235,10 @@ Cela explique pourquoi il obtient une log loss aussi élevée.
 En effet, le décalage entre la prédiction de ce classifieur et la valeur réelle est très grand et cela représente une influence direct sur la valeur finale du log loss.
 \newline\newline 
 En examinant les résultats, nous constatons que la régression logistique est le modèle le plus performant. 
-Cependant, le modèle de Random Forest le suit de près. 
+Cependant, le perceptron multi-couche le suit de près. 
 La différence entre ces deux modèles est très faible, ce qui indique qu'ils ont des performances similaires.
 \newline\newline
-Le perceptron multi-couche et l'arbre de décision affichent également des performances comparables. 
+Le Random Forest et l'arbre de décision affichent également des performances comparables. 
 Encore une fois, la différence entre ces deux modèles est minime.
 \newline\newline
 En revanche, le modèle KNN se classe comme le modèle le moins performant parmi ceux testés (hormis le classificateur naïf). 
@@ -1246,11 +1246,11 @@ De ce fait, nous pouvons déduire que ce modèle n'est pas approprié pour ce pr
 
 \subsection{Visualisation de la distribution des prédictions}
 Par la suite, il a été intéressant d'observer la distribution des résultats prédits sur les données de test.
-Cela nous permet de constater les différences parmi les modèles qui sont similaires en termes de log loss.
+Cela nous permet de constater les différences parmi les modèles qui sont similaires en terme de log loss.
 Par exemple, les modèles de régression logistique et de Random Forest ont des performances similaires, mais leurs distributions de résultats prédits diffèrent légèrement.
 Cependant, cela n'indique toujours pas si le modèle est significativement plus performant qu'un autre puisque cela est basé sur les données de test seulement.
 Autrement, nous pouvons observer que la distribution des résultats prédits par le modèle KNN est très différente des autres modèles.
-Il en va de même pour l'arbre de décision qui était très similaire au perceptron multi-couche en termes de log loss, mais qui possède une distribution de résultats prédits différente.
+Il en va de même pour l'arbre de décision qui était très similaire au perceptron multi-couche en terme de log loss, mais qui possède une distribution de résultats prédits différente.
 \newline\newline
 Finalement, nous observons que le classificateur naïf prédit systématiquement la classe majoritaire\footnote{Dans notre cas, elle prédit que le tir a été manqué et donc une probabilité de marquer à 0\%}, ce qui était prévisible puisque cela représente le principe de ce classificateur.
 \begin{figure}[htp]
@@ -1278,16 +1278,16 @@ Il est donc plus pertinent, pour cette visualisation, de se concentrer sur la po
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.6\textwidth]{img/pitch_visualisation_random_forest.png}
-    \caption{Heatmap des résultats prédits par le modèle Random Forest}
-    \label{fig:result_random_forest}
+    \includegraphics[width=0.6\textwidth]{img/pitch_visualisation_mlp.png}
+    \caption{Heatmap des résultats prédits par le perceptron multi-couche}
+    \label{fig:result_mlp}
 \end{figure}
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.6\textwidth]{img/pitch_visualisation_mlp.png}
-    \caption{Heatmap des résultats prédits par le perceptron multi-couche}
-    \label{fig:result_mlp}
+    \includegraphics[width=0.6\textwidth]{img/pitch_visualisation_random_forest.png}
+    \caption{Heatmap des résultats prédits par le modèle Random Forest}
+    \label{fig:result_random_forest}
 \end{figure}
 
 \begin{figure}[htp]
@@ -1322,7 +1322,7 @@ Nous pouvons également le voir sur la figure \ref{fig:result_knn} où nous cons
 C'est alors via ces visualisations que nous pouvons constater et comparer les différences entre les modèles.
 Nous nous apercevons que les deux modèles les plus performants sont la régression logistique et le perceptron multi-couche.
 La régression logistique a une meilleure log loss que le perceptron multi-couche.
-Nous voyons notamment que malgré le fait que la log loss du perceptron multi-couche soit plus élevée que le modèle Random Forest, sa visualisation en heatmap est plus proche de la réalité que le modèle Random Forest qui lui fournit des résultats incohérents à très longue distance.
+Nous voyons notamment que, pour le modèle Random Forest, sa visualisation en heatmap fournit des résultats incohérents à très longue distance, contrairement au perceptron multi-couche et à la régression logistique.
 Nous avons vu via la tendance des prédictions des modèles que la chance de réussite d'un tir augmente plus le tir est effectué proche du but adverse.
 Sur la figure \ref{fig:pitch_chart}, nous voyons que les joueurs professionnels de football ont déjà connaissance que leurs chances de tirs augmentent plus ils sont proches du but adverse.
 \newline\newline
@@ -1338,7 +1338,7 @@ Nous allons maintenant discuter la conclusion finale de ce travail.
 Tout d'abord, nous allons nous pencher sur la première question du travail qui était de savoir quels étaient les facteurs qui influençaient le plus la réussite d'un tir.
 Via nos recherches sur le sujet, nous avons pu établir un état de l'art sur le sujet.
 Nous avons pu observer, via cet état de l'art, que les facteurs les plus influents étaient la distance du tir ainsi que l'angle du tir.
-Ils sont d'ailleurs indissociables puisque le cumul des deux apporte une information plus pertinente que chacun d'eux facteurs pris séparément.
+Ils sont d'ailleurs indissociables puisque le cumul des deux apporte une information plus pertinente que chacun d'eux pris séparément.
 L'un des articles scientifiques a également essayé d'introduire un facteur supplémentaire indiquant si le tir a été effectué de la tête.
 Cependant, rien n'est indiqué si ce facteur a une réelle influence sur la réussite d'un tir.
 \newline\newline
@@ -1375,7 +1375,7 @@ Ensuite, nous avons pu tester les modèles avec leurs meilleurs hypers paramètr
 Les résultats sur la deuxième partie du dataset nous ont permis de comparer les modèles entre eux.
 Nous les avons comparés via la log loss et via la visualisation des probabilités prédites par les modèles.
 Nous avons pu constater des choses intéressantes sur les résultats.
-Tout d'abord, nous avons pu constater, via le tableau \ref{tab:results}, que les 3 modèles les plus performants selon la log loss étaient la régression logistique, le modèle Random Forest et le perceptron multi-couche.
+Tout d'abord, nous avons pu constater, via le tableau \ref{tab:results}, que les 3 modèles les plus performants selon la log loss étaient la régression logistique, le perceptron multi-couche et le modèle Random Forest.
 Cependant, après avoir visualisé les probabilités prédites par les modèles sur un terrain de football, nous avons pu constater que le modèle Random Forest fournissait des résultats incohérents à longue distance (voir fig. \ref{fig:result_random_forest}).
 Les deux autres modèles précédemment cités fournissaient des résultats plus cohérents par rapport à la réalité (voir fig. \ref{fig:result_log_reg} et \ref{fig:result_mlp}).
 \newline\newline
@@ -1397,6 +1397,7 @@ Ensuite, nous pourrions tester et comparer d'autres modèles non testés ici.
 Par exemple, nous pourrions tester un modèle de classification basée sur SVM.
 Finalement, nous pourrions également expérimenter d'ajouter de nouveaux hypers paramètres pour les modèles testés.
 En effet, dû à un manque de puissance de calcul et de temps, nous n'avons pas pu tester tous les hypers paramètres possibles pour chaque modèle.
+
 \newpage
 
 % Bibliography
